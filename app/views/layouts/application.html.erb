@@ -3,7 +3,7 @@
   <head>
     <title>TODO</title>
     <%= csrf_meta_tags %>
-    
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <%= stylesheet_link_tag    'application', media: 'all' %>
@@ -12,6 +12,17 @@
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+
+    <form>
+      <label>Address</label>
+      <input id="user_input_autocomplete_address" placeholder="Start typing your address...">
+    </form>
+
+    <!-- Include Google Maps JS API -->
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBCoDjqf-9l5d0f0LoOhPQuHSOMaKKP7-0">
+    </script>
     <%= javascript_include_tag 'application' %>
+
   </body>
 </html>
