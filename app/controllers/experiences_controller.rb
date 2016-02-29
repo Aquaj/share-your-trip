@@ -7,14 +7,15 @@ class ExperiencesController < ApplicationController
     end
 
     def show
+      @rating = current_user.ratings.new
     end
 
     def new
-      @experience = current_user.experience.new
+      @experience = current_user.experiences.new
     end
 
     def create
-      @experience = current_user.experience.new(experience_params)
+      @experience = current_user.experiences.new(experience_params)
       if @experience.save
         redirect_to @experience
       else
@@ -23,6 +24,12 @@ class ExperiencesController < ApplicationController
     end
 
     def update
+      @experience.update(experience_params)
+      if @experience.save
+        redirect_to @experience
+      else
+        render 'edit'
+      end
     end
 
     def edit

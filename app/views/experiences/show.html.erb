@@ -20,7 +20,7 @@
       </div>
       <% end %>
       <div class="col-xs-12 col-sm-4 col-md-3">
-        <%= render "review_form", locals: { parent: @experience, review: current_user.ratings.new } %>
+        <%= render "review_form", locals: { parent: @experience, review: @rating } %>
       </div>
     </div>
   </div>

@@ -13,7 +13,4 @@
         <%= icon("star-o") -%>
       <% end %>
     </div>
-    <% if user_signed_in? && locals[:review].user == current_user %>
-      <%= link_to icon('pencil-square-o'), edit_cocktail_review_path(locals[:review].cocktail, Review.where(user_id: locals[:review].user.id, cocktail_id: @cocktail.id).first), class: "show-link show-link-right" %>
-    <% end %>
   </div>
