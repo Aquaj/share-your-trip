@@ -1,13 +1,28 @@
 <h2>INDEX</h2>
 
 <% @experiences.each do |experience| %>
-<div class="experience">
-  <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
-  <%= link_to experience do %>
-    <h3><%= experience.title %></h3>
+  <div class="experience">
+    <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
+    <%= link_to experience do %>
+      <h3><%= experience.title %></h3>
+    <% end %>
+    <p><%= experience.category %></p>
+    <p><%= experience.description %></p>
+    <p><%= experience.address %></p>
+  </div>
+<% end %>
+
+<div id="map" style="width: 100%; height: 600px;"></div>
+
+<% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+    $(document).on('ready', function() {
+      handler = Gmaps.build('Google');
+      handler.buildMap({ internal: { id: 'map' } }, function(){
+        markers = handler.addMarkers(<%= raw @markers.to_json %>);
+        handler.bounds.extendWith(markers);
+        handler.fitMapToBounds();
+      });
+    })
   <% end %>
-  <p><%= experience.category %></p>
-  <p><%= experience.description %></p>
-  <p><%= experience.address %></p>
-</div>
 <% end %>

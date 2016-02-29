@@ -9,6 +9,12 @@ class Experience < ActiveRecord::Base
   validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
+  validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama"] }
+
+  def self.categories
+    return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama"]
+  end
+
 
   def self.search(search)
     if search
