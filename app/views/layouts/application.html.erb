@@ -13,15 +13,7 @@
     <%= render 'shared/flashes' %>
     <%= yield %>
 
-    <form>
-      <label>Address</label>
-      <input id="user_input_autocomplete_address" placeholder="Start typing your address...">
-    </form>
-
-    <!-- Include Google Maps JS API -->
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBCoDjqf-9l5d0f0LoOhPQuHSOMaKKP7-0">
-    </script>
+    <%= render 'shared/search_input'%>
     <%= javascript_include_tag 'application' %>
 
   </body>
