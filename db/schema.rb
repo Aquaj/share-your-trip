@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229100657) do
+ActiveRecord::Schema.define(version: 20160229102816) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "experiences", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "type"
+    t.text     "description"
+    t.string   "address"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree
+
+  create_table "ratings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "experience_id"
+    t.integer  "rating"
+    t.text     "review"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "ratings", ["experience_id"], name: "index_ratings_on_experience_id", using: :btree
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -29,9 +52,19 @@ ActiveRecord::Schema.define(version: 20160229100657) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "status"
+    t.string   "luggage"
+    t.string   "local_mobility"
+    t.string   "travel_type"
+    t.string   "accomodation_type"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "experiences", "users"
+  add_foreign_key "ratings", "experiences"
+  add_foreign_key "ratings", "users"
 end
