@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :ratings, only: [:create]
   end
 
+  get "my_experiences" => "experiences#my_experiences"
+
   resources :wishlists, only: [:index, :create, :destroy]
 
   # Example resource route with options:

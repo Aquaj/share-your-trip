@@ -43,6 +43,10 @@ class ExperiencesController < ApplicationController
       @experience.destroy
     end
 
+    def my_experiences
+      @experiences = Experience.all.where("user_id = ?", current_user.id)
+    end
+
   private
 
     def find_experience
