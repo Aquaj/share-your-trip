@@ -1,0 +1,27 @@
+<h2>SHOW</h2>
+
+<p><%= @experience.user.first_name %> <%= @experience.user.last_name %> enjoyed :</p>
+
+<%= link_to @experience do %>
+  <h3><%= @experience.title %></h3>
+<% end %>
+
+<p><%= @experience.category %></p>
+<p><%= @experience.description %></p>
+<p><%= @experience.address %></p>
+
+<h2>Reviews</h2>
+<div class="reviews">
+  <div class="container">
+    <div class="row">
+      <% @experience.ratings do |rating| %>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <%= render "review", locals: { review: rating } %>
+      </div>
+      <% end %>
+      <div class="col-xs-12 col-sm-4 col-md-3">
+        <%= render "review_form", locals: { parent: @experience, review: current_user.ratings.new } %>
+      </div>
+    </div>
+  </div>
+</div>

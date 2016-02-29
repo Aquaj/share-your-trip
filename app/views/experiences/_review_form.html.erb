@@ -1,0 +1,21 @@
+<div class="review">
+<%= simple_form_for [locals[:parent], locals[:review]] do |f| %>
+  <div class="author">
+    <span class="username"><%= current_user.first_name.capitalize %></span>
+  </div>
+  <div class="review-content">
+    <%= f.input :review, type: "textarea", input_html: { class: "input-content", rows: 2 }, label: false, placeholder: "Leave a review?", error: false %>
+  </div>
+  <div class="input-rating">
+  <%= f.input :rating,  as: :radio_buttons, label: false, error: false do%>
+    <%= f.collection_radio_buttons :rating, (0..4).reverse_each, :succ, ->(a){false}, boolean_style: :inline, item_wrapper_tag: false do |b| %>
+      <%= b.radio_button class: 'with-font' %>
+      <%= b.label {""} %>
+    <% end %>
+  <% end %>
+  </div>
+  <%= f.button :button, class: "input-validate btn btn-primary ladda-button", "data-style": "contract" do %>
+    <span class="ladda-label">Submit</span>
+  <% end %>
+<% end %>
+</div>

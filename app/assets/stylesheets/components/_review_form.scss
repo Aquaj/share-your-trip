@@ -1,0 +1,94 @@
+.review{
+  margin: 5px 0;
+  height: 125px;
+  position: relative;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+
+  .input-content{
+    border: none;
+    resize: none;
+    overflow: auto;
+    width: 100%;
+    padding: 0;
+
+    &:focus{
+      outline: none !important;
+      box-shadow: none;
+    }
+  }
+
+  .review_content.has-error{
+      box-shadow: 0 0 10px rgba(#992222, 0.7);
+  }
+
+
+  .input-validate{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+  }
+
+  .input-rating{
+    position: absolute;
+    color: yellow;
+    top: 50px;
+    right: 10px;
+
+    .has-error {
+      color: darken(red, 15%);
+    }
+
+    .rating_rating {
+      display: flex;
+      flex-direction: row-reverse;
+      align-items: center;
+    }
+
+    input.with-font {
+      border: 0;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    input.with-font + label:before {
+      font: normal normal normal 14px/1 FontAwesome;
+      font-size: inherit;
+      letter-spacing: 4px;
+      content: "\f006";
+    }
+
+    input.with-font:checked + label:before {
+      content: "\f005";
+    }
+
+    input.with-font:checked ~ label:before {
+      content: "\f005";
+    }
+
+    input.with-font:hover ~ label:before {
+      content: "\f005";
+    }
+
+    input.with-font:hover, label:before {
+      font: normal normal normal 14px/1 FontAwesome;
+      content: "\f006";
+    }
+
+    label {
+      margin: 0;
+    }
+  }
+
+  .review-content {
+    position: absolute;
+    width: 55%;
+    top: 50px;
+    left: 15px;
+  }
+}

@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   #   resources :products
 
   resources :experiences do
-    resources :reviews, only: [:create]
+    resources :ratings, only: [:create]
   end
 
   resources :wishlists, only: [:index, :create, :destroy]

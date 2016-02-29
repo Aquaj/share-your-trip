@@ -1,0 +1,45 @@
+.reviews {
+  margin: 0 auto;
+  width: 90%;
+  .review {
+    margin: 5px 0;
+    height: 125px;
+    position: relative;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+
+    .author {
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      .username{
+        line-height: 25px;
+      }
+    }
+
+    .rating {
+      position: absolute;
+      color: darken(yellow, 3%);
+      top: 50px;
+      right: 10px;
+
+      .fa{
+        position: relative;
+      }
+
+      .fa:before{
+        position: relative;
+        z-index: 2;
+      }
+
+      .fa:after {
+        color: #EEE;
+        font-family: 'FontAwesome';
+        content: "\f005";
+        z-index: 1;
+        position: absolute;
+        left: 0;
+      }
+    }
+  }
+}

@@ -9,4 +9,12 @@ class Experience < ActiveRecord::Base
   validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
+
+  def self.search(search)
+    if search
+      all.where('address LIKE ?', "%#{search}%")
+    else
+      all
+    end
+  end
 end

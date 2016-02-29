@@ -1,0 +1,13 @@
+<h2>INDEX</h2>
+
+<% @experiences.each do |experience| %>
+<div class="experience">
+  <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
+  <%= link_to experience do %>
+    <h3><%= experience.title %></h3>
+  <% end %>
+  <p><%= experience.category %></p>
+  <p><%= experience.description %></p>
+  <p><%= experience.address %></p>
+</div>
+<% end %>
