@@ -4,7 +4,8 @@ class Experience < ActiveRecord::Base
   has_many :reviews
   has_many :users, through: :wishlists
 
-  validates :type, presence: true
+  validates :title, presence: true
+  validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
 end
