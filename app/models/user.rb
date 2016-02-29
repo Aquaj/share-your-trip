@@ -4,8 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :experiences
-  has_many :wishlists
+  has_many :experiences, dependent: :destroy
+  has_many :wishlists, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   has_many :wishlisted_experiences, through: :wishlists, source: :experiences
 
   validates :first_name, presence: true

@@ -1,7 +1,8 @@
 class Experience < ActiveRecord::Base
   belongs_to :user
 
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
+  has_many :wishlists, dependent: :destroy
   has_many :users, through: :wishlists
 
   validates :title, presence: true
