@@ -4,6 +4,10 @@ class ExperiencesController < ApplicationController
 
     def index
       @experiences = Experience.search(params[:search])
+      @markers = Gmaps4rails.build_markers(@experiences) do |experience, marker|
+      marker.lat experience.latitude
+      marker.lng experience.longitude
+    end
     end
 
     def show
