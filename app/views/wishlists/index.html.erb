@@ -1,0 +1,8 @@
+<h2>Your Wish List:</h2>
+<ul>
+<% @wishlists.each do |wishlist| %>
+<li>
+<%= link_to ">> details", wishlist.experience %>
+</li>
+<% end %>
+</ul>
