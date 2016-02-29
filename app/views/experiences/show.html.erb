@@ -1,7 +1,15 @@
-<h1>SHOW</h1>
+<h2>SHOW</h2>
 
 <%= @experience.user.first_name %> <%= @experience.user.last_name %> enjoyed :
 <%= @experience.title %>
 <%= @experience.category %>
 <%= @experience.description %>
 <%= @experience.address %>
+
+<h2>Reviews</h2>
+
+<% @experience.ratings do |rating| %>
+  <%= render("review"), locals: { review: rating } %>
+<% end %>
+
+<%= render("review_form"), locals: { parent: @experience, review: current_user.ratings.new } %>

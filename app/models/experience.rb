@@ -12,9 +12,9 @@ class Experience < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ['address LIKE ?', "%#{search}%"])
+      all.where('address LIKE ?', "%#{search}%")
     else
-      find(:all)
+      all
     end
   end
 end
