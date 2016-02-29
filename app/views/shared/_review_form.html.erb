@@ -4,7 +4,7 @@
     <span class="username"><%= current_user.first_name.capitalize %></span>
   </div>
   <div class="review-content">
-    <%= f.input :review, type: "textarea", input_html: { class: "input-content", rows: 2 }, label: false, placeholder: "Leave a review?", error: false %>
+    <%= f.input :review, type: "textarea", input_html: { class: "input-content", rows: 2 }, label: false, placeholder: "Leave a review?" %>
   </div>
   <div class="input-rating">
   <%= f.input :rating,  as: :radio_buttons, label: false, error: false do%>
