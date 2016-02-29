@@ -1,7 +1,7 @@
 class Experience < ActiveRecord::Base
   belongs_to :user
 
-  has_many :reviews, dependent: :destroy
+  has_many :ratings, dependent: :destroy
   has_many :wishlists, dependent: :destroy
   has_many :users, through: :wishlists
 
