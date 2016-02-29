@@ -31,7 +31,7 @@
 
   .input-rating{
     position: absolute;
-    color: darken(yellow, 3%);
+    color: yellow;
     top: 50px;
     right: 10px;
 
@@ -39,7 +39,7 @@
       color: darken(red, 15%);
     }
 
-    .review_rating {
+    .rating_rating {
       display: flex;
       flex-direction: row-reverse;
       align-items: center;
@@ -89,6 +89,6 @@
     position: absolute;
     width: 55%;
     top: 50px;
-    left: 50px;
+    left: 15px;
   }
 }

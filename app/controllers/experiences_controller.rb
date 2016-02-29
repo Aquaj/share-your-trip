@@ -1,5 +1,6 @@
 class ExperiencesController < ApplicationController
     before_action :find_experience, only: [:edit, :update, :destroy, :show]
+    skip_before_action :authenticate_user!, only: [:index, :new, :show]
 
     def index
       @experiences = Experience.search(params[:search])
