@@ -9,11 +9,16 @@ class ExperiencesController < ApplicationController
     end
 
     def new
-      @experience = Experience.new
+      @experience = current_user.experience.new
     end
 
     def create
-      @experience = Experience.new(experience_params)
+      @experience = current_user.experience.new(experience_params)
+      if @experience.save
+        redirect_to @experience
+      else
+        render 'new'
+      end
     end
 
     def update
