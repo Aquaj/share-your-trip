@@ -12,6 +12,8 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :avatar, presence: true
+  after_create :send_welcome_email
+
   def self.find_for_facebook_oauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
@@ -25,5 +27,11 @@ class User < ActiveRecord::Base
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
-end
 
+
+ private
+
+  def send_welcome_email
+    UserMailer.welcome(self).deliver_now
+  end
+end
