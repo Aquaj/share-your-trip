@@ -56,10 +56,7 @@ private
   end
 
   def experience_params
-    params.require(:experience).permit(:user_id, :category, :description, :address, :title)
+    params.require(:experience).permit(:user_id, :category, :description, :address, :title, photos: [])
   end
 
-  def authorize_experience
-    authorize @experience
-  end
 end
