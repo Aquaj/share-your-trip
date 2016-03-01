@@ -3,6 +3,18 @@
  * (margin/padding adjustments)
  * ------------------------------------- */
 
+
+
+.Site {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.Site-content {
+  flex: 1;
+}
+
 .banner {
   color: white;
   text-align: center;
