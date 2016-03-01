@@ -6,6 +6,7 @@
   <h3><%= @experience.title %></h3>
 <% end %>
 
+
 <p><%= @experience.category %></p>
 <p><%= @experience.description %></p>
 <p><%= @experience.address %></p>
@@ -19,9 +20,11 @@
         <%= render "shared/review", locals: { review: rating } %>
       </div>
       <% end %>
-      <div class="col-xs-12 col-sm-4 col-md-3">
-        <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
-      </div>
+      <% if policy(@rating).new? %>
+        <div class="col-xs-12 col-sm-4 col-md-3">
+          <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
+        </div>
+      <% end %>
     </div>
   </div>
 </div>
