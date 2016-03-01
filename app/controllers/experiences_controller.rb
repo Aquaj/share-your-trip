@@ -51,6 +51,10 @@ class ExperiencesController < ApplicationController
 
 private
 
+  def authorize_experience
+    authorize @experience
+  end
+
   def find_experience
     @experience = Experience.find(params[:id])
   end
