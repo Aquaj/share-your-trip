@@ -26,7 +26,7 @@ gem 'autoprefixer-rails'
 gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"
-gem "coffee-rails"
+gem "what3words"
 
 
 group :development, :test do
