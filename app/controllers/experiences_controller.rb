@@ -12,16 +12,19 @@ class ExperiencesController < ApplicationController
   end
 
   def show
+    authorize @experience
     @rating = current_user.ratings.new
     @rating.experience_id = @experience.id
   end
 
   def new
     @experience = current_user.experiences.new
+    authorize @experience
   end
 
   def create
     @experience = current_user.experiences.new(experience_params)
+    authorize @experience
     if @experience.save
       redirect_to @experience
     else
@@ -31,6 +34,7 @@ class ExperiencesController < ApplicationController
 
   def update
     @experience.update(experience_params)
+    authorize @experience
     if @experience.save
       redirect_to @experience
     else
@@ -39,9 +43,11 @@ class ExperiencesController < ApplicationController
   end
 
   def edit
+    authorize @experience
   end
 
   def destroy
+    authorize @experience
     @experience.destroy
   end
 
@@ -50,10 +56,6 @@ class ExperiencesController < ApplicationController
   end
 
 private
-
-  def authorize_experience
-    authorize @experience
-  end
 
   def find_experience
     @experience = Experience.find(params[:id])
