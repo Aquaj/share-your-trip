@@ -27,7 +27,6 @@ gem 'autoprefixer-rails'
 gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"
-gem "coffee-rails"
 gem 'omniauth-facebook'
 
 
