@@ -12,3 +12,5 @@ class UserMailer < ApplicationMailer
     # This will render a view in `app/views/user_mailer`!
   end
 
+end
+
