@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
+  mount Attachinary::Engine => "/attachinary"
   resources :experiences do
     resources :ratings, only: [:create]
   end

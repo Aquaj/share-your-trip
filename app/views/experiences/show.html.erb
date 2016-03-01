@@ -9,6 +9,11 @@
 <p><%= @experience.category %></p>
 <p><%= @experience.description %></p>
 <p><%= @experience.address %></p>
+<% if @experience.photos? %>
+  <% @experience.photos.each do |photo| %>
+  <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
+<% end %>
+<% end %>
 
 <h2>Reviews</h2>
 <div class="reviews">
@@ -25,3 +30,4 @@
     </div>
   </div>
 </div>
+

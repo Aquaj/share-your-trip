@@ -1,4 +1,5 @@
 class Experience < ActiveRecord::Base
+
   belongs_to :user
 
   has_many :ratings, dependent: :destroy
@@ -10,7 +11,7 @@ class Experience < ActiveRecord::Base
   validates :description, presence: true
   validates :address, presence: true
   validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama"] }
-
+  has_attachments :photos, maximum: 3
   def self.categories
     return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama"]
   end
