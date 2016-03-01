@@ -1,7 +1,6 @@
 class ExperiencesController < ApplicationController
   before_action :find_experience, only: [:edit, :update, :destroy, :show]
   skip_before_action :authenticate_user!, only: [:index, :new, :show]
-  before_action :authorize_experience, only: [:new, :create, :destroy, :edit, :update, :show]
 
   def index
     @experiences = policy_scope(Experience).search(params[:search])
