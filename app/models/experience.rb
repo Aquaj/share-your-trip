@@ -10,10 +10,10 @@ class Experience < ActiveRecord::Base
   validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
-  validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama"] }
+  validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"] }
   has_attachments :photos, maximum: 3
   def self.categories
-    return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama"]
+    return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"]
   end
 
 
