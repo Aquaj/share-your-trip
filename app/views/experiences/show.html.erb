@@ -5,9 +5,11 @@
 <h2>SHOW</h2>
 
 
-<div id="wishlist">
-  <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
-</div>
+<% if user_signed_in? %>
+  <div id="wishlist">
+    <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
+  </div>
+<% end %>
 
 <p><%= @experience.user.first_name %> <%= @experience.user.last_name %> enjoyed :</p>
 
@@ -42,4 +44,4 @@
     </div>
   </div>
 </div>
-
+<%= render "shared/facebook_share" %>

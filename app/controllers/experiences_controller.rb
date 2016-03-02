@@ -12,10 +12,15 @@ class ExperiencesController < ApplicationController
 
   def show
     authorize @experience
-    @rating = current_user.ratings.new
-    @rating.experience_id = @experience.id
-    @wished = current_user.wishlisted_experiences.include? @experience
-    @wishlist = @experience.wishlists.find_by(user: current_user)
+    if user_signed_in?
+      @rating = current_user.ratings.new
+      @rating.experience_id = @experience.id
+      @wished = current_user.wishlisted_experiences.include? @experience
+      @wishlist = @experience.wishlists.find_by(user: current_user)
+    end
+      @rating = current_user.ratings.new
+      @rating.experience_id = @experience.id
+    end
   end
 
   def new
