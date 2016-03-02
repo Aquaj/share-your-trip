@@ -7,6 +7,7 @@ gem 'pg'
 gem 'figaro'
 gem 'jbuilder', '~> 2.0'
 gem 'devise'
+gem "pundit"
 gem 'redis'
 gem "geocoder"
 gem "coffee-rails"
@@ -27,6 +28,7 @@ gem 'cloudinary'
 gem "attachinary"
 gem "jquery-fileupload-rails"
 gem "what3words"
+gem 'omniauth-facebook'
 
 
 group :development, :test do
@@ -36,6 +38,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'spring'
+  gem "letter_opener"
 end
 
 group :production do

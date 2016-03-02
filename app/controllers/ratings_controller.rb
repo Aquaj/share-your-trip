@@ -1,12 +1,13 @@
 class RatingsController < ApplicationController
-  def create
-    @rating = current_user.ratings.new(rating_params)
-    if @rating.save
-      redirect_to @rating.experience
-    else
-      @experience = @rating.experience
-      render "experiences/show"
-    end
+    def create
+      @rating = current_user.ratings.new(rating_params)
+      authorize(@rating)
+      if @rating.save
+        redirect_to @rating.experience
+      else
+        @experience = @rating.experience
+        render "experiences/show"
+      end
   end
 
   private
