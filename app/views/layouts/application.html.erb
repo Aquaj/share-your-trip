@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TODO</title>
+    <title>
+      <% if content_for? :title %>
+        <%= yield :title %> - Share Your Trip
+      <% else %>
+        Share Your Trip
+      <% end %>
+    </title>
     <%= csrf_meta_tags %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
