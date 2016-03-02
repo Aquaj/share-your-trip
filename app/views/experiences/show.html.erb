@@ -4,6 +4,11 @@
 
 <h2>SHOW</h2>
 
+
+<div id="wishlist">
+  <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
+</div>
+
 <p><%= @experience.user.first_name %> <%= @experience.user.last_name %> enjoyed :</p>
 
 <%= link_to @experience do %>
