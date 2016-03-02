@@ -12,21 +12,21 @@
       <h2 class="text-center"> Quelques coup de Coeurs</h2>
       <% @experiences.each do |experience| %>
         <div class="col-xs-12 col-sm-4">
-          <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
-            <p class="card-user">
-              <%= cl_image_tag experience.user.avatar.path, class:"avatar-radius", size: "50x50",crop: :fill, gravity: :faces, title: experience.user.first_name %>
-            </p>
-            <p class="card-category">
-            <%= experience.category %>
-            </p>
-            <div class="card-description">
-              <%= link_to experience do %>
+          <%= link_to experience do %>
+            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
+              <p class="card-user">
+                <%= cl_image_tag experience.user.avatar.path, class:"avatar-radius", size: "50x50",crop: :fill, gravity: :faces, title: experience.user.first_name %>
+              </p>
+              <p class="card-category">
+              <%= experience.category %>
+              </p>
+              <div class="card-description">
                 <h3><%= experience.title %></h3>
-              <% end %>
-              <p><%= experience.description %></p>
-              <p><%= experience.address %></p>
+                <p><%= experience.description %></p>
+                <p><%= experience.address %></p>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
       <% end %>
     </div>
