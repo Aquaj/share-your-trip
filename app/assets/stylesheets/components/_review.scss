@@ -41,5 +41,15 @@
         left: 0;
       }
     }
+    .rating::after{
+      color: rgba(#000, 0.3);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      letter-spacing: 4.5px;
+      content: "\f006\f006\f006\f006\f006";
+      font-family: FontAwesome;
+      z-index: 2;
+    }
   }
 }

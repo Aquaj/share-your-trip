@@ -12,6 +12,7 @@ class ExperiencesController < ApplicationController
 
   def show
     authorize @experience
+    @average_rating = @experience.ratings.reduce(1){ |a, r| r.rating * a }/@experience.ratings.length
     @rating = current_user.ratings.new
     @rating.experience_id = @experience.id
   end
