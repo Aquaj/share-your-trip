@@ -5,3 +5,25 @@
     <a class="btn btn-primary btn-lg fa fa-heart"> Partage ton coup de Coeur</a>
   </div>
 </div>
+
+<div class="block-contain">
+  <div class="container-fluid">
+    <div class="row">
+      <div>
+        <% @experiences.each do |experience| %>
+          <div class="card col-xs-12 col-sm-4">
+            <div class="experience">
+              <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
+              <%= link_to experience do %>
+                <h3><%= experience.title %></h3>
+              <% end %>
+              <p><%= experience.category %></p>
+              <p><%= experience.description %></p>
+              <p><%= experience.address %></p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
