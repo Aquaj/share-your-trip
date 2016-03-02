@@ -1,6 +1,7 @@
 <div class="review">
 <%= simple_form_for [locals[:parent], locals[:review]] do |f| %>
   <div class="author">
+    <%= cl_image_tag locals[:review].user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
     <span class="username"><%= current_user.first_name.capitalize %></span>
   </div>
   <div class="review-content">

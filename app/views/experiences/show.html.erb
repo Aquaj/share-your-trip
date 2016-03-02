@@ -23,9 +23,12 @@
           <%= @experience.description %>
         </div>
       </div>
-      <div class="author-details">
-        <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "500x500" %>
-        <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
+      <div class="sidebar-description">
+        <div class="author-details">
+          <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "500x500" %>
+          <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
+        </div>
+        <div class="interaction-buttons"><%= render "shared/facebook_share" %></div>
       </div>
     </div>
     <div class="pictures">
