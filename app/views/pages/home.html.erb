@@ -11,15 +11,17 @@
     <div class="row">
       <div>
         <% @experiences.each do |experience| %>
-          <div class="card col-xs-12 col-sm-4">
-            <div class="experience">
-              <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
-              <%= link_to experience do %>
-                <h3><%= experience.title %></h3>
-              <% end %>
-              <p><%= experience.category %></p>
-              <p><%= experience.description %></p>
-              <p><%= experience.address %></p>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.2)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
+              <p class="card-user"><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
+              <p class="card-category"><%= experience.category %></p>
+              <div class="card-description">
+                <%= link_to experience do %>
+                  <h3><%= experience.title %></h3>
+                <% end %>
+                <p><%= experience.description %></p>
+                <p><%= experience.address %></p>
+              </div>
             </div>
           </div>
         <% end %>
