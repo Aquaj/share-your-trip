@@ -31,7 +31,7 @@ class Experience < ActiveRecord::Base
 
 
   def self.search(search, experiences)
-    if search
+    if !search[:address].blank?
       if Geocoder.search(search[:address]).first.types.include? "country"
         experiences.where(country: Geocoder.search(search[:address]).first.formatted_address)
       else
