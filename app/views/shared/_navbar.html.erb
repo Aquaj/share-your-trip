@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.jpg" %>
+    <%= image_tag "logo.png" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -47,12 +47,11 @@
     <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link" %>
-
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Post stuff"), "#", class: "navbar-wagon-item navbar-wagon-button btn" %>
+    <%= link_to t(".top_call_to_action", default: "Partage "), new_experience_path, class: "navbar-wagon-item navbar-wagon-button btn btn-square fa fa-heart" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->

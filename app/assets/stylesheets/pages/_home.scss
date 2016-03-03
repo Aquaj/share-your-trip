@@ -4,6 +4,22 @@
  * ------------------------------------- */
 
 
+.container-fluid {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.block-contain {
+  background-color: #FAFAFA;
+  padding: 20px;
+  margin: 20px;
+  box-shadow: 1px 1px 3px #F0F0F0;
+  position: relative;
+  padding-bottom: 80px;
+}
 
 .Site {
   display: flex;
@@ -37,3 +53,57 @@
   margin-bottom: 20px;
 }
 
+
+
+.card {
+  height: 275px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover;
+  color: white;
+  position: relative;
+  padding: 15px;
+
+}
+.card-user {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+.card-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+.card-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.card-description h2 {
+  font-size: 24px;
+}
+.card-description p {
+  font-size: 13px;
+  }
+.card-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.card-link:hover{
+  opacity: 0.1;
+}
+
+.avatar-radius{
+  border-radius: 50%;
+}
+
+.text-center{
+  margin-bottom: 45px;
+}
