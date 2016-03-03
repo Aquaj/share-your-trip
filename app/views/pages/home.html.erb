@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,101,168,0.6) 0%, rgba(0,36,61,0.6) 50%), url('<%= image_path("background.jpg") %>');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%), url('<%= image_path("background.jpg") %>');">
   <div class="banner-content">
     <h1>Ton Voyage t'a plu?</h1>
     <p>Un lieu, un restaurant, un guide ?</p>
@@ -9,11 +9,11 @@
 <div class="block-contain">
   <div class="container-fluid">
     <div class="row">
-      <h2 class="text-center"> Quelques coup de Coeurs</h2>
+      <h2 class="text-center"> Quelques coups de coeur</h2>
       <% @experiences.each do |experience| %>
         <div class="col-xs-12 col-sm-4">
           <%= link_to experience do %>
-            <div class="card" style="background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
               <p class="card-user">
                 <%= cl_image_tag experience.user.avatar.path, class:"avatar-radius", size: "50x50",crop: :fill, gravity: :faces, title: experience.user.first_name %>
               </p>
