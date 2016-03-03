@@ -2,7 +2,8 @@
 <ul>
 <% @wishlists.each do |wishlist| %>
 <li>
-<%= link_to ">> details", wishlist.experience %>
+  <%= wishlist.experience.title %>
+  <%= link_to ">> details", wishlist.experience %>
 </li>
 <% end %>
 </ul>
