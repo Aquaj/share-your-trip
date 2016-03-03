@@ -1,0 +1,7 @@
+<% if @wishlist.errors.any? %>
+  // Render new wishlist form with errors
+  raise
+<% else %>
+  $('#wishlist').html("<%= j render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>");
+  $('#wishlist i').addClass('heart-beating');
+<% end %>

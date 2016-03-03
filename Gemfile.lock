@@ -229,8 +229,6 @@ GEM
     unf_ext (0.0.7.2)
     warden (1.2.6)
       rack (>= 1.0)
-    what3words (1.0.0)
-      rest-client
 
 PLATFORMS
   ruby
@@ -267,7 +265,6 @@ DEPENDENCIES
   simple_form
   spring
   uglifier
-  what3words
 
 BUNDLED WITH
    1.11.2
