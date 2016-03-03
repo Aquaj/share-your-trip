@@ -10,10 +10,10 @@ class WishlistPolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    !scope.where("user_id = ? AND experience_id = ?", user.id, record.experience_id).exists?
   end
 
   def destroy?
-    true
+    record.user == user
   end
 end

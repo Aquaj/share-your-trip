@@ -36,7 +36,7 @@
         <%= render "shared/review", locals: { review: rating } %>
       </div>
       <% end %>
-      <% if policy(@rating).new? %>
+      <% if user_signed_in? && policy(@rating).new? %>
         <div class="col-xs-12 col-sm-4 col-md-3">
           <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
         </div>
