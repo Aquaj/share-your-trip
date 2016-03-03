@@ -19,11 +19,12 @@ Rails.application.routes.draw do
   mount Attachinary::Engine => "/attachinary"
   resources :experiences do
     resources :ratings, only: [:create]
+    resources :wishlists, only: [:create]
   end
 
   get "my_experiences" => "experiences#my_experiences"
 
-  resources :wishlists, only: [:index, :create, :destroy]
+  resources :wishlists, only: [:index, :destroy]
 
   # Example resource route with options:
   #   resources :products do
