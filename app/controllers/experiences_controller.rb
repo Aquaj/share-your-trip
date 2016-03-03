@@ -14,6 +14,7 @@ class ExperiencesController < ApplicationController
     authorize @experience
     @average_rating = @experience.ratings.reduce(1){ |a, r| r.rating * a }/@experience.ratings.length
     @close_by = @experience.nearbys.map { |e| [e, e.ratings.reduce(1){ |a, r| r.rating * a }/e.ratings.length] }.select do |experience|
+      # Only display Experiences with higher or equal average rating.
       experience[1] >= @average_rating
     end
     if user_signed_in?
