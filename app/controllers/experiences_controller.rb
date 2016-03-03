@@ -3,7 +3,7 @@ class ExperiencesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :new, :show]
 
   def index
-    @experiences = policy_scope(Experience).search(params[:search])
+    @experiences = Experience.search(params[:search], policy_scope(Experience))
     @markers = Gmaps4rails.build_markers(@experiences) do |experience, marker|
       marker.lat experience.latitude
       marker.lng experience.longitude
