@@ -10,6 +10,7 @@ class Experience < ActiveRecord::Base
   validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
+  validates :country, presence: true
   validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"] }
 
   has_attachments :photos, maximum: 3
@@ -24,7 +25,11 @@ class Experience < ActiveRecord::Base
 
   def self.search(search, experiences)
     if search
-      experiences.near(search[:city], 20)
+      if Geocoder.search(search[:address]).first.types.include? "country"
+        experiences.where(country: search[:address])
+      else
+        experiences.near(search[:address], 20)
+      end
     else
       experiences
     end

@@ -1,7 +1,7 @@
 <div class="navbar-wagon-search">
 
   <%= simple_form_for :search, method: :get, url: experiences_path, class: "navbar-wagon-search-input" do |f| %>
-    <%= f.input :city, input_html: { id: "user_input_autocomplete_address" }, placeholder: "Pays/villes." %>
+    <%= f.input :address, input_html: { id: "user_input_autocomplete_address" }, placeholder: "Pays/villes." %>
     <%= f.submit "Cherchez un coup de coeur" %>
   <% end %>>
 
