@@ -12,8 +12,19 @@ class ExperiencesController < ApplicationController
 
   def show
     authorize @experience
-    @average_rating = @experience.ratings.reduce(1){ |a, r| r.rating * a }/@experience.ratings.length
-    @close_by = @experience.nearbys.map { |e| [e, e.ratings.reduce(1){ |a, r| r.rating * a }/e.ratings.length] }.select do |experience|
+    if @experience.ratings.length > 0
+      @average_rating = @experience.ratings.reduce(1){ |a, r| r.rating * a }/@experience.ratings.length
+    else
+      @average_rating = 0
+    end
+    @close_by = @experience.nearbys.map do |e|
+      if e.ratings.length > 0
+        average_rating = e.ratings.reduce(1){ |a, r| r.rating * a }/e.ratings.length
+      else
+        average_rating = 0
+      end
+      [e, average_rating]
+    end.select do |experience|
       # Only display Experiences with higher or equal average rating.
       experience[1] >= @average_rating
     end
@@ -70,7 +81,7 @@ private
   end
 
   def experience_params
-    params.require(:experience).permit(:user_id, :category, :description, :address, :title, photos: [])
+    params.require(:experience).permit(:user_id, :category, :description, :address, :country, :title, photos: [])
   end
 
 end
