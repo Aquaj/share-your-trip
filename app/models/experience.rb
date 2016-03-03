@@ -12,18 +12,33 @@ class Experience < ActiveRecord::Base
   validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
+  validates :country, presence: true
   validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"] }
+
   has_attachments :photos, maximum: 3
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+  after_validation :officialize_country
+
   def self.categories
     return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"]
   end
 
+  def officialize_country
+    self.country =  Geocoder.search(self.country).first.formatted_address
+  end
 
-  def self.search(search)
+
+  def self.search(search, experiences)
     if search
-      all.where('address LIKE ?', "%#{search}%")
+      if Geocoder.search(search[:address]).first.types.include? "country"
+        experiences.where(country: Geocoder.search(search[:address]).first.formatted_address)
+      else
+        experiences.near(search[:address], 20)
+      end
     else
-      all
+      experiences
     end
   end
 end
