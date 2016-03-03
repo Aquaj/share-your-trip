@@ -11,17 +11,22 @@ class Experience < ActiveRecord::Base
   validates :description, presence: true
   validates :address, presence: true
   validates :category, inclusion: { in: ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"] }
+
   has_attachments :photos, maximum: 3
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
+
   def self.categories
     return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"]
   end
 
 
-  def self.search(search)
+  def self.search(search, experiences)
     if search
-      all.where('address LIKE ?', "%#{search}%")
+      experiences.near(search[:city], 20)
     else
-      all
+      experiences
     end
   end
 end
