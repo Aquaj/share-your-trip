@@ -3,6 +3,7 @@
   <%= f.input :category, as: :select, collection: Experience.categories %>
   <%= f.input :description %>
   <%= f.input :address %>
+  <%= f.input :country, as: :string %>
   <%= f.input :photos, as: :attachinary %>
   <%= f.submit %>
 <% end %>
