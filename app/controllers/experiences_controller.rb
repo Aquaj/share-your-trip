@@ -3,7 +3,7 @@ class ExperiencesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :new, :show]
 
   def index
-    @experiences = policy_scope(Experience).search(params[:search])
+    @experiences = Experience.search(params[:search], policy_scope(Experience))
     @markers = Gmaps4rails.build_markers(@experiences) do |experience, marker|
       marker.lat experience.latitude
       marker.lng experience.longitude
@@ -12,8 +12,17 @@ class ExperiencesController < ApplicationController
 
   def show
     authorize @experience
-    @rating = current_user.ratings.new
-    @rating.experience_id = @experience.id
+    @average_rating = @experience.ratings.reduce(1){ |a, r| r.rating * a }/@experience.ratings.length
+    @close_by = @experience.nearbys.map { |e| [e, e.ratings.reduce(1){ |a, r| r.rating * a }/e.ratings.length] }.select do |experience|
+      # Only display Experiences with higher or equal average rating.
+      experience[1] >= @average_rating
+    end
+    if user_signed_in?
+      @rating = current_user.ratings.new
+      @rating.experience_id = @experience.id
+      @wished = current_user.wishlisted_experiences.include? @experience
+      @wishlist = @experience.wishlists.find_by(user: current_user)
+    end
   end
 
   def new

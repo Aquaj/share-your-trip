@@ -1,8 +1,9 @@
 <div class="navbar-wagon-search">
 
-  <form class="navbar-wagon-search-input">
-    <input id="user_input_autocomplete_address" placeholder="Pays/villes.">
-  </form>
+  <%= simple_form_for :search, method: :get, url: experiences_path, class: "navbar-wagon-search-input" do |f| %>
+    <%= f.input :address, input_html: { id: "user_input_autocomplete_address" }, placeholder: "Pays/villes." %>
+    <%= f.submit "Cherchez un coup de coeur" %>
+  <% end %>>
 
   <!-- Include Google Maps JS API -->
   <script type="text/javascript"

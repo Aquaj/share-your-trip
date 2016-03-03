@@ -1,0 +1,13 @@
+<% if wished %>
+
+  <%= link_to wishlist_path(wishlist), method: :delete, remote: true do %>
+    <i class="fa fa-heart"></i>
+  <% end %>
+
+<% else %>
+
+  <%= link_to experience_wishlists_path(experience), method: :post, remote: true do %>
+    <i class="fa fa-heart-o"></i>
+  <% end %>
+
+<% end %>

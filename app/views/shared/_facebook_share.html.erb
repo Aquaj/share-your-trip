@@ -1,0 +1,21 @@
+<div id="fb-root"></div>
+
+<% content_for :after_js do %>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.5&appId=895517487212647";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+<% end %>
+
+<div class="fb-share-button" data-href="https://share-your-trip.herokuapp.com/experiences/<%= @experience.id %>" data-layout="button_count"></div>
+
+<meta property="og:url"           content="http://www.share-your-trip.herokuapp.com/experiences.html" />
+  <meta property="og:type"        content="http://www.share-your-trip.herokuapp.com" />
+  <meta property="og:title"       content=<%=" @experience.title" %>/>
+  <meta property="og:description" content=<%=" @experience.description" %> />
+  <meta property="og:image"       content=<%=" @experience.photos[0]" %> />

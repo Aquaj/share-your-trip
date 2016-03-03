@@ -1,40 +1,73 @@
 <% content_for :title do %>
-<%=@experience.title%>
+<%= @experience.title %>
 <% end %>
 
-<h2>SHOW</h2>
-
-<p><%= @experience.user.first_name %> <%= @experience.user.last_name %> enjoyed :</p>
-
-<%= link_to @experience do %>
-  <h3><%= @experience.title %></h3>
-<% end %>
-
-
-<p><%= @experience.category %></p>
-<p><%= @experience.description %></p>
-<p><%= @experience.address %></p>
-<% if @experience.photos? %>
-  <% @experience.photos.each do |photo| %>
-  <%= cl_image_tag photo.path, width: 300, height: 200, crop: :fill %>
-<% end %>
-<% end %>
-
-<h2>Reviews</h2>
-<div class="reviews">
-  <div class="container">
-    <div class="row">
-      <% @experience.ratings.each do |rating| %>
-      <div class="col-xs-12 col-sm-4 col-md-3">
-        <%= render "shared/review", locals: { review: rating } %>
-      </div>
-      <% end %>
-      <% if policy(@rating).new? %>
-        <div class="col-xs-12 col-sm-4 col-md-3">
-          <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
+<div class="experience-wrapper">
+  <div class="experience-content">
+    <div class="experience-info">
+      <div class="experience-text">
+        <div class="experience-header">
+          <div class="title"><h3><%= @experience.title %></h3></div>
+          <div class="rating">
+            <span class="average-rating">
+              <% (@average_rating).times do %>
+                <%= icon("star") -%>
+              <% end %>
+              <% (5-@average_rating).times do %>
+                <%= icon("star-o") -%>
+              <% end %>
+            </span>
+          </div>
         </div>
+        <div class="experience-description">
+          <%= @experience.description %>
+        </div>
+      </div>
+      <div class="sidebar-description">
+        <div class="author-details">
+          <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "500x500" %>
+          <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
+        </div>
+        <div class="interaction-buttons">
+          <% if user_signed_in? %>
+            <div id="wishlist">
+              <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
+            </div>
+            <%= render "shared/facebook_share" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="pictures">
+      <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :fill %>
+      <% @experience.photos.each do |photo| %>
+        <%= cl_image_tag photo.path, crop: :fill %>
       <% end %>
     </div>
   </div>
+  <div class="reviews">
+    <% if user_signed_in? && policy(@rating).new? %>
+      <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
+    <% end %>
+    <% @experience.ratings.each do |rating| %>
+      <%= render "shared/review", locals: { review: rating } %>
+    <% end %>
+  </div>
+  <%= render "shared/map" %>
 </div>
 
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('.pictures img').hover(function(e){
+        save = $("#main-picture")[0].src
+        $("#main-picture")[0].src = $(this)[0].src;
+      }, function(e){
+        $("#main-picture")[0].src = save;
+      });
+      $('.pictures img').click(function(e){
+        save = $("#main-picture")[0].src
+      });
+    });
+  </script>
+<% end %>
