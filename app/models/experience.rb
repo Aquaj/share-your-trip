@@ -1,10 +1,12 @@
 class Experience < ActiveRecord::Base
-
   belongs_to :user
 
   has_many :ratings, dependent: :destroy
   has_many :wishlists, dependent: :destroy
   has_many :users, through: :wishlists
+
+  geocoded_by :address
+  after_validation :geocode, if: :address_changed?
 
   validates :title, presence: true
   validates :category, presence: true
