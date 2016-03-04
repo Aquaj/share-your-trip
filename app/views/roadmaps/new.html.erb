@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-8">
+      <%= simple_form_for @roadmap do |f| %>
+        <%= f.input :start_destination %>
+        <%= f.input :start_date %>
+        <%= f.input :end_destination %>
+        <%= f.input :end_date %>
+        <%= f.submit :save %>
+      <% end %>
+    </div>
+    <div class="col-sm-4">
+      <% @experiences.each do |experience| %>
+        <div class="experience">
+          <%= experience.title %>
+          <%= experience.average_rating %><br>
+          <%= cl_image_tag experience.photos[0].path, width: 400 %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
