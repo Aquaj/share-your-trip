@@ -25,7 +25,7 @@
       </div>
       <div class="sidebar-description">
         <div class="author-details">
-          <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "500x500" %>
+          <%= cl_image_tag @experience.user.avatar.path, crop: :lfill, size: "500x500" %>
           <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
         </div>
         <div class="interaction-buttons">
@@ -39,9 +39,9 @@
       </div>
     </div>
     <div class="pictures">
-      <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :fill %>
+      <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :lfill %>
       <% @experience.photos.each do |photo| %>
-        <%= cl_image_tag photo.path, crop: :fill %>
+        <%= cl_image_tag photo.path, crop: :lfill %>
       <% end %>
     </div>
   </div>
