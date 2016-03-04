@@ -20,39 +20,13 @@
     var marker = handler.addMarker({
       lat: <%= @experience.latitude %>,
       lng: <%= @experience.longitude %>,
-      infowindow: '<%= link_to @experience.title, @experience %>\
-                     <div class=\"rating\">\
-                       <span class="average-rating">\
-                         <% (@average_rating).times do %>\
-                           <%= icon("star") -%>\
-                         <% end %>\
-                         <% (5-@average_rating).times do %>\
-                           <%= icon("star-o") -%>\
-                         <% end %>\
-                       </span>\
-                     </div>\
-                     <%= link_to @experience do %> \
-                      <%= cl_image_tag(@experience.photos[0].path, height: 50) %>\
-                     <% end %>'
+      infowindow: '<%= render("shared/infowindow", experience: @experience).gsub("\n", "").html_safe %>'
     });
     <% @close_by.each do |experience| %>
       handler.addMarker({
-        lat: <%= experience[0].latitude %>,
-        lng: <%= experience[0].longitude %>,
-        infowindow: '<%= link_to experience[0].title, experience[0] %>\
-                     <div class=\"rating\">\
-                       <span class="average-rating">\
-                         <% (experience[1]).times do %>\
-                           <%= icon("star") -%>\
-                         <% end %>\
-                         <% (5-experience[1]).times do %>\
-                           <%= icon("star-o") -%>\
-                         <% end %>\
-                       </span>\
-                     </div>\
-                     <%= link_to experience[0] do %> \
-                      <%= cl_image_tag(experience[0].photos[0].path, height: 50) %>\
-                     <% end %>'
+        lat: <%= experience.latitude %>,
+        lng: <%= experience.longitude %>,
+        infowindow: '<%= render("shared/infowindow", experience: experience).gsub("\n", "").html_safe %>'
       });
     <% end %>
     handler.map.centerOn(marker);

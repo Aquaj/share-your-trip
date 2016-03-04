@@ -1,0 +1,14 @@
+<%= link_to experience.title, experience %>\
+ <div class="rating">
+   <span class="average-rating">
+     <% (experience.average_rating).times do %>
+       <%= icon("star") -%>
+     <% end %>
+     <% (5-experience.average_rating).times do %>
+       <%= icon("star-o") -%>
+     <% end %>
+   </span>
+ </div>
+ <%= link_to experience do %>
+  <%= cl_image_tag(experience.photos[0].path, height: 50) %>
+ <% end %>
