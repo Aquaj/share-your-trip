@@ -4,6 +4,8 @@ class Experience < ActiveRecord::Base
   has_many :ratings, dependent: :destroy
   has_many :wishlists, dependent: :destroy
   has_many :users, through: :wishlists
+  has_many :activities, dependent: :destroy
+  has_many :roadmaps, through: :activities
 
   geocoded_by :address
   after_validation :geocode, if: :address_changed?

@@ -20,7 +20,11 @@ Rails.application.routes.draw do
   resources :experiences do
     resources :ratings, only: [:create]
     resources :wishlists, only: [:create]
+    resources :activities, only: [:create]
   end
+
+  resources :roadmaps
+  resources :activities, only: [:update, :destroy]
 
   get "my_experiences" => "experiences#my_experiences"
 
