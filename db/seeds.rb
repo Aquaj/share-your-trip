@@ -96,5 +96,21 @@ wishlist17 = user10.wishlists.create!(experience_id: experience_panorama.id)
 wishlist18 = user10.wishlists.create!(experience_id: experience_bar.id)
 wishlist19 = user10.wishlists.create!(experience_id: experience_restaurant.id)
 wishlist20 = user10.wishlists.create!(experience_id: experience_leisure.id)
+
+
+puts "__Roadmaps"
+
+roadmap1 = user1.roadmaps.create!
+roadmap2 = user1.roadmaps.create!
+roadmap3 = user1.roadmaps.create!
+roadmap4 = user2.roadmaps.create!
+roadmap5 = user2.roadmaps.create!
+roadmap6 = user2.roadmaps.create!
+roadmap7 = user3.roadmaps.create!
+roadmap8 = user3.roadmaps.create!
+
+
+
+
 puts "-- Done!"
 puts "Seed done !"
