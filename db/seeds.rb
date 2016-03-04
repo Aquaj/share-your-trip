@@ -98,7 +98,7 @@ wishlist19 = user10.wishlists.create!(experience_id: experience_restaurant.id)
 wishlist20 = user10.wishlists.create!(experience_id: experience_leisure.id)
 
 
-puts "__Roadmaps"
+puts "-- Roadmaps"
 
 roadmap1 = user1.roadmaps.create!
 roadmap2 = user1.roadmaps.create!
