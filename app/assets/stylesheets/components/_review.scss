@@ -19,7 +19,7 @@
 
     .rating {
       position: absolute;
-      color: yellow;
+      color: black;
       top: 50px;
       right: 10px;
 
@@ -31,25 +31,6 @@
         position: relative;
         z-index: 2;
       }
-
-      .fa:after {
-        color: #EEE;
-        font-family: 'FontAwesome';
-        content: "\f005";
-        z-index: 1;
-        position: absolute;
-        left: 0;
-      }
-    }
-    .rating::after{
-      color: rgba(#000, 0.3);
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      letter-spacing: 4.5px;
-      content: "\f006\f006\f006\f006\f006";
-      font-family: FontAwesome;
-      z-index: 2;
     }
   }
 }

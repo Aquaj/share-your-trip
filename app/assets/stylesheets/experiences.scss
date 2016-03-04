@@ -60,20 +60,20 @@
 
           .rating{
             position: relative;
-            color: yellow;
+            color: black;
             width: 100px;
             margin-left: 25px;
           }
 
-          .rating::after{
-            color: rgba(#000, 0.3);
-            position: absolute;
-            top: 0px;
-            left: 0px;
-            letter-spacing: 4.5px;
-            content: "\f006\f006\f006\f006\f006";
-            font-family: FontAwesome;
-          }
+          // .rating::after{
+          //   color: rgba(#000, 0.3);
+          //   position: absolute;
+          //   top: 0px;
+          //   left: 0px;
+          //   letter-spacing: 4.5px;
+          //   content: "\f006\f006\f006\f006\f006";
+          //   font-family: FontAwesome;
+          // }
 
           h3 {
             line-height: 30px;
