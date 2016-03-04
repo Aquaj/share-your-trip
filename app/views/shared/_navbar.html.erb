@@ -26,13 +26,12 @@
           <%= cl_image_tag current_user.avatar.path, size: "30x30", crop: :fill, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle": "dropdown" %>
           <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
             <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-user"></i> <%= t ".profile", default: "Profile" %>
+              <%= link_to my_experiences_path do %>
+                <i class="fa fa-heart"></i> <%= t ".mes coups de coeur", default: "Mes coups de coeur" %>
               <% end %>
-            </li>
-            <li>
-              <%= link_to "#" do %>
-                <i class="fa fa-home"></i>  <%= t ".profile", default: "Home" %>
+              <li>
+              <%= link_to wishlists_path do %>
+                <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
               <% end %>
             </li>
             <li>
