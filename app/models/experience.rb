@@ -29,9 +29,17 @@ class Experience < ActiveRecord::Base
     self.country =  Geocoder.search(self.country).first.formatted_address
   end
 
+  def average_rating
+    if self.ratings.length > 0
+      sum = self.ratings.reduce(0) { |a, r| r.rating+a }
+      return sum/self.ratings.length
+    else
+      return 3
+    end
+  end
 
   def self.search(search, experiences)
-    if !search[:address].blank?
+    if search && !search[:address].blank?
       if Geocoder.search(search[:address]).first.types.include? "country"
         experiences.where(country: Geocoder.search(search[:address]).first.formatted_address)
       else

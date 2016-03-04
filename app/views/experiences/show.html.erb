@@ -10,10 +10,10 @@
           <div class="title"><h3><%= @experience.title %></h3></div>
           <div class="rating">
             <span class="average-rating">
-              <% (@average_rating).times do %>
+              <% (@experience.average_rating).times do %>
                 <%= icon("star") -%>
               <% end %>
-              <% (5-@average_rating).times do %>
+              <% (5-@experience.average_rating).times do %>
                 <%= icon("star-o") -%>
               <% end %>
             </span>
