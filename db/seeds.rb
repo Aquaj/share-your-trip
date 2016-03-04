@@ -62,7 +62,7 @@ experience_panorama   = user5.experiences.create!(category:'Panorama',
                                                   address:'Pont de Pierre, 33000 Bordeaux',
                                                   country: "France",
                                                   title: 'Le pont le plus connu de Bordeaux.',
-                                                  photo_urls: [ "https://d3e7bfg0h5jt4g.cloudfront.net/images/hotel_listing_desktop/778774-the-mercer-hotel-new-york-united-states.jpg", "http://img0.mxstatic.com/wallpapers/8aa05efb091ce62b400ea2c4c2dc3aab_large.jpeg", "http://www.obs.u-bordeaux1.fr/m2a/soubiran/pont_pierre.JPG", "http://images.sudouest.fr/images/2015/01/29/1812868_8320388_800x400.jpg"])
+                                                  photo_urls: ["http://img0.mxstatic.com/wallpapers/8aa05efb091ce62b400ea2c4c2dc3aab_large.jpeg", "http://www.obs.u-bordeaux1.fr/m2a/soubiran/pont_pierre.JPG", "http://images.sudouest.fr/images/2015/01/29/1812868_8320388_800x400.jpg"])
 puts "-- Done!"
 
 puts "-- Reviews"
