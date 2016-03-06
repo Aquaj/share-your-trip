@@ -25,3 +25,18 @@
     </div>
   </div>
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $('a.add-experience').click(function(e){
+        e.preventDefault();
+        console.log($($($(this).siblings("")[0]).children()[0]).children(".title"));
+        $(".to-see").append("<li>"+$($($(this).siblings("")[0]).children()[0]).children(".title").text()+"<a href='#' class='remove-experience'> <%= icon('times-circle-o').gsub('"', '\'').html_safe %></a>"+"</li>");
+        $('a.remove-experience').click(function(e){
+          $($(this).parent()).remove();
+        });
+      });
+    });
+  </script>
+<% end %>
