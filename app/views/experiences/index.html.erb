@@ -1,4 +1,4 @@
-<h2>INDEX</h2>
+<h2>Les coups de coeur de nos voyageurs</h2>
 
 <% @experiences.each do |experience| %>
   <div class="experience">
@@ -6,10 +6,18 @@
     <%= link_to experience do %>
       <h3><%= experience.title %></h3>
     <% end %>
-    <p><%= experience.category %></p>
+    <h4><%= experience.category %></h4>
     <p><%= experience.description %></p>
     <p><%= experience.address %></p>
+    <p>
   </div>
+  <% (experience.average_rating).times do %>
+                    <%= icon("star") -%>
+                    <% end %>
+                    <% (5-experience.average_rating).times do %>
+                    <%= icon("star-o") -%>
+                    <% end %></p>
+                    <%= link_to ">> details", experience %>
 <% end %>
 
 <div id="map" style="width: 100%; height: 600px;"></div>
