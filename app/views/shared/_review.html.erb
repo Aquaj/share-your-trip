@@ -7,11 +7,6 @@
       <%= locals[:review].review %>
     </div>
     <div class="rating">
-      <% (locals[:review].rating).times do %>
-        <%= icon("star") -%>
-      <% end %>
-      <% (5-locals[:review].rating).times do %>
-        <%= icon("star-o") -%>
-      <% end %>
+      <%= render "shared/rating", rating: locals[:review].rating %>
     </div>
   </div>

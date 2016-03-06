@@ -10,12 +10,7 @@
           <div class="title"><h3><%= @experience.title %></h3></div>
           <div class="rating">
             <span class="average-rating">
-              <% (@experience.average_rating).times do %>
-                <%= icon("star") -%>
-              <% end %>
-              <% (5-@experience.average_rating).times do %>
-                <%= icon("star-o") -%>
-              <% end %>
+              <%= render "shared/rating", rating: @experience.average_rating %>
             </span>
           </div>
         </div>
