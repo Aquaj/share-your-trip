@@ -62,7 +62,7 @@
               <h4 class="modal-title" id="myModalLabel">Mon coup de Coeur</h4>
             </div>
             <div class="modal-body input">
-              <%= simple_form_for @experience do |f| %>
+              <%= simple_form_for Experience.new do |f| %>
               <%= f.error_notification %>
               <%= f.input :title %>
               <%= f.input :category, as: :select, collection: Experience.categories %>
