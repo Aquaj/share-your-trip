@@ -50,7 +50,7 @@
     <% end %>
 
     <!-- Button (call-to-action) -->
-    <%= button_to t(".top_call_to_action", default: "Plan your trip!"), roadmaps_path, method: :post, class: "navbar-wagon-item navbar-wagon-button btn btn-square fa fa-heart" %>
+    <%= link_to t(".top_call_to_action", default: "Partage "), new_experience_path, class: "navbar-wagon-item navbar-wagon-button btn btn-square fa fa-heart" %>
   </div>
 
   <!-- Dropdown list appearing on mobile only -->
