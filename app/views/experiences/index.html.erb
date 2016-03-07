@@ -1,38 +1,40 @@
-<h2>Les coups de coeur de nos voyageurs</h2>
+
+<h2 class="text-center"> Les coups de coeur de nos voyageurs</h2>
+<%= render 'shared/card' %>
 
 <% @experiences.each do |experience| %>
-  <div class="experience">
-    <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
-    <%= link_to experience do %>
-      <h3><%= experience.title %></h3>
-    <% end %>
-    <h4><%= experience.category %></h4>
-    <p><%= experience.description %></p>
-    <p><%= experience.address %></p>
-    <p>
+<div class="experience">
+  <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
+  <%= link_to experience do %>
+  <h3><%= experience.title %></h3>
+  <% end %>
+  <h4><%= experience.category %></h4>
+  <p><%= experience.description %></p>
+  <p><%= experience.address %></p>
+  <p>
   </div>
   <% (experience.average_rating).times do %>
-                    <%= icon("star") -%>
-                    <% end %>
-                    <% (5-experience.average_rating).times do %>
-                    <%= icon("star-o") -%>
-                    <% end %></p>
-                    <%= link_to ">> details", experience %>
-<% end %>
-
-<div id="map" style="width: 100%; height: 600px;"></div>
-
-<% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-    $(document).on('ready', function() {
-      handler = Gmaps.build('Google');
-      handler.buildMap({ internal: { id: 'map' } }, function(){
-        markers = handler.addMarkers(<%= raw @markers.to_json %>);
-        handler.bounds.extendWith(markers);
-        handler.fitMapToBounds();
-      });
-    })
+  <%= icon("star") -%>
   <% end %>
+  <% (5-experience.average_rating).times do %>
+  <%= icon("star-o") -%>
+  <% end %></p>
+  <%= link_to ">> details", experience %>
+  <% end %>
+
+  <div id="map" style="width: 100%; height: 600px;"></div>
+
+  <% content_for(:after_js) do %>
+  <%= javascript_tag do %>
+  $(document).on('ready', function() {
+  handler = Gmaps.build('Google');
+  handler.buildMap({ internal: { id: 'map' } }, function(){
+  markers = handler.addMarkers(<%= raw @markers.to_json %>);
+  handler.bounds.extendWith(markers);
+  handler.fitMapToBounds();
+});
+})
+<% end %>
 <% end %>
 
 
