@@ -1,3 +1,7 @@
+/*
+ *= require jquery-ui/datepicker
+ */
+
 // Graphical variables
 @import "config/variables";
 @import "config/bootstrap_variables";
@@ -15,4 +19,5 @@
 @import "vendor/index";
 
 @import "experiences";
+@import "roadmaps";
 @import "wishlists";

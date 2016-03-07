@@ -20,13 +20,13 @@
     var marker = handler.addMarker({
       lat: <%= @experience.latitude %>,
       lng: <%= @experience.longitude %>,
-      infowindow: '<%= render("shared/infowindow", experience: @experience).gsub("\n", "").html_safe %>'
+      infowindow: '<%= j render("shared/infowindow", experience: @experience) %>'
     });
     <% @close_by.each do |experience| %>
       handler.addMarker({
         lat: <%= experience.latitude %>,
         lng: <%= experience.longitude %>,
-        infowindow: '<%= render("shared/infowindow", experience: experience).gsub("\n", "").html_safe %>'
+        infowindow: '<%= j render("shared/infowindow", experience: experience) %>'
       });
     <% end %>
     handler.map.centerOn(marker);
