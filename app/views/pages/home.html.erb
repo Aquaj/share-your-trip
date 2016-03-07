@@ -2,7 +2,9 @@
   <div class="banner-content">
     <h1>Ton Voyage t'a plu?</h1>
     <p>Un lieu, un restaurant, un guide ?</p>
-    <%= link_to "Partage ton coup de Coeur", new_experience_path, class: "btn btn-primary btn-lg fa fa-heart" %>
+    <div class="new-pref">
+      <%= render "shared/form" %>
+    </div>
   </div>
 </div>
 
