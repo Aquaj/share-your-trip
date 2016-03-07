@@ -48,10 +48,10 @@ experience_sport      = user7.experiences.create!(category:'Sport',
                                                   address: 'Ramjas College , University of Delhi, 4, Patel Marg, Maurice Nagar 110007, New Delhi',
                                                   country: "India",
                                                   title: 'Jimindia cricket',
-                                                  photo_urls: [ "https://scontent.xx.fbcdn.net/hphotos-xft1/v/t1.0-9/s720x720/12715759_1035862269810784_7493362058578602715_n.jpg?oh=e6385012336a8f8d3579ddc25cc595c0&oe=5761924A"])
+                                                  photo_urls: [ "http://www.bandt.com.au/information/uploads/2014/07/shutterstock_114007321-1260x840.jpg, http://www.pedestrian.tv/images/article/2013/11/21/the-cricket-ashes-2013-642-380-619-386.jpg"])
 puts "  -- Hotel"
 experience_hotel      = user6.experiences.create!(category:'Hotel',
-                                                  description:'Un hôtel magnifique, une expérience hors du commun. Un must-see, surtout pour les fans du film.',
+                                                  description:'Un hôtel magnifique, une expérience hors du commun. Un must-see, pour les amateurs de Santori.',
                                                   address:'２, ３丁目-７-１ 西新宿 新宿区 東京都 163-1055',
                                                   country: "Japan",
                                                   title: 'L\'Hôtel de Lost in Translation !',
@@ -63,6 +63,36 @@ experience_panorama   = user5.experiences.create!(category:'Panorama',
                                                   country: "France",
                                                   title: 'Le pont le plus connu de Bordeaux.',
                                                   photo_urls: ["http://img0.mxstatic.com/wallpapers/8aa05efb091ce62b400ea2c4c2dc3aab_large.jpeg", "http://www.obs.u-bordeaux1.fr/m2a/soubiran/pont_pierre.JPG", "http://images.sudouest.fr/images/2015/01/29/1812868_8320388_800x400.jpg"])
+puts "-- Done!"
+puts "  -- Restaurant"
+experience_restaurant = user10.experiences.create!(category:'Restaurant',
+                                                   description:'Dans une ambiance familiale où on se sent tout de suite à l\'aise, le patron, Olivier, nous sert ce qui est sans doutes la meilleure pizza de LA.',
+                                                   address:'8 Place du Palais, Bordeaux',
+                                                   country: "France",
+                                                   title: 'La Cagette ',
+                                                   photo_urls: ["http://www.papillesetpupilles.fr/wp-content/uploads/2014/02/La-cagette.jpg"])
+puts "  -- Bar"
+experience_bar        = user9.experiences.create!(category:'Bar',
+                                                  description:'un service excellent par un personnel adorable !',
+                                                  address:' 13 Place du Palais, Bordeaux',
+                                                  country: "France",
+                                                  title: 'Chez Fred, le bar des Vedettes',
+                                                  photo_urls: [ "http://www.gillespudlowski.com/wp-content/uploads/2014/11/l1200186-1024x680.jpg"])
+puts "  -- Leisure"
+experience_leisure    = user8.experiences.create!(category:'Leisure',
+                                                  description:'Cinéma et cantine sympa  dans un décor mangnifique.',
+                                                  address:'5 Place Camille Jullian, 33000 Bordeaux',
+                                                  country:  "France",
+                                                  title: 'Utopia le ciné branchouille',
+                                                  photo_urls: [ "http://www.bordeaux-quartiers.fr/wp-content/uploads/2014/02/utopia-bordeaux-cinema.jpg, http://images.sudouest.fr/images/2010/12/25/276015_15259528_460x306.jpg"])
+puts "  -- Sport"
+experience_sport      = user7.experiences.create!(category:'Sport',
+                                                  description:"découvrir de sport magnifique dans un environment de rêve, c'est gratuit",
+                                                  address: '1999 Route du Bourrian, 83580 Gassin',
+                                                  country: "France",
+                                                  title: "Polo sur la presqu'île",
+                                                  photo_urls: [ "http://static1.squarespace.com/static/52faa224e4b05c17d93e1b45/t/556383d4e4b0e65363e9b3a3/1432585181693/", "https://blog.sttropezhouse.com/wp-content/uploads/2013/06/polo_club_st_tropez1.jpg", "http://www.poloplus10.com/dt/uploads/2013/07/polo-club-saint-tropez1.jpg"])
+
 puts "-- Done!"
 
 puts "-- Reviews"
