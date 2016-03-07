@@ -60,6 +60,7 @@ class ExperiencesController < ApplicationController
 
   def my_experiences
     @experiences = policy_scope(Experience).where("user_id = ?", current_user)
+    authorize @experiences
   end
 
 private

@@ -1,13 +1,12 @@
-<h2>INDEX</h2>
-
-<% @experiences.each do |experience| %>
-  <div class="experience">
-    <p><%= experience.user.first_name %> <%= experience.user.last_name %> enjoyed :</p>
-    <%= link_to experience do %>
-      <h3><%= experience.title %></h3>
-    <% end %>
-    <p><%= experience.category %></p>
-    <p><%= experience.description %></p>
-    <p><%= experience.address %></p>
+<h2 class="text-center"> Mes Coups coeur de voyage</h2>
+<div class="block-contain">
+  <div class="container-fluid">
+    <div class="row">
+      <% @experiences.each do |experience| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render "shared/card", experience: experience %>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
+</div>

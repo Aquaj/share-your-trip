@@ -32,4 +32,8 @@ class ExperiencePolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def my_experiences?
+    true
+  end
 end

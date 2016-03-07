@@ -1,6 +1,5 @@
 <div class="navbar-wagon-search">
 
-
   <%= simple_form_for :search, url: experiences_path, method: 'get', html: { class: 'form-search' } do |f| %>
   <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Pays/villes.", class: "input-medium search-query" %>
   <%= f.submit "Find!", class: "btn" %>
