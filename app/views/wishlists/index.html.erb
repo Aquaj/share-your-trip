@@ -1,9 +1,13 @@
-<h2>Your Wish List:</h2>
-<ul>
-<% @wishlists.each do |wishlist| %>
-<li>
-  <%= wishlist.experience.title %>
-  <%= link_to ">> details", wishlist.experience %>
-</li>
-<% end %>
-</ul>
+<h2 class="text-center"> Mes Favoris</h2>
+
+<div class="block-contain">
+  <div class="container-fluid">
+    <div class="row">
+      <% @wishlists.each do |wishlist| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render "shared/card", experience: wishlist.experience %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

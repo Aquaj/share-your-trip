@@ -1,17 +1,12 @@
-  <div class="review">
-    <div class="author">
-      <%= cl_image_tag locals[:review].user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
-      <span class="username"><%= locals[:review].user.first_name.capitalize %></span>
-    </div>
-    <div class="review-content">
-      <%= locals[:review].review %>
-    </div>
-    <div class="rating">
-      <% (locals[:review].rating).times do %>
-        <%= icon("star") -%>
-      <% end %>
-      <% (5-locals[:review].rating).times do %>
-        <%= icon("star-o") -%>
-      <% end %>
-    </div>
+<div class="review">
+  <div class="author">
+    <%= cl_image_tag locals[:review].user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
+    <span class="username"><%= locals[:review].user.first_name.capitalize %></span>
   </div>
+  <div class="review-content">
+    <%= locals[:review].review %>
+  </div>
+  <div class="rating">
+    <%= render "shared/rating", rating: locals[:review].rating %>
+  </div>
+</div>
