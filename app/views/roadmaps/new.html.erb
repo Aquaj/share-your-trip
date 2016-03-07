@@ -2,7 +2,10 @@
   <div class="row">
     <div class="col-sm-4 col-sm-offset-2">
       <%= simple_form_for @roadmap do |f| %>
-        <%= f.input :start_destination %>
+        <%= f.input :start_destination, html_input: { id: "user_input_autocomplete_address", class: "search-query" } %>
+        <!--
+        <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Pays/villes.", class: "input-medium search-query" %>
+        -->
         <%= f.input :start_date %>
         <ul class="to-see"></ul>
         <%= f.input :end_destination %>
