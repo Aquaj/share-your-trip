@@ -1,8 +1,9 @@
 class ActivitiesController < ApplicationController
     before_action :find_activity, only: [:update, :destroy]
+    before_action :find_experience, only: [:create]
 
     def create
-      @activity = Activity.new(activity_params)
+      @activity = @experience.activities.new(activity_params)
       authorize @activity
       if @activity.save
         redirect_to @activity
@@ -30,6 +31,10 @@ class ActivitiesController < ApplicationController
 
     def find_activity
       @activity = Activity.find(params[:id])
+    end
+
+    def find_experience
+      @experience = Experience.find(params[:activity_id])
     end
 
     def activity_params

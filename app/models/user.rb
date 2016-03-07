@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :wishlists, dependent: :destroy
   has_many :ratings, dependent: :destroy
   has_many :wishlisted_experiences, through: :wishlists, source: :experience
+  has_many :roadmaps
   has_attachment :avatar
   validates :first_name, presence: true
   validates :last_name, presence: true
