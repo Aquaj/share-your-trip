@@ -19,7 +19,7 @@
               <span class="rating"><%= render "shared/rating", rating: experience.average_rating %></span>
             </div>
           <% end %>
-          <%= link_to icon('plus').html_safe, experience_activities_path(experience), class: "add-experience", remote: true, method: :post %>
+          <%= link_to icon('plus').html_safe, roadmap_experience_activities_path(@roadmap, experience), class: "add-experience", remote: true, method: :post %>
         </div>
       <% end %>
     </div>
@@ -31,7 +31,7 @@
     $(document).ready(function(){
       $("input.datepicker").each(function(input) {
         $(this).datepicker({
-          dateFormat: "yy-mm-dd",
+          dateFormat: "dd-mm-yy",
           altField: $(this).next()
         })
       });
