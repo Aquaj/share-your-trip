@@ -48,7 +48,7 @@ experience_sport      = user7.experiences.create!(category:'Sport',
                                                   address: 'Ramjas College , University of Delhi, 4, Patel Marg, Maurice Nagar 110007, New Delhi',
                                                   country: "India",
                                                   title: 'Jimindia cricket',
-                                                  photo_urls: [ "http://www.bandt.com.au/information/uploads/2014/07/shutterstock_114007321-1260x840.jpg, http://www.pedestrian.tv/images/article/2013/11/21/the-cricket-ashes-2013-642-380-619-386.jpg"])
+                                                  photo_urls: [ "http://www.bandt.com.au/information/uploads/2014/07/shutterstock_114007321-1260x840.jpg", "http://www.pedestrian.tv/images/article/2013/11/21/the-cricket-ashes-2013-642-380-619-386.jpg"])
 puts "  -- Hotel"
 experience_hotel      = user6.experiences.create!(category:'Hotel',
                                                   description:'Un hôtel magnifique, une expérience hors du commun. Un must-see, pour les amateurs de Santori.',
@@ -84,7 +84,7 @@ experience_leisure    = user8.experiences.create!(category:'Leisure',
                                                   address:'5 Place Camille Jullian, 33000 Bordeaux',
                                                   country:  "France",
                                                   title: 'Utopia le ciné branchouille',
-                                                  photo_urls: [ "http://www.bordeaux-quartiers.fr/wp-content/uploads/2014/02/utopia-bordeaux-cinema.jpg, http://images.sudouest.fr/images/2010/12/25/276015_15259528_460x306.jpg"])
+                                                  photo_urls: [ "http://www.bordeaux-quartiers.fr/wp-content/uploads/2014/02/utopia-bordeaux-cinema.jpg", "http://images.sudouest.fr/images/2010/12/25/276015_15259528_460x306.jpg"])
 puts "  -- Sport"
 experience_sport      = user7.experiences.create!(category:'Sport',
                                                   description:"découvrir de sport magnifique dans un environment de rêve, c'est gratuit",
