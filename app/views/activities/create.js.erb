@@ -1,0 +1,7 @@
+<% if @activity.errors.any? %>
+  console.log("Errors in activity.");
+  raise
+<% else %>
+  console.log("Appending activity.");
+  $('.to-see').append("<li>"+"<%= @experience.title %>"+"<%= j link_to(icon('times-circle-o'), activity_path(@activity), method: :delete, remote: true, class: "remove-experience-#{@activity.id}")%>"+"</li>");
+<% end %>

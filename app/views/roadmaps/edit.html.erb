@@ -4,7 +4,14 @@
       <%= simple_form_for @roadmap do |f| %>
         <%= f.input :start_destination %>
         <%= f.input :start_date, as: :datepicker %>
-        <ul class="to-see"></ul>
+        <ul class="to-see">
+          <% @roadmap.activities.each do |activity| %>
+            <li>
+              <%= activity.experience.title %>
+              <%= link_to icon('times-circle-o'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
+            </li>
+          <% end %>
+        </ul>
         <%= f.input :end_destination %>
         <%= f.input :end_date, as: :datepicker %>
         <%= f.submit :save %>
@@ -19,7 +26,7 @@
               <span class="rating"><%= render "shared/rating", rating: experience.average_rating %></span>
             </div>
           <% end %>
-          <%= link_to icon('plus').html_safe, roadmap_experience_activities_path(@roadmap, experience), class: "add-experience", remote: true, method: :post %>
+          <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience add-experience-#{experience.id}", remote: true, method: :post %>
         </div>
       <% end %>
     </div>
@@ -34,15 +41,6 @@
           dateFormat: "dd-mm-yy",
           altField: $(this).next()
         })
-      });
-
-      $('a.add-experience').click(function(e){
-        e.preventDefault();
-        console.log($($($(this).siblings("")[0]).children()[0]).children(".title"));
-        $(".to-see").append("<li>"+$($($(this).siblings("")[0]).children()[0]).children(".title").text()+"<a href='#' class='remove-experience'> <%= j icon('times-circle-o') %></a>"+"</li>");
-        $('a.remove-experience').click(function(e){
-          $($(this).parent()).remove();
-        });
       });
     });
   </script>
