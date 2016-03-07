@@ -1,0 +1,58 @@
+<div class="container-fluid new-body">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+      <%= simple_form_for @roadmap do |f| %>
+        <%= f.input :start_destination %>
+        <%= f.input :travellers_num %>
+        <%= f.input :start_date, as: :datepicker %>
+        <ul class="to-see">
+          <% @roadmap.activities.each do |activity| %>
+            <li>
+              <%= activity.experience.title %>
+              <%= link_to icon('times-circle-o'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
+              <input class="datepicker" id="activity-<%= activity.id %>-date">
+            </li>
+          <% end %>
+        </ul>
+        <%= f.input :end_destination %>
+        <%= f.input :end_date, as: :datepicker %>
+        <%= f.submit "Save modifications", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      <% @experiences.each do |experience| %>
+        <div class="experience">
+          <%= link_to experience do %>
+            <div class="experience-card center" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('<%= cl_image_path experience.photos[0].path, size: "400x400", crop: :lfill %>');">
+              <span class="title"><p><%= experience.title %></p></span>
+              <span class="rating"><%= render "shared/rating", rating: experience.average_rating %></span>
+            </div>
+          <% end %>
+          <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience add-experience-#{experience.id}", remote: true, method: :post %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $("input.datepicker").each(function(input) {
+        $(this).datepicker({
+          dateFormat: "dd-mm-yy",
+          altField: $(this).next(),
+          onSelect: function(selected){
+            console.log(selected);
+            console.log("activity/"+($(this)[0].id).split("-")[1]);
+            $.ajax({
+              method: "PATCH",
+              url: "/activities/"+($(this)[0].id).split("-")[1],
+              data: { planned_on: selected }
+            });
+          }
+        });
+      });
+    });
+  </script>
+<% end %>

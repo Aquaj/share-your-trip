@@ -1,0 +1,9 @@
+<%= @roadmap.start_destination %> - <%= @roadmap.start_date %><br>
+<% @roadmap.activities.each do |activity| %>
+  <%= activity.experience.title %>
+  <% if activity.planned_on %>
+   - <%= activity.planned_on %>
+  <% end %><br>
+  &nbsp;&nbsp;&nbsp;<%= activity.experience.address %><br>
+<% end %>
+<%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
