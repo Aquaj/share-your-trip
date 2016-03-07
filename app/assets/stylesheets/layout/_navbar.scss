@@ -44,7 +44,7 @@
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #da552f;
+  color: #519ce2;
   text-decoration: none;
 }
 
@@ -57,12 +57,12 @@
   background-color: transparent;
   color: white;
   font-size: 14px;
-  border: 2px solid #D23333;
+  border: 2px solid white;
 }
 .navbar-wagon-button:hover {
   color: white;
   background: transparent;
-  border-color: #ac2626;
+  border-color: #519ce2;
 }
 
 /* Navbar search form */
@@ -140,4 +140,8 @@
   color: white;
   border: 2px solid white;
   text-shadow: 1px 1px 1px black;
+}
+
+.fa-heart:before{
+  margin-left: 5px;
 }

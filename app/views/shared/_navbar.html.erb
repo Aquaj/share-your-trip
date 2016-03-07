@@ -1,7 +1,7 @@
 <div class="navbar-wagon">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-wagon-brand" do %>
-    <%= image_tag "logo.png" %>
+  <%= image_tag "logo.png" %>
   <% end %>
 
   <!-- Right Navigation -->
@@ -12,57 +12,84 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-      <!-- Notification -->
-      <%= link_to my_experiences_path, class: "navbar-wagon-item navbar-wagon-link" do %>
-        <div class="badge-container">
-          <i class="fa fa-heart-o"></i>
-          <div class="badge badge-blue"><%= current_user.experiences.length %></div>
-        </div>
-      <% end %>
+    <!-- Notification -->
+    <%= link_to my_experiences_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+    <div class="badge-container">
+      <i class="fa fa-heart-o"></i>
+      <div class="badge badge-blue"><%= current_user.experiences.length %></div>
+    </div>
+    <% end %>
 
-      <!-- Profile picture and dropdown -->
-      <div class="navbar-wagon-item">
-        <div class="dropdown">
-          <%= cl_image_tag current_user.avatar.path, size: "30x30", crop: :fill, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle": "dropdown" %>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+    <!-- Profile picture and dropdown -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+        <%= cl_image_tag current_user.avatar.path, size: "30x30", crop: :fill, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle": "dropdown" %>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+            <%= link_to my_experiences_path do %>
+            <i class="fa fa-heart"></i> <%= t ".mes coups de coeur", default: "Mes coups de coeur" %>
+            <% end %>
             <li>
-              <%= link_to my_experiences_path do %>
-                <i class="fa fa-heart"></i> <%= t ".mes coups de coeur", default: "Mes coups de coeur" %>
-              <% end %>
-              <li>
               <%= link_to wishlists_path do %>
-                <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
+              <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
+              <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
               <% end %>
             </li>
           </ul>
         </div>
       </div>
 
-    <% else %>
+      <% else %>
 
       <!-- Login text link -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
-    <% end %>
+      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
+      <% end %>
 
-    <!-- Button (call-to-action) -->
-    <%= link_to t(".top_call_to_action", default: "Partage "), new_experience_path, class: "navbar-wagon-item navbar-wagon-button btn btn-square fa fa-heart" %>
-  </div>
+      <!-- Button (call-to-action) -->
+      <% if user_signed_in? %>
+      <button type="button" class="navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" data-toggle="modal" data-target="#myModal">
+        Partage un <%= icon("heart") %>
+      </button>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Mon coup de Coeur</h4>
+            </div>
+            <div class="modal-body input">
+              <%= simple_form_for @experience do |f| %>
+              <%= f.error_notification %>
+              <%= f.input :title %>
+              <%= f.input :category, as: :select, collection: Experience.categories %>
+              <%= f.input :description %>
+              <%= f.input :address %>
+              <%= f.input :country, as: :string %>
+              <%= f.input :photos, as: :attachinary %>
+              <hr>
+              <%= f.button :submit, class:'btn btn-success btn-block' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
 
-  <!-- Dropdown list appearing on mobile only -->
-  <div class="navbar-wagon-item hidden-md hidden-lg">
-    <div class="dropdown">
-      <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-      <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-        <li><a href="#">Some mobile link</a></li>
-        <li><a href="#">Other one</a></li>
-        <li><a href="#">Other one</a></li>
-      </ul>
+    <!-- Dropdown list appearing on mobile only -->
+    <div class="navbar-wagon-item hidden-md hidden-lg">
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Some mobile link</a></li>
+          <li><a href="#">Other one</a></li>
+          <li><a href="#">Other one</a></li>
+        </ul>
+      </div>
     </div>
   </div>
-</div>
 
