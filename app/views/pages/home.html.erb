@@ -7,6 +7,14 @@
 </div>
 
 <h2 class="text-center"> Quelques coups de coeur</h2>
-<%= render 'shared/card' %>
-
+<div class="block-contain">
+  <div class="container-fluid">
+    <div class="row">
+      <% @experiences.each do |experience| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render "shared/card", experience: experience %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 </div>
