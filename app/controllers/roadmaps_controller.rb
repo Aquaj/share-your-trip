@@ -12,11 +12,6 @@ class RoadmapsController < ApplicationController
   def new
     @roadmap = Roadmap.new
     authorize @roadmap
-    if @roadmap.start_destination.present?
-      around = Geocoder.address(@roadmap.start_destination).split(", ")[-1]
-    end
-    @experiences = Experience.search({address: around}, policy_scope(Experience)) # For now > All.
-    @experiences += current_user.wishlisted_experiences
   end
 
   def create
