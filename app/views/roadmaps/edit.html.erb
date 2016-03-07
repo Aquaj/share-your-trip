@@ -1,0 +1,49 @@
+<div class="container-fluid new-body">
+  <div class="row">
+    <div class="col-sm-4 col-sm-offset-2">
+      <%= simple_form_for @roadmap do |f| %>
+        <%= f.input :start_destination %>
+        <%= f.input :start_date, as: :datepicker %>
+        <ul class="to-see"></ul>
+        <%= f.input :end_destination %>
+        <%= f.input :end_date, as: :datepicker %>
+        <%= f.submit :save %>
+      <% end %>
+    </div>
+    <div class="col-sm-4 col-sm-offset-2">
+      <% @experiences.each do |experience| %>
+        <div class="experience">
+          <%= link_to experience do %>
+            <div class="experience-card center" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.3)), url('<%= cl_image_path experience.photos[0].path, size: "400x400", crop: :lfill %>');">
+              <span class="title"><p><%= experience.title %></p></span>
+              <span class="rating"><%= render "shared/rating", rating: experience.average_rating %></span>
+            </div>
+          <% end %>
+          <%= link_to icon('plus').html_safe, experience_activities_path(experience), class: "add-experience", remote: true, method: :post %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $("input.datepicker").each(function(input) {
+        $(this).datepicker({
+          dateFormat: "yy-mm-dd",
+          altField: $(this).next()
+        })
+      });
+
+      $('a.add-experience').click(function(e){
+        e.preventDefault();
+        console.log($($($(this).siblings("")[0]).children()[0]).children(".title"));
+        $(".to-see").append("<li>"+$($($(this).siblings("")[0]).children()[0]).children(".title").text()+"<a href='#' class='remove-experience'> <%= j icon('times-circle-o') %></a>"+"</li>");
+        $('a.remove-experience').click(function(e){
+          $($(this).parent()).remove();
+        });
+      });
+    });
+  </script>
+<% end %>
