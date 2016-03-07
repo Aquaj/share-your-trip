@@ -8,22 +8,25 @@ class ActivitiesController < ApplicationController
       authorize @activity
       if @activity.save
         respond_to do |format|
-          format.js  # <-- will render `app/views/reviews/create.js.erb`
+          format.js
         end
       else
         respond_to do |format|
-          format.js  # <-- will render `app/views/reviews/create.js.erb`
+          format.js
         end
       end
     end
 
     def update
-      @activity.update(activity_params)
       authorize @activity
-      if @activity.save
-        redirect_to @activity
+      if @activity.update(activity_params)
+        respond_to do |format|
+          format.js
+        end
       else
-        render "roadmap/new"
+        respond_to do |format|
+          format.js
+        end
       end
     end
 
@@ -31,6 +34,9 @@ class ActivitiesController < ApplicationController
       authorize @activity
       @id = @activity.id
       @activity.destroy
+      respond_to do |format|
+        format.js
+      end
     end
 
   private

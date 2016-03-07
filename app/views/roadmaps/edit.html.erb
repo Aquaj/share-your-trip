@@ -10,6 +10,7 @@
             <li>
               <%= activity.experience.title %>
               <%= link_to icon('times-circle-o'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
+              <input class="datepicker" id="activity-<%= activity.id %>-date">
             </li>
           <% end %>
         </ul>
@@ -40,8 +41,17 @@
       $("input.datepicker").each(function(input) {
         $(this).datepicker({
           dateFormat: "dd-mm-yy",
-          altField: $(this).next()
-        })
+          altField: $(this).next(),
+          onSelect: function(selected){
+            console.log(selected);
+            console.log("activity/"+($(this)[0].id).split("-")[1]);
+            $.ajax({
+              method: "PATCH",
+              url: "/activities/"+($(this)[0].id).split("-")[1],
+              data: { planned_on: selected }
+            });
+          }
+        });
       });
     });
   </script>
