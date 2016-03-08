@@ -12,5 +12,13 @@ class UserMailer < ApplicationMailer
     # This will render a view in `app/views/user_mailer`!
   end
 
+  def itinerary(user, roadmap)
+    @user = user
+    @roadmap = roadmap
+
+    mail(to: @user.email, subject: 'Your itinerary')
+  end
+
+
 end
 
