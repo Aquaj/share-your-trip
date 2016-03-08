@@ -31,7 +31,6 @@ gem "attachinary"
 gem "jquery-fileupload-rails"
 gem 'omniauth-facebook'
 
-
 group :development, :test do
   gem 'binding_of_caller'
   gem 'better_errors'
