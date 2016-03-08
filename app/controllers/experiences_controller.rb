@@ -63,6 +63,17 @@ class ExperiencesController < ApplicationController
     authorize @experiences
   end
 
+  def extract_address
+    byebug
+    gps_coord = []
+    gps_coord << EXIFR::JPEG.new(params[:image_url]).gps.longitude
+    gps_coord << EXIFR::JPEG.new(params[:image_url]).gps.latitude
+    @address = Geocoder.search(gps_coord)
+      respond_to do |format|
+        format.js
+      end
+  end
+
 private
 
   def find_experience

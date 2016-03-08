@@ -4,7 +4,7 @@
   Partage ton coup de Coeur
 </button>
 
-  <!-- Modal -->
+<!-- Modal -->
 
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -35,16 +35,28 @@
 <!-- End of Modal -->
 
 <% else %>
-  <%= link_to t(".sign_in", default: "Connecte toi et partage dès maintenant!"), new_user_session_path, class: "btn btn-primary btn-lg fa fa-heart" %>
+<%= link_to t(".sign_in", default: "Connecte toi et partage dès maintenant!"), new_user_session_path, class: "btn btn-primary btn-lg fa fa-heart" %>
 <% end %>
 <!-- Modal -->
 
 <% content_for :after_js do %>
-  <script>
-      $(document).ready(function(){
-        $('<div class="attachinary-input"></div>').bind('fileuploaddone', function(e, data) {
-          console.log("fini");
-        });
+<script>
+  $(document).ready(function(){
+    $('.attachinary-input').bind('fileuploaddone', function(e, data) {
+      $.ajax({
+        type: "POST",
+        url: "<%= extract_address_path %>",
+        data: {image_url: data.result.url},
+        success: function(data) {
+          console.log(address);
+        }
       });
-  </script>
+    });
+  });
+</script>
 <% end %>
+
+
+
+<!-- //$.get("/resources/image/upload/sample?faces=1&colors=1&exif=1", function)
+  //console.log('<%#= EXIFR::JPEG.new(data.result.url).gps.latitude %>'); -->

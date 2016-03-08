@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   resources :activities, only: [:update, :destroy]
 
   get "my_experiences" => "experiences#my_experiences"
+  post "extract_address" => "experiences#extract_address"
 
   resources :wishlists, only: [:index, :destroy]
 
