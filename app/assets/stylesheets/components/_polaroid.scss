@@ -1,0 +1,46 @@
+.polaroid {
+    background-color: #FDFDFD;
+    border-radius: 3px;
+    box-shadow: 1px 1px 3px #666;
+    width: 300px;
+    height: 350px;
+    position: relative;
+    padding: 10px;
+
+.polaroid-infos {
+
+}
+
+.polaroid-cities {
+
+  top: 10px;
+  left: 10px;
+  font-size: 10px;
+  text-transform: uppercase;
+
+}
+
+.polaroid-dates {
+
+  margin-bottom: 5px;
+
+}
+
+img {
+  margin: 10px;
+
+}
+
+.polaroid-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  z-index:2;
+  background: black;
+  opacity: 0;
+}
+.polaroid-link:hover{
+  opacity: 0.1;
+}
+}

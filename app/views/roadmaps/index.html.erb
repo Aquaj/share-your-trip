@@ -1,9 +1,16 @@
-<h2>Mes Itinéraires:</h2>
 
 
-<% @roadmaps.each do |roadmap| %>
-<% end %>
-
+<h2 class="text-center">Mes Itinéraires:</h2>
+<div class="block-contain">
+  <div class="container-fluid">
+    <div class="row">
+      <% @roadmaps.each do |roadmap| %>
+        <div class="col-xs-12 col-sm-4">
+          <%= render "shared/polaroid", roadmap: roadmap %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
 
 <%= link_to "créer un intinéraire", roadmaps_path, method: :post, class: "btn btn-primary"%>

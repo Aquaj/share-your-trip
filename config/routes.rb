@@ -23,10 +23,13 @@ Rails.application.routes.draw do
   end
 
   resources :roadmaps do
+    get "send_roadmap" => "roadmaps#send_roadmap", as: 'send'
     resources :experiences do
       resources :activities, only: [:create]
     end
   end
+
+
 
   resources :roadmaps
   resources :activities, only: [:update, :destroy]
