@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+  <%= favicon_link_tag 'favicon.png', rel: 'shortcut icon', type: 'image/png' %>
     <title>
       <% if content_for? :title %>
         <%= yield :title %> - Share Your Trip
@@ -15,7 +16,6 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body class="Site">
-    <%= favicon_link_tag 'favicon.png', rel: 'shortcut icon', type: 'image/png' %>
     <%= render 'shared/navbar' %>
     <%= render 'shared/flashes' %>
     <div class="Site-content">
@@ -26,9 +26,11 @@
       <%= render 'shared/footer' %>
     </div>
 
+    <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBCoDjqf-9l5d0f0LoOhPQuHSOMaKKP7-0">
+    </script>
     <%= javascript_include_tag 'application' %>
     <%= cloudinary_js_config %>
-
     <%= yield(:after_js) %>
   </body>
 </html>

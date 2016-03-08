@@ -3,6 +3,9 @@
 <button type="button" class="btn btn-primary btn-lg fa fa-heart" data-toggle="modal" data-target="#myModal">
   Partage ton coup de Coeur
 </button>
+
+  <!-- Modal -->
+
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -10,6 +13,8 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Mon coup de Coeur</h4>
       </div>
+
+
       <div class="modal-body input">
         <%= simple_form_for @experience do |f| %>
         <%= f.error_notification %>
@@ -23,12 +28,14 @@
         <%= f.button :submit, class:'btn btn-success btn-block' %>
         <% end %>
         <div class="container">
+        </div>
       </div>
     </div>
   </div>
 </div>
 
+<!-- End of Modal -->
+
 <% else %>
   <%= link_to t(".sign_in", default: "Connecte toi et partage dès maintenant!"), new_user_session_path, class: "btn btn-primary btn-lg fa fa-heart" %>
 <% end %>
-<!-- Modal -->

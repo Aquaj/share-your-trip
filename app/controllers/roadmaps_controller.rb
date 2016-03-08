@@ -15,12 +15,13 @@ class RoadmapsController < ApplicationController
   end
 
   def create
-    @roadmap = Roadmap.new(roadmap_params)
+    @roadmap = current_user.roadmaps.new
     authorize @roadmap
     if @roadmap.save
-      redirect_to @roadmap
+      redirect_to edit_roadmap_path(@roadmap)
     else
-      render 'new'
+      flash[:alert] = "Sorry, we encountered a problem."
+      redirect roadmaps_path
     end
   end
 
@@ -36,6 +37,11 @@ class RoadmapsController < ApplicationController
 
   def edit
     authorize @roadmap
+    if @roadmap.start_destination.present?
+      around = Geocoder.address(@roadmap.start_destination).split(", ")[-1]
+    end
+    @experiences = Experience.search({address: around}, policy_scope(Experience)) # For now > All.
+    @experiences += current_user.wishlisted_experiences
   end
 
   def destroy

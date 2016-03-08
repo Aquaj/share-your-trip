@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="start">
+        <%= @roadmap.start_destination %> - <%= @roadmap.start_date %>
+      </div>
+      <ol>
+        <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
+          <li><%= activity.experience.title %> - <%= activity.planned_on.to_formatted_s(:long) %></li>
+        <% end %>
+      </ol>
+      <ul>
+      <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
+        <li><%= activity.experience.title %></li>
+      <% end %>
+      </ul>
+      <div class="end">
+        <%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
+      </div>
+    </div>
+  </div>
+</div>

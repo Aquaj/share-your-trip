@@ -20,7 +20,12 @@ Rails.application.routes.draw do
   resources :experiences do
     resources :ratings, only: [:create]
     resources :wishlists, only: [:create]
-    resources :activities, only: [:create]
+  end
+
+  resources :roadmaps do
+    resources :experiences do
+      resources :activities, only: [:create]
+    end
   end
 
   resources :roadmaps
