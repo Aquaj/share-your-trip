@@ -1,3 +1,40 @@
 // Place all the styles related to the roadmaps controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+center {
+  display: flex;
+  justify-content: center;
+}
+.experience{
+  margin: 20px;
+  position: relative;
+}
+.new-body {
+  margin-top: 25px;
+}
+a.add-experience {
+  font-size: 36px;
+  position: absolute;
+  top: 0px;
+  right: 15px;
+}
+.experience-card {
+  height: 200px;
+  width: 100%;
+  font-weight: bold;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: white;
+  text-shadow: 0 0 2px rgba(#000, 0.7);
+  p {
+  }
+  img {
+    width: 100%
+  }
+}

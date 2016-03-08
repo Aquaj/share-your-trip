@@ -45,13 +45,14 @@
     $(document).ready(function(){
       $(".unplanner").click(function(e){
         e.preventDefault();
+        var activityID = $(this)[0].id;
         $.ajax({
               method: "PATCH",
-              url: "/activities/"+($(this)[0].id).split("-")[1],
-              data: { planned_on: null }
+              url: "/activities/"+activityID.split("-")[1],
+              data: { planned_on: "nil" }
             }).done(function(e){
-              console.log("activity-"+($(this)[0].id).split("-")[1]+"-date");
-              $("activity-"+($(this)[0].id).split("-")[1]+"-date").value = "";
+              console.log("activity-"+activityID.split("-")[1]+"-date")
+              $("#activity-"+activityID.split("-")[1]+"-date").val("");
             });
       });
       $("input.datepicker").each(function(input){
