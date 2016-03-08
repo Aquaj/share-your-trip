@@ -145,3 +145,12 @@
 .fa-heart:before{
   margin-left: 5px;
 }
+
+.btn:focus{
+  color: white;
+  outline: 0px auto;
+}
+
+.btn:active:focus{
+  outline: 0px auto;
+}

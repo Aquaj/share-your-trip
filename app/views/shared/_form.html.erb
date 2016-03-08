@@ -15,14 +15,13 @@
         <%= f.error_notification %>
         <%= f.input :title %>
         <%= f.input :category, as: :select, collection: Experience.categories %>
+        <%= f.input :photos, as: :attachinary %>
         <%= f.input :description %>
         <%= f.input :address %>
         <%= f.input :country, as: :string %>
-        <%= f.input :photos, as: :attachinary %>
         <hr>
         <%= f.button :submit, class:'btn btn-success btn-block' %>
         <% end %>
-        <div class="container">
       </div>
     </div>
   </div>
@@ -32,3 +31,13 @@
   <%= link_to t(".sign_in", default: "Connecte toi et partage dès maintenant!"), new_user_session_path, class: "btn btn-primary btn-lg fa fa-heart" %>
 <% end %>
 <!-- Modal -->
+
+<% content_for :after_js do %>
+  <script>
+      $(document).ready(function(){
+        $('<div class="attachinary-input"></div>').bind('fileuploaddone', function(e, data) {
+          console.log("fini");
+        });
+      });
+  </script>
+<% end %>
