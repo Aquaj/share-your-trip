@@ -1,9 +1,33 @@
-<%= @roadmap.start_destination %> - <%= @roadmap.start_date %><br>
-<% @roadmap.activities.each do |activity| %>
-  <%= activity.experience.title %>
-  <% if activity.planned_on %>
-   - <%= activity.planned_on %>
-  <% end %><br>
-  &nbsp;&nbsp;&nbsp;<%= activity.experience.address %><br>
-<% end %>
-<%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <h2><%= @roadmap.title %></h2>
+    </div>
+    <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="start">
+          <%= @roadmap.start_destination %> - <%= @roadmap.start_date %>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <ol>
+          <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
+            <li><%= activity.experience.title %> - <%= activity.planned_on.to_formatted_s(:long) %></li>
+          <% end %>
+        </ol>
+      </div>
+      <div class="col-md-12">
+        <ul>
+        <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
+          <li><%= activity.experience.title %></li>
+        <% end %>
+        </ul>
+      </div>
+      <div class="col-md-12">
+        <div class="end">
+          <%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

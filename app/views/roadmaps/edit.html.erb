@@ -10,7 +10,12 @@
             <li>
               <%= activity.experience.title %>
               <%= link_to icon('times-circle-o'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
-              <input class="datepicker" id="activity-<%= activity.id %>-date">
+              <% if activity.planned_on.present? %>
+                <input class="datepicker" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>-<%= activity.planned_on.month %>-<%= activity.planned_on.year %>">
+              <% else %>
+                <input class="datepicker" id="activity-<%= activity.id %>-date" value="">
+              <% end %>
+              <a class="unplanner" id="activity-<%= activity.id %>-unplan" href="#"><%= icon('times-circle-o') %></a>
             </li>
           <% end %>
         </ul>
@@ -38,7 +43,19 @@
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
-      $("input.datepicker").each(function(input) {
+      $(".unplanner").click(function(e){
+        e.preventDefault();
+        var activityID = $(this)[0].id;
+        $.ajax({
+              method: "PATCH",
+              url: "/activities/"+activityID.split("-")[1],
+              data: { planned_on: "nil" }
+            }).done(function(e){
+              console.log("activity-"+activityID.split("-")[1]+"-date")
+              $("#activity-"+activityID.split("-")[1]+"-date").val("");
+            });
+      });
+      $("input.datepicker").each(function(input){
         $(this).datepicker({
           dateFormat: "dd-mm-yy",
           altField: $(this).next(),

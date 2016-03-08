@@ -1,6 +1,6 @@
 Geocoder.configure(
   lookup:    :google,
-  api_key:   ENV['AIzaSyBCoDjqf-9l5d0f0LoOhPQuHSOMaKKP7-0'],
+  api_key:   ENV['GOOGLE_API_KEY'],
   use_https: true,
   units:     :km       # :km for kilometers or :mi for mile
 )
