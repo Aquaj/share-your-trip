@@ -6,7 +6,7 @@ class Roadmap < ActiveRecord::Base
   validates :user, presence: true
 
   def title
-    title = "My trip "
+    title = "Mon voyage "
 
     addresses = self.activities.map(&:experience).map(&:address)
 
@@ -18,23 +18,23 @@ class Roadmap < ActiveRecord::Base
 
     cities = addresses.map { |address| city(address) }
     if cities.uniq.length == 1
-      title += "in " + cities.uniq[0]
+      title += "à " + cities.uniq[0]
       # in City (if everything happens in same city)
     else
       countries = addresses.map { |address| country(address) }
       if countries.uniq.length == 1
-        title += "in " + country(r_start)
+        title += "en " + country(r_start)
         # in Country (if everything happens in same country)
       else
         continents = addresses.map { |address| continent(address) }
         if continents.uniq.length == 1
-          title += "in " + continent(r_start)
+          title += "en " + continent(r_start)
           # in Continent (if everything happens in same continent)
         elsif continents.uniq.length == 2
-          title += "across #{continents.uniq[0]} - #{continents.uniq[1]}"
+          title += " #{continents.uniq[0]} - #{continents.uniq[1]}"
           # around the world (if trip is across continents)
         else
-          title += "across the world"
+          title += " autour du globe"
         end
       end
     end
@@ -54,7 +54,8 @@ class Roadmap < ActiveRecord::Base
   end
 
   def country(destination, short = false)
-    components = Geocoder.search(destination)[0].data["address_components"].find{|comp| comp["types"].include? "country"}
+    debug_country = Geocoder.search(destination)
+    components = debug_country[0].data["address_components"].find{|comp| comp["types"].include? "country"}
     if short
       return components["short_name"]
     else

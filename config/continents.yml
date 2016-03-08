@@ -1,22 +1,22 @@
 # -*- coding: iso-8859-1 -*-
 "AF":
-    "name": "Africa"
+    "name": "Afrique"
     "countries": ["DZ", "AO", "BJ", "BW", "BF", "BI", "CM", "CV", "CF", "TD", "KM", "CD", "CG", "CI", "DJ", "EG", "GQ", "ER", "ET", "GA", "GM", "GH", "GN", "GW", "KE", "LS", "LR", "LY", "MG", "MW", "ML", "MR", "MU", "YT", "MA", "MZ", "NA", "NE", "NG", "RE", "RW", "SH", "ST", "SN", "SC", "SL", "SO", "ZA", "SD", "SZ", "TZ", "TG", "TN", "UG", "EH", "ZM", "ZW"]
 "AS":
-    "name": "Asia"
+    "name": "Asie"
     "countries": ["AF", "AM", "AZ", "BH", "BD", "BT", "IO", "BN", "KH", "CN", "CX", "CC", "CY", "GE", "HK", "IN", "ID", "IR", "IQ", "IL", "JP", "JO", "KZ", "KP", "KR", "KW", "KG", "LA", "LB", "MO", "MY", "MV", "MN", "MM", "NP", "OM", "PK", "PS", "PH", "QA", "SA", "SG", "LK", "SY", "TW", "TJ", "TH", "TL", "TR", "TM", "AE", "UZ", "VN", "YE"]
 "EU":
     "name": "Europe"
     "countries": ["AX", "AL", "AD", "AT", "BY", "BE", "BA", "BG", "HR", "CZ", "DK", "EE", "FO", "FI", "FR", "DE", "GI", "GR", "GG", "VA", "HU", "IS", "IE", "IM", "IT", "JE", "LV", "LI", "LT", "LU", "MK", "MT", "MD", "MC", "ME", "NL", "NO", "PL", "PT", "RO", "RU", "SM", "RS", "SK", "SI", "ES", "SJ", "SE", "CH", "UA", "GB"]
 "NA":
-    "name": "North America"
+    "name": "Amérique du Nord"
     "countries": ["AI","AG","AW","BS","BB","BZ","BM","VG","CA","KY","CR","CU","DM","DO","SV","GL","GD","GP","GT","HT","HN","JM","MQ","MX","MS","AN","NI","PA","PR","BL","KN","LC","MF","PM","VC","TT","TC","US","VI"]
 "SA":
-    "name": "South America"
+    "name": "Amérique du Sud"
     "countries": ["AR", "BO", "BR", "CL", "CO", "EC", "FK", "GF", "GY", "PY", "PE", "SR", "UY", "VE"]
 "OC":
-    "name": "Oceania"
+    "name": "Océanie"
     "countries": ["AS", "AU", "CK", "FJ", "PF", "GU", "KI", "MH", "FM", "NR", "NC", "NZ", "NU", "NF", "MP", "PW", "PG", "PN", "WS", "SB", "TK", "TO", "TV", "UM", "VU", "WF"]
 "AN":
-    "name": "Antarctica"
+    "name": "Antarctique"
     "countries": ["AQ", "BV", "TF", "HM", "GS"]
