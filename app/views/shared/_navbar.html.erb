@@ -12,7 +12,7 @@
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
 
-    <!-- Notification -->
+    <%= link_to "crée un intinéraire ", roadmaps_path, method: :post, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square"%><!-- Notification -->
     <%= link_to my_experiences_path, class: "navbar-wagon-item navbar-wagon-link" do %>
     <div class="badge-container">
       <i class="fa fa-star-o"></i>
