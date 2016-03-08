@@ -44,7 +44,10 @@ class Roadmap < ActiveRecord::Base
   private
 
   def city(destination)
-    debug_city = Geocoder.search(destination)
+    debug_city = []
+    while debug_city == [] do
+      debug_city = Geocoder.search(destination)
+    end
     city_data = debug_city[0].data["address_components"].select{|a| a["types"].include? "locality"}
     if city_data.length > 0
       return city_data[0]["long_name"]
@@ -54,7 +57,10 @@ class Roadmap < ActiveRecord::Base
   end
 
   def country(destination, short = false)
-    debug_country = Geocoder.search(destination)
+    debug_country = []
+    while debug_country == [] do
+      debug_country = Geocoder.search(destination)
+    end
     components = debug_country[0].data["address_components"].find{|comp| comp["types"].include? "country"}
     if short
       return components["short_name"]
