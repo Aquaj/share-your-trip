@@ -15,7 +15,7 @@
     <!-- Notification -->
     <%= link_to my_experiences_path, class: "navbar-wagon-item navbar-wagon-link" do %>
     <div class="badge-container">
-      <i class="fa fa-heart-o"></i>
+      <i class="fa fa-star-o"></i>
       <div class="badge badge-blue"><%= current_user.experiences.length %></div>
     </div>
     <% end %>
@@ -32,6 +32,11 @@
             <li>
               <%= link_to wishlists_path do %>
               <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to wishlists_path do %>
+              <i class="fa fa-globe"></i> <%= t ".mes intinéraires", default: "Mes Itinéraires" %>
               <% end %>
             </li>
             <li>
