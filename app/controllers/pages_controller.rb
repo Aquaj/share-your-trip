@@ -5,7 +5,7 @@ class PagesController < ApplicationController
     authorize :home, :home?
     @experiences = policy_scope(Experience).sample(3)
     if user_signed_in?
-      @experience = current_user.experiences.new
+      redirect_to experiences_path
     end
   end
 end
