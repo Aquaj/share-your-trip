@@ -13,12 +13,51 @@
 }
 
 .block-contain {
-  background-color: #FAFAFA;
-  padding: 20px;
-  margin: 20px;
+  //padding: 20px;
+  //margin: 20px;
   box-shadow: 1px 1px 3px #F0F0F0;
   position: relative;
   padding-bottom: 80px;
+
+  .card-container {
+    padding: 40px;
+    margin-bottom: 30px;
+  }
+
+  .banner-bottom-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 120px;
+    bottom: 0;
+    background-color: #F38181;
+
+    a,
+    a:active,
+    a:focus {
+      padding: 15px 30px;
+      border: 1px solid #fff;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 600;
+      font-size: 14px;
+      border-radius: 3px;
+      background-color: transparent;
+      text-decoration: none;
+      @include transition(all, 0.3s, ease-in-out);
+
+      &:hover {
+        color: #F38181;
+        background-color: #fff;
+      }
+
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
 }
 
 .Site {
@@ -29,6 +68,7 @@
 
 .Site-content {
   flex: 1;
+  background-color: #fff;
 }
 
 .banner {
@@ -55,50 +95,50 @@
 
 
 
-.card {
-  height: 275px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
-  background-size: cover;
-  color: white;
-  position: relative;
-  padding: 15px;
+// .card {
+//   height: 275px;
+//   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+//   background-size: cover;
+//   color: white;
+//   position: relative;
+//   padding: 15px;
 
-}
-.card-user {
-  position: absolute;
-  right: 10px;
-  top: 10px;
-}
-.card-category {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  font-size: 10px;
-  text-transform: uppercase;
-}
-.card-description {
-  position: absolute;
-  bottom: 10px;
-  left: 10px;
-}
-.card-description h2 {
-  font-size: 24px;
-}
-.card-description p {
-  font-size: 13px;
-  }
-.card-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  z-index:2;
-  background: black;
-  opacity: 0;
-}
-.card-link:hover{
-  opacity: 0.1;
-}
+// }
+// .card-user {
+//   position: absolute;
+//   right: 10px;
+//   top: 10px;
+// }
+// .card-category {
+//   position: absolute;
+//   top: 10px;
+//   left: 10px;
+//   font-size: 10px;
+//   text-transform: uppercase;
+// }
+// .card-description {
+//   position: absolute;
+//   bottom: 10px;
+//   left: 10px;
+// }
+// .card-description h2 {
+//   font-size: 24px;
+// }
+// .card-description p {
+//   font-size: 13px;
+//   }
+// .card-link {
+//   position: absolute;
+//   top: 0;
+//   bottom: 0;
+//   width: 100%;
+//   z-index:2;
+//   background: black;
+//   opacity: 0;
+// }
+// .card-link:hover{
+//   opacity: 0.1;
+// }
 
 .avatar-radius{
   border-radius: 50%;
