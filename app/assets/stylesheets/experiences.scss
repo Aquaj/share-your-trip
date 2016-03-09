@@ -1,10 +1,14 @@
 // Place all the styles related to the Experiences controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+body {
+  background-color: #F4F4F4;
+}
 
 .map-wrapper{
   height: 200px;
   margin: 0 -15px;
+
 }
 
 .search-center{
