@@ -40,11 +40,11 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: #F38181;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #519ce2;
+  color: #F38181;
   text-decoration: none;
 }
 
@@ -55,14 +55,14 @@
   border-radius: 20em;
   line-height: 40px;
   background-color: transparent;
-  color: #519ce2;
+  color: #F38181;
   font-size: 14px;
-  border: 2px solid #519ce2;
+  border: 2px solid #F38181;
 }
 .navbar-wagon-button:hover {
-  color: #71BCFB;
+  color: #F38181;
   background: transparent;
-  border-color: #519ce2;
+  border-color: #F38181;
 }
 
 /* Navbar search form */
@@ -143,7 +143,6 @@
 
   &:hover {
     border: 2px solid rgba(243, 129, 129, 0.74);
-    color: rgba(243, 129, 129, 0.74);
   }
 }
 
@@ -160,10 +159,11 @@
 }
 
 .btn:focus{
-  color: #ccc;
+  color: #F38181;
   outline: 0px auto;
 }
 
 .btn:active:focus{
+  color: #F38181;
   outline: 0px auto;
 }
