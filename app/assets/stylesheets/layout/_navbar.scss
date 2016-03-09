@@ -139,11 +139,19 @@
   background-color: transparent;
   color: #ccc;
   border: 2px solid #ccc;
-  text-shadow: 0px -0.5px 1.5px grey;
+  text-shadow: none;
 }
 
 .fa-heart:before{
   margin-left: 5px;
+}
+
+.padding-right-thin{
+  padding-right: 10px;
+}
+
+.padding-left-thin{
+  padding-left: 10px;
 }
 
 .btn:focus{
