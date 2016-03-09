@@ -4,27 +4,17 @@
 
 <div class="block-contain">
   <div class="container-fluid">
-    <div class="row">
-      <% @experiences.each do |experience| %>
+    <div class="row card-container">
+      <% @experiences.limit(6).each do |experience| %>
         <div class="col-xs-12 col-sm-4">
           <%= render "shared/card", experience: experience %>
         </div>
       <% end %>
     </div>
   </div>
+  <div class="banner-bottom-cta">
+    <%= link_to roadmaps_path do %>
+      <i class="fa fa-heart"></i> <%= t ".mes coups de coeur", default: "Mes coups de coeur" %>
+    <% end %>
+  </div>
 </div>
-
- <div id="map" style="width: 100%; height: 600px;"></div>
-
-  <% content_for(:after_js) do %>
-  <%= javascript_tag do %>
-  $(document).on('ready', function() {
-  handler = Gmaps.build('Google');
-  handler.buildMap({ internal: { id: 'map' } }, function(){
-  markers = handler.addMarkers(<%= raw @markers.to_json %>);
-  handler.bounds.extendWith(markers);
-  handler.fitMapToBounds();
-});
-})
-<% end %>
-<% end %>
