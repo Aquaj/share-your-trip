@@ -24,11 +24,11 @@ class Experience < ActiveRecord::Base
   after_validation :officialize_country
 
   def self.categories
-    return %w(Amusement Panorama Visite Nature Musée Évènements Hôtel Restaurant Bar)
+    return %W(Amusement Panorama Visite Nature Musée Évènements Hôtel Restaurant Bar Vie\ Nocturne)
   end
 
   def is_occupation?
-    return !%w(Hôtel Restaurant Bar).include?(self.category)
+    return !%W(Hôtel Restaurant Bar Vie\ Nocturne).include?(self.category)
   end
 
   def is_reusable?
