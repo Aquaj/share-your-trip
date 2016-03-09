@@ -24,7 +24,15 @@ class Experience < ActiveRecord::Base
   after_validation :officialize_country
 
   def self.categories
-    return ["Bar", "Restaurant", "Leisure", "Sport", "Panorama", "Hotel"]
+    return %w(Amusement Panorama Visite Nature Musée Évènements Hôtel Restaurant Bar)
+  end
+
+  def is_occupation?
+    return !%w(Hôtel Restaurant Bar).include?(self.category)
+  end
+
+  def is_reusable?
+    return self.category == "Hôtel"
   end
 
   def officialize_country
@@ -50,5 +58,38 @@ class Experience < ActiveRecord::Base
     else
       experiences
     end
+  end
+
+  def city
+    debug_city = []
+    while debug_city == [] do
+      debug_city = Geocoder.search(address)
+    end
+    city_data = debug_city[0].data["address_components"].select{|a| a["types"].include? "locality"}
+    if city_data.length > 0
+      return city_data[0]["long_name"]
+    else
+      return nil
+    end
+  end
+
+  def country(short = false)
+    debug_country = []
+    # Accounting for attribute/method homonym-ness
+    dest = self.attributes["country"].present? ? self.attributes["country"] : address
+    while debug_country == [] do
+      debug_country = Geocoder.search(dest)
+    end
+    components = debug_country[0].data["address_components"].find{|comp| comp["types"].include? "country"}
+    if short
+      return components["short_name"]
+    else
+      return components["long_name"]
+    end
+  end
+
+  def continent
+    continents = YAML.load(open("config/continents.yml"))
+    continents.find{|continent, data| data["countries"].include? country(short=true)}[1]["name"]
   end
 end
