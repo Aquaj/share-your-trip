@@ -7,10 +7,35 @@
   <!-- Right Navigation -->
   <div class="navbar-wagon-right hidden-xs hidden-sm">
 
-    <%= render 'shared/search_input'%>
 
     <!-- Different navigation if login or not -->
     <% if user_signed_in? %>
+      <button type="button" class="navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" data-toggle="modal" data-target="#myModal">
+        Partage un <%= icon("heart") %>
+      </button>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myModalLabel">Mon coup de Coeur</h4>
+            </div>
+            <div class="modal-body input">
+              <%= simple_form_for Experience.new do |f| %>
+              <%= f.error_notification %>
+              <%= f.input :title %>
+              <%= f.input :category, as: :select, collection: Experience.categories %>
+              <%= f.input :description %>
+              <%= f.input :address %>
+              <%= f.input :country, as: :string %>
+              <%= f.input :photos, as: :attachinary %>
+              <hr>
+              <%= f.button :submit, class:'btn btn-success btn-block' %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
 
     <%= link_to "crée un intinéraire ", roadmaps_path, method: :post, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square"%><!-- Notification -->
     <%= link_to my_experiences_path, class: "navbar-wagon-item navbar-wagon-link" do %>
@@ -55,34 +80,6 @@
       <% end %>
 
       <!-- Button (call-to-action) -->
-      <% if user_signed_in? %>
-      <button type="button" class="navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" data-toggle="modal" data-target="#myModal">
-        Partage un <%= icon("heart") %>
-      </button>
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title" id="myModalLabel">Mon coup de Coeur</h4>
-            </div>
-            <div class="modal-body input">
-              <%= simple_form_for Experience.new do |f| %>
-              <%= f.error_notification %>
-              <%= f.input :title %>
-              <%= f.input :category, as: :select, collection: Experience.categories %>
-              <%= f.input :description %>
-              <%= f.input :address %>
-              <%= f.input :country, as: :string %>
-              <%= f.input :photos, as: :attachinary %>
-              <hr>
-              <%= f.button :submit, class:'btn btn-success btn-block' %>
-              <% end %>
-            </div>
-          </div>
-        </div>
-      </div>
-      <% end %>
     </div>
 
     <!-- Dropdown list appearing on mobile only -->
