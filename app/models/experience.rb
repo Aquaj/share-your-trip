@@ -82,7 +82,7 @@ private
 
   def cache
     data = LocationService.new.full_info(address)
-    update(
+    update_columns(
       city_cache: data[:city],
       country_cache: data[:country],
       continent_cache: data[:continent]
