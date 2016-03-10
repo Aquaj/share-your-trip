@@ -99,6 +99,9 @@ private
     end
   end
 
+
+  ### Validators ###
+
   def start_date_is_a_date_or_nil
     if start_date.present?
       if ![Date, DateTime].include? start_date.class
@@ -116,10 +119,20 @@ private
   end
 
   def start_date_is_valid
-    start_date > created_at
+    if start_date.present?
+      if start_date < updated_at
+        errors.add(:start_date, "ne peut pas être antérieure à aujourd'hui")
+      end
+    end
   end
 
   def end_date_is_valid
-    end_date > start_date
+    if start_date.present?
+      if end_date.present?
+        if end_date < start_date
+          errors.add(:start_date, "ne peut pas être antérieure à la date de départ")
+        end
+      end
+    end
   end
 end
