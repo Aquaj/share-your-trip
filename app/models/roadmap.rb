@@ -65,7 +65,6 @@ private
   # TODO: Metaprog all those away.
   def cache_start_components
     if start_destination.empty? # Case: removal of start_destination
-      byebug
       update_columns(
           start_city_cache: nil,
           start_country_cache: nil,
