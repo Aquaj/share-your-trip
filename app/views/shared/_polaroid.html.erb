@@ -1,6 +1,6 @@
 <%= link_to roadmap do %>
 <div class="polaroid text-center">
-  <% if roadmap.start_date && roadmap.end_date %>
+  <% if roadmap.start_destination && roadmap.end_destination %>
     <div id="map-<%= roadmap.id %>" style="margin: 0 auto; height: 260px; width:260px;"></div>
   <% else %>
     <%= image_tag "carnet.png", style: "width: 260px; height: 260px"%>
