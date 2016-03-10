@@ -12,7 +12,7 @@ class ExperiencesController < ApplicationController
 
   def show
     authorize @experience
-    puts @experience
+    p @experience
     @close_by = @experience.nearbys(10).select do |experience|
       # Only display Experiences with higher or equal average rating.
       experience.average_rating >= @experience.average_rating
