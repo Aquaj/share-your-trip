@@ -6,11 +6,11 @@
           <div class="row">
             <div class="col-lg-6">
               <%= f.input :start_destination, label: 'au départ de' %>
-              <%= f.input :start_date, label: 'au départ de', input_html: { class:'datepicker'} %>
+              <%= f.input :start_date, label: 'au départ de', as: :bootstrap_datepicker %>
             </div>
             <div class="col-lg-6">
               <%= f.input :end_destination, label: 'arrivé à'%>
-              <%= f.input :end_date, label: 'arrivé à', input_html: { class:'datepicker'} %>
+              <%= f.input :end_date, label: 'arrivé à', as: :bootstrap_datepicker %>
             </div>
           </div>
         <%= f.input :travellers_num, input_html: { class: 'form-inline' } , label: 'nombre de voyageurs' %>
