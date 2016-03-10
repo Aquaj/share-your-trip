@@ -1,13 +1,22 @@
-<h2 class="text-center">Mes Itinéraires:</h2>
+<div class="container search-form">
+  <div class="search-center">
+    <h2>Mes itinéraires :</h2>
+  </div>
+</div>
+
 <div class="block-contain">
-  <div class="container-fluid">
-    <div class="row">
+  <div class="container search-form">
+    <div class="row card-container">
       <% @roadmaps.each do |roadmap| %>
-        <div class="col-xs-12 col-sm-4">
+        <div class="col-xs-12 col-md-4 polaroid-center">
           <%= render "shared/polaroid", roadmap: roadmap %>
         </div>
       <% end %>
     </div>
   </div>
-
-<%= link_to "créer un intinéraire", roadmaps_path, method: :post, class: "btn btn-primary"%>
+  <div class="banner-bottom-cta">
+    <%= link_to roadmaps_path, method: :post, class: "btn btn-primary" do%>
+        <%= icon "globe" %> Créer un itinéraire.
+    <% end %>
+  </div>
+</div>
