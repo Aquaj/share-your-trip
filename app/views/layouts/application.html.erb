@@ -30,13 +30,13 @@
       <div class="modal-body input">
         <%= simple_form_for Experience.new do |f| %>
           <%= f.error_notification %>
-          <%= f.input :title %>
-          <%= f.input :category, as: :select, collection: Experience.categories %>
-          <%= f.input :description %>
-          <%= f.input :address %>
+          <%= f.input :title, label: "Titre" %>
+          <%= f.input :category, as: :select, label: "Catégories", collection: Experience.categories %>
+          <%= f.input :description, label: "Description" %>
+          <%= f.input :address, label: "Adresse" %>
           <%= f.input :photos, as: :attachinary %>
           <hr>
-          <%= f.button :submit, class:'btn btn-success btn-block' %>
+          <%= f.button :submit, "Partage !", class:'btn btn-success btn-block' %>
         <% end %>
       </div>
     </div>
