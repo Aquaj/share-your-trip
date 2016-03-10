@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 text-center">
-      <h2><%# title(@roadmap) %></h2>
+      <h2><% title(@roadmap) %></h2>
     </div>
     <div class="col-md-6">
       <div class="col-md-12">
@@ -10,36 +10,35 @@
         </div>
       </div>
       <div class="col-md-12">
-        <ol>
+        <%= content_tag :ol do %>
           <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
-            <li><%= activity.experience.title %> - <%= activity.planned_on.to_formatted_s(:long) %></li>
+            <%= content_tag :li, "#{activity.experience.title} - #{activity.planned_on.to_formatted_s(:long)}" %>
           <% end %>
-        </ol>
+        <% end %>
       </div>
       <div class="col-md-12">
-        <ul>
-        <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
-          <li><% activity.experience.title %></li>
+        <%= content_tag :ul do %>
+          <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
+            <%= content_tag :li, "#{activity.experience.title}" %>
+          <% end %>
         <% end %>
-        </ul>
-        <div id="steps"></div>
       </div>
       <div class="col-md-12">
         <div class="end">
           <%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
         </div>
       </div>
-      <% itinerary = @roadmap.itinerary %>
+      <% planning = @roadmap.planning %>
       <div class="itinerary">
         Villes parcourues :
-        <ol>
-        <% itinerary.map{|city| city}.uniq.each do |waypoint| %>
-          <li><%= waypoint %></li>
+        <%= content_tag :ol do %>
+          <% planning[:itinerary].each do |waypoint| %>
+            <%= content_tag :li, waypoint %>
+          <% end %>
         <% end %>
-        </ol>
       </div>
       <div class="schedule">
-      <%= render "schedule", roadmap: @roadmap %>
+      <%= render "schedule", schedule: planning[:schedule] %>
       </div>
     </div>
     <div class="col-md-6" style="height: 500px;">
@@ -55,12 +54,10 @@
   var styleArray = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
   initMap();
 function initMap() {
-  var markerArray = [];
-
   // Instantiate a directions service.
   var directionsService = new google.maps.DirectionsService;
 
-  // Create a map and center it on Manhattan.
+  // Create a map, apply our custom style on it.
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
     style: styleArray
@@ -69,24 +66,18 @@ function initMap() {
   // Create a renderer for directions and bind it to the map.
   var directionsDisplay = new google.maps.DirectionsRenderer({map: map});
 
-  // Instantiate an info window to hold step text.
-  var stepDisplay = new google.maps.InfoWindow;
-
   // Display the route between the initial start and end selections.
-  calculateAndDisplayRoute(
-      directionsDisplay, directionsService, markerArray, stepDisplay, map);
-  // Listen to change events from the start and end lists.
+  calculateAndDisplayRoute(directionsDisplay, directionsService);
 }
 
-function calculateAndDisplayRoute(directionsDisplay, directionsService,
-    markerArray, stepDisplay, map) {
+function calculateAndDisplayRoute(directionsDisplay, directionsService) {
 
-  <% addresses = itinerary %>
-  <%# byebug %>
+  <% addresses = planning[:itinerary] %>
   directionsService.route({
-    origin: "<%= addresses[0] %>",
-    destination: "<%= addresses[-1] %>",
+    origin: "<%= addresses.first %>",
+    destination: "<%= addresses.last %>",
     travelMode: google.maps.TravelMode.WALKING,
+    // TODO: Add a way to pick between Walking/Driving/...
     <% if addresses.length > 2 %>
     waypoints: [
                 <% addresses[1...-1].each do |wp| %>
@@ -97,12 +88,14 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
   }, function(response, status) {
     // Route the directions
     if (status === google.maps.DirectionsStatus.OK) {
-      document.getElementById('steps').innerHTML =
-          '<b>' + response.routes[0].warnings + '</b>';
+      // Google warnings handling (deactivated for now.)
+      //document.getElementById('steps').innerHTML =
+        //  '<b>' + response.routes[0].warnings + '</b>';
       directionsDisplay.setDirections(response);
     } else {
-      document.getElementById('steps').innerHTML =
-          '<b>' + 'Directions request failed due to ' + status + '</b>';
+      // Error handling (deactivated for now.)
+      // document.getElementById('steps').innerHTML =
+         // '<b>' + 'Directions request failed due to ' + status + '</b>';
     }
   });
 }

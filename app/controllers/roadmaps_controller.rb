@@ -33,7 +33,7 @@ class RoadmapsController < ApplicationController
   def edit
     authorize @roadmap
     if @roadmap.start_destination.present?
-      around = Geocoder.address(@roadmap.start_destination).split(", ")[-1]
+      around = @roadmap.start_city
     end
     @experiences = []
     @experiences += current_user.wishlisted_experiences

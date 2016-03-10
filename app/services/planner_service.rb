@@ -1,4 +1,38 @@
-class SchedulerService
+class PlannerService
+
+  def plan_for(activities, start_city=nil, start_date=nil, end_city=nil, end_date=nil)
+    schedule = create_schedule(activities, start_date, end_date)
+    return {schedule: schedule, itinerary: itinerary(schedule, start_city, end_city)}
+  end
+
+private
+
+  # Lists the cities the traveller is gonna go through in the order
+  # they will cross them from a Schedule
+  def itinerary(schedule, start_city, end_city)
+    itinerary_stops = []
+
+    itinerary_stops << start_city unless start_city.nil?
+
+    schedule.each do |day|
+      # For every day on the schedule
+      %i(morning midday afternoon evening night).each do |part_of_day|
+        day[part_of_day].each do |activity|
+          # Add the city of the activities the user
+          # has planned to our itinerary
+          itinerary_stops << activity.city
+        end
+      end
+    end
+
+    itinerary_stops << end_city unless end_city.nil?
+
+    itinerary_stops.chunk{|x| x}.map(&:first)
+    # Removes consecutive duplicates
+    # Ex: [Paris Bordeaux Bordeaux Nantes Paris Paris]
+    # becomes : [Paris Bordeaux Nantes Paris]
+  end
+
   def create_schedule(activities, start_date=nil, end_date=nil)
 
     # Not making the service really stateful.
@@ -72,7 +106,7 @@ class SchedulerService
       end
 
       day[:evening] << bars[0] if bars.present?
-      unscheduled[:bars] = bars[1..-1] # Leftovers
+      unscheduled[:bars] = bars.empty? ? [] : bars[1..-1]
 
       day[:night] << nightlife[0] if nightlife.present?
       unscheduled[:nightlife] = nightlife.empty? ? [] : nightlife[1..-1]
@@ -86,14 +120,16 @@ class SchedulerService
     planning
   end
 
-private
-
+  # Beginning is either the start_date or
+  # the date of the first planned activity
   def beginning
     return @start_date unless @start_date.nil?
     return activity_dates[0] if planned_activities.present?
     return nil
   end
 
+  # Finish is either the end_date or
+  # the date of the last planned activity
   def finish
     return @end_date unless @end_date.nil?
     return activity_dates[-1] if planned_activities.present?
@@ -104,6 +140,7 @@ private
     @activities.select { |activity| activity.planned_on.present? }
   end
 
+  # "Unplanned" = Not planned
   def unplanned_activities
     @activities.select { |activities| activity.planned_on.nil? }
   end
@@ -115,13 +152,14 @@ private
   def duration
     if beginning.present? && finish.present?
       return finish - beginning - 1
-      # -1 cause you don't travel on the day of your flight
+      # -1 cause you don't travel on the days of your flights
     else
       return 7 # Current default.
       # TODO: Implement Weekend / Week / Month long choices for trips.
     end
   end
 
+  # All activities for a given day before scheduling
   def unscheduled_activities(day_index)
     return [] unless beginning.present?
     return planned_activities.select{ |activity| activity.planned_on == (beginning + day_index)}

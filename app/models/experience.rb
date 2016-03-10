@@ -40,6 +40,7 @@ class Experience < ActiveRecord::Base
     return !%W(Hôtel Restaurant Bar Vie\ Nocturne).include?(self.category)
   end
 
+  # Not used (yet?)
   def is_reusable?
     return self.category == "Hôtel"
   end
@@ -53,6 +54,10 @@ class Experience < ActiveRecord::Base
     end
   end
 
+  ## City/Country/Continent
+  # Returns the cached value of the property
+  # if cache doesn't exist yet, builds cache
+  # for all three values.
   def city
     cache if self.city_cache.nil?
     return city_cache
