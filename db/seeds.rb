@@ -9,15 +9,25 @@
 puts "Seed started !"
 puts "-- Users"
 user1 = User.create!(email: 'a@abc.com', first_name: 'Alexandre', last_name: 'Dumas', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.orderofbooks.com/wp-content/uploads/2013/02/Alexandre-Dumas-pere.jpg")
+print "     1"
 user2 = User.create!(email: 'b@abc.com', first_name: 'Charles', last_name: 'Bukowski', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://timesquatters.com/wp-content/uploads/2016/01/Charles-Bukowski-10.jpg")
+print " - 2"
 user3 = User.create!(email: 'c@abc.com', first_name: 'Ernest', last_name: 'Hemingway', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.nndb.com/people/790/000022724/loc-hemmingway-2.jpg")
+print " - 3"
 user4 = User.create!(email: 'd@abc.com', first_name: 'Truman', last_name: 'Capote', password: '123soleil', password_confirmation: '123soleil', avatar_url: "https://s-media-cache-ak0.pinimg.com/236x/56/6a/11/566a1148558e825edfce68f4b4ac7962.jpg")
+print " - 4"
 user5 = User.create!(email: 'e@abc.com', first_name: 'Guillaume', last_name: 'Apollinaire', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.anvilpresspoetry.com/assets_cm/FILES/image/APOLLINAIRE.jpg")
+puts " - 5"
 user6 = User.create!(email: 'f@abc.com', first_name: 'Harold', last_name: 'Pinter', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.nobelprize.org/nobel_prizes/literature/laureates/2005/pinter_portrait.jpg")
+print "     6"
 user7 = User.create!(email: 'g@abc.com', first_name: 'Fréderic', last_name: 'Beigbeder', password: '123soleil', password_confirmation: '123soleil', avatar_url: "https://litterature-fle.wikispaces.com/file/view/a376ea18-d0cf-11dc-b947-c542c2d953ca.jpg/48392639/a376ea18-d0cf-11dc-b947-c542c2d953ca.jpg")
+print " - 7"
 user8 = User.create!(email: 'h@abc.com', first_name: 'Françoise', last_name: 'Sagan', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://images.smh.com.au/2010/10/06/1969578/Sagan-420x0.jpg")
+print " - 8"
 user9 = User.create!(email: 'i@abc.com', first_name: 'Ferdinand', last_name: 'Celine', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.greatthoughtstreasury.com/sites/default/files/Celine%5B1%5D.jpg")
+print " - 9"
 user10 = User.create!(email: 'j@abc.com', first_name: 'Boris', last_name: 'Vian', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.nosenchanteurs.eu/wp-content/uploads/2015/05/Boris-Vian.jpg")
+puts " - 10"
 puts "-- Done!"
 
 puts "-- Experiences"
@@ -36,21 +46,21 @@ experience_bar        = user9.experiences.create!(category:'Bar',
                                                   title: 'Je peux pas, j\'ai poney.',
                                                   photo_urls: [ "http://www.barsparis.com/wp-content/uploads/2012/02/harrys-bar-paris-3.jpg"])
 puts "  -- Leisure"
-experience_leisure    = user8.experiences.create!(category:'Leisure',
+experience_leisure    = user8.experiences.create!(category:'Hôtel',
                                                   description:'Le meilleur endroit pour se détendre, du repos et du calme dans un décor mangnifique.',
                                                   address:'8221 Sunset Blvd, Los Angeles, CA 90046',
                                                   country:  "United States",
                                                   title: 'Le Château Marmont',
                                                   photo_urls: [ "http://41.media.tumblr.com/1784e615201514f794462c93cb86009f/tumblr_n1xixsKfFp1qaktyno1_1280.jpg", "http://r-ec.bstatic.com/images/hotel/840x460/542/5429184.jpg"])
 puts "  -- Sport"
-experience_sport      = user7.experiences.create!(category:'Sport',
+experience_sport      = user7.experiences.create!(category:'Évènement',
                                                   description:'Parfait pour les sportifs, moi qui aime me dépenser j\'ai été ravi.',
                                                   address: 'Ramjas College , University of Delhi, 4, Patel Marg, Maurice Nagar 110007, New Delhi',
                                                   country: "India",
                                                   title: 'Jimindia cricket',
                                                   photo_urls: [ "http://www.bandt.com.au/information/uploads/2014/07/shutterstock_114007321-1260x840.jpg", "http://www.pedestrian.tv/images/article/2013/11/21/the-cricket-ashes-2013-642-380-619-386.jpg"])
 puts "  -- Hotel"
-experience_hotel      = user6.experiences.create!(category:'Hotel',
+experience_hotel      = user6.experiences.create!(category:'Hôtel',
                                                   description:'Un hôtel magnifique, une expérience hors du commun. Un must-see, pour les amateurs de Santori.',
                                                   address:'２, ３丁目-７-１ 西新宿 新宿区 東京都 163-1055',
                                                   country: "Japan",
@@ -79,14 +89,14 @@ experience_bar        = user9.experiences.create!(category:'Bar',
                                                   title: 'Chez Fred, le bar des Vedettes',
                                                   photo_urls: [ "http://www.gillespudlowski.com/wp-content/uploads/2014/11/l1200186-1024x680.jpg"])
 puts "  -- Leisure"
-experience_leisure    = user8.experiences.create!(category:'Leisure',
+experience_leisure    = user8.experiences.create!(category:'Amusement',
                                                   description:'Cinéma et cantine sympa  dans un décor mangnifique.',
                                                   address:'5 Place Camille Jullian, 33000 Bordeaux',
                                                   country:  "France",
                                                   title: 'Utopia le ciné branchouille',
                                                   photo_urls: [ "http://www.bordeaux-quartiers.fr/wp-content/uploads/2014/02/utopia-bordeaux-cinema.jpg", "http://images.sudouest.fr/images/2010/12/25/276015_15259528_460x306.jpg"])
 puts "  -- Sport"
-experience_sport      = user7.experiences.create!(category:'Sport',
+experience_sport      = user7.experiences.create!(category:'Amusement',
                                                   description:"découvrir de sport magnifique dans un environment de rêve, c'est gratuit",
                                                   address: '1999 Route du Bourrian, 83580 Gassin',
                                                   country: "France",

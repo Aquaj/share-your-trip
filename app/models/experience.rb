@@ -14,7 +14,7 @@ class Experience < ActiveRecord::Base
   validates :category, presence: true
   validates :description, presence: true
   validates :address, presence: true
-  validates :category, inclusion: { in: %W(Amusement Panorama Visite Nature Musée Évènements Hôtel Restaurant Bar Vie\ Nocturne) }
+  validates :category, inclusion: { in: %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne) }
 
   has_attachments :photos, maximum: 3
 
@@ -22,13 +22,13 @@ class Experience < ActiveRecord::Base
   after_validation :geocode, if: :address_changed?
 
   def self.categories
-    return %W(Amusement Panorama Visite Nature Musée Évènements Hôtel Restaurant Bar Vie\ Nocturne)
+    return %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne)
   end
 
   def self.search(search, experiences) # Second parameter needed to account for Pundit scope
     locate = LocationService.new
     if search && !search[:address].blank?
-      city = locate.city(address) # if it's not city it's a country
+      city = locate.city(search[:address]) # if it's not city it's a country
       if city.present? # city
         experiences.near(search[:address], 20)
       else # country
