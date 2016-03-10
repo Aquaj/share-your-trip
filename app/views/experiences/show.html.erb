@@ -5,59 +5,54 @@
 <div class="container-fluid">
   <div class="row">
     <div class="block-left col-md-6">
-      <div class="row" style="display: flex; flex-direction: column;">
-        <div class="scrolling">
-          <div class="text-and-author">
-            <div class="experience-text col-md-9">
-              <div class="experience-header">
-                <div class="title"><h3><%= @experience.title %></h3></div>
-                <div class="rating">
-                  <span class="average-rating">
-                    <%= render "shared/rating", rating: @experience.average_rating %>
-                  </span>
-                </div>
-              </div>
-              <div class="experience-description">
-                <%= @experience.description %>
+      <div class="row" style="display: flex; flex-direction: column; margin-right: 25px; margin-left: 25px;">
+        <div class="text-and-author">
+            <div class="experience-header">
+              <div class="title"><h3><%= @experience.title %></h3></div>
+              <div class="rating">
+                <span class="average-rating">
+                  <%= render "shared/rating", rating: @experience.average_rating %>
+                </span>
               </div>
             </div>
-            <div class="sidebar-description col-md-3">
-              <div class="author-details">
-                <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "150x150" %>
-                <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
-              </div>
-              <div class="interaction-buttons">
-                <% if user_signed_in? %>
-                <div id="wishlist">
-                  <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
-                </div>
-                <%= render "shared/facebook_share" %>
-                <% end %>
-              </div>
+            <div class="experience-description">
+              <%= @experience.description %>
             </div>
-          </div>
-          <div class="reviews col-md-12">
-            <% if user_signed_in? && policy(@rating).new? %>
-            <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
-            <% end %>
-            <% @experience.ratings.each do |rating| %>
-            <%= render "shared/review", locals: { review: rating } %>
-            <% end %>
+            <div class="author-details">
+              <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
+              <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
+            </div>
+            <div class="interaction-buttons">
+              <% if user_signed_in? %>
+              <div id="wishlist">
+                <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
+              </div>
+              <%= render "shared/facebook_share" %>
+              <% end %>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="block-fixed col-md-6">
-      <div class="row">
-        <div class="pictures col-md-12">
-          <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :fill %>
-          <% @experience.photos.each do |photo| %>
-          <%= cl_image_tag photo.path, crop: :lfill  %>
+        <div class="reviews col-md-12">
+          <% if user_signed_in? && policy(@rating).new? %>
+          <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
+          <% end %>
+          <% @experience.ratings.each do |rating| %>
+          <%= render "shared/review", locals: { review: rating } %>
           <% end %>
         </div>
-        <div class="col-md-12">
-          <div class="map-wrapper">
-            <%= render "shared/map" %>
+      </div>
+      <div class="block-fixed col-md-6">
+        <div class="row">
+          <div class="pictures col-md-12">
+            <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :fill %>
+            <% @experience.photos.each do |photo| %>
+            <%= cl_image_tag photo.path, crop: :lfill  %>
+            <% end %>
+          </div>
+          <div class="col-md-12">
+            <div class="map-wrapper">
+              <%= render "shared/map" %>
+            </div>
           </div>
         </div>
       </div>

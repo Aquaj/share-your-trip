@@ -1,7 +1,7 @@
 /* Main class */
 .navbar-wagon {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
-  background: skyblue;
+  background: white;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
@@ -40,11 +40,11 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #616668;
+  color: #F38181;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #519ce2;
+  color: #F38181;
   text-decoration: none;
 }
 
@@ -55,14 +55,14 @@
   border-radius: 20em;
   line-height: 40px;
   background-color: transparent;
-  color: white;
+  color: #F38181;
   font-size: 14px;
-  border: 2px solid white;
+  border: 2px solid #F38181;
 }
 .navbar-wagon-button:hover {
-  color: white;
+  color: #F38181;
   background: transparent;
-  border-color: #519ce2;
+  border-color: #F38181;
 }
 
 /* Navbar search form */
@@ -137,20 +137,33 @@
 .btn-square {
   border-radius: 5px;
   background-color: transparent;
-  color: white;
-  border: 2px solid white;
-  text-shadow: 1px 1px 1px black;
+  color: #F38181;
+  border: 2px solid #F38181;
+  text-shadow: none;
+
+  &:hover {
+    border: 2px solid rgba(243, 129, 129, 0.74);
+  }
 }
 
 .fa-heart:before{
   margin-left: 5px;
 }
 
+.padding-right-thin{
+  padding-right: 10px;
+}
+
+.padding-left-thin{
+  padding-left: 10px;
+}
+
 .btn:focus{
-  color: white;
+  color: #F38181;
   outline: 0px auto;
 }
 
 .btn:active:focus{
+  color: #F38181;
   outline: 0px auto;
 }

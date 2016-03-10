@@ -1,17 +1,22 @@
 .card {
-  height: 275px;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  height: 240px;
+  text-shadow: 0 1px 1px rgba(0,0,0,0.6);
   background-size: cover;
   color: white;
   position: relative;
   padding: 15px;
-  box-shadow: 6px 6px 3px 0px rgba(0,0,0,0.48);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.07);
+  border-radius: 5px;
+  @include transition(all, 0.3s, ease-in-out);
 
+  &:hover {
+    box-shadow: 0 2px 3px rgba(0,0,0,0.4);
+  }
 }
 .card-user {
   position: absolute;
   right: 10px;
-  top: 10px;
+  bottom: 10px;
 }
 .card-category {
   position: absolute;
@@ -22,9 +27,9 @@
 }
 .card-description {
   position: absolute;
-  bottom: 10px;
+  top: 55px;
   left: 10px;
-
+  text-align: left
 }
 .card-description h2 {
   font-size: 14px;
@@ -32,14 +37,32 @@
 
 }
 .card-description h3 {
-  font-size: 25px;
+  width: 90%;
+  padding-bottom: 5px;
+  font-size: 18px;
+  text-transform: uppercase;
+  line-height: 25px;
+  font-weight: 600;
+  -webkit-margin-before: 0em;
+  -webkit-margin-after: 0em;
 
 }
 .card-description p {
-  font-size: 13px;
-
-
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
 }
+
+.card-location {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+
+  p {
+    font-size: 12px;
+  }
+}
+
 
 .card-link {
   position: absolute;
@@ -56,8 +79,21 @@
 
 .avatar-radius{
   border-radius: 50%;
+  border: 2px solid #fff;
 }
 
 .text-center{
-  margin-bottom: 45px;
+  margin-bottom: 30px;
+}
+
+.rating {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+}
+
+.rating {
+  position: absolute;
+  right: 10px;
+  top: 10px;
 }

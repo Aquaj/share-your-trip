@@ -1,0 +1,22 @@
+<% @roadmaps.each do |roadmap| %>
+<%= link_to roadmap do %>
+<div class="polaroid text-center">
+  <img src="http://placehold.it/260">
+  <div class="polaroid-info">
+    <div class="polaroid-cities">
+      <p class="pull-right">
+        <%= roadmap.start_destination %>
+      </p>
+      <p class="pull-left">
+        <%= roadmap.end_destination %>
+      </p>
+    </div>
+    <div class="polaroid-dates">
+      <p class="text-center">
+         <%= roadmap.start_date %> - <%= roadmap.end_date %>
+      </p>
+    </div>
+  </div>
+</div>
+<% end %>
+<% end %>

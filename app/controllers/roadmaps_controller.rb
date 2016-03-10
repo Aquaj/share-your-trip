@@ -1,5 +1,6 @@
 class RoadmapsController < ApplicationController
   before_action :find_roadmap, only: [:edit, :update, :destroy, :show]
+  skip_after_action :verify_authorized, only: [:send_roadmap]
 
   def index
     @roadmaps = policy_scope(Roadmap)
@@ -44,6 +45,13 @@ class RoadmapsController < ApplicationController
   def destroy
     authorize @roadmap
     @roadmap.destroy
+  end
+
+  def send_roadmap
+    @roadmap = Roadmap.find(params[:roadmap_id])
+    UserMailer.itinerary(current_user, @roadmap).deliver
+    flash[:notice] = "Votre itinéraire vous a été envoyé par email"
+    redirect_to @roadmap
   end
 
 private

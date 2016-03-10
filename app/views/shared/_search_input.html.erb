@@ -1,8 +1,8 @@
-<div class="navbar-wagon-search">
+<div class="index-search-field">
 
   <%= simple_form_for :search, url: experiences_path, method: 'get', html: { class: 'form-search' } do |f| %>
-  <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Pays/villes.", class: "input-medium search-query" %>
-  <%= f.submit "Find!", class: "btn" %>
+  <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Où souhaitez-vous aller ?", class: "input-medium search-query" %>
+  <%= f.submit "Chercher", class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
 <% end %>
 
   <!-- Include Google Maps JS API -->

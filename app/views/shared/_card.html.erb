@@ -1,8 +1,8 @@
 <%= link_to experience do %>
-  <div class="card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.5)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
-    <p class="card-user">
-      <%= cl_image_tag experience.user.avatar.path, class:"avatar-radius", size: "50x50",crop: :fill, gravity: :faces, title: experience.user.first_name %>
-    </p>
+  <div class="card text-center" style="background-image: linear-gradient(rgba(149,225,211,0.6), rgba(234,255,208,0.4)), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
+    <div class="card-user">
+      <%= cl_image_tag experience.user.avatar.path, class:"avatar-radius", size: "40x40",crop: :fill, gravity: :faces, title: experience.user.first_name %>
+    </div>
     <span class="rating">
       <%= render "shared/rating", rating: experience.average_rating %>
     </span>
@@ -11,8 +11,10 @@
     </p>
     <div class="card-description">
       <h3><%= experience.title %></h3>
-      <p><%= experience.description[0..39] + "..." %></p>
-      <p><%= experience.address %></p>
+      <p><%= experience.description[0..160] + "..." %></p>
+    </div>
+    <div class="card-location">
+      <i class="fa fa-map-marker"></i><!-- <p><#= experience.city %>, <#= experience.country %></p> -->
     </div>
 </div>
 <% end %>
