@@ -1,4 +1,4 @@
-<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.6) 100%), url('<%= image_path("background.jpg") %>');">
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%), url('<%= image_path("airstream.png") %>');">
   <div class="banner-content">
     <h1>Ton Voyage t'a plu?</h1>
     <p>Un lieu, un restaurant, un guide ?</p>
@@ -8,15 +8,33 @@
   </div>
 </div>
 
-<h2 class="text-center"> Quelques coups de coeur</h2>
-<div class="block-contain">
-  <div class="container-fluid">
-    <div class="row">
-      <% @experiences.each do |experience| %>
-        <div class="col-xs-12 col-sm-4">
-          <%= render "shared/card", experience: experience %>
+<div class="container home-content">
+  <div class="row">
+    <div class="col-md-4 text-center">
+      <%= image_tag 'itineraire.png' %>
+      <p class="feature">Inspirez vous parmis des milliers de coups de coeur de voyageurs, de bons plans pour créer votre itinétaire de voyage en quelques clics...</p>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= image_tag 'carnet.png' %>
+      <p class="feature">Gardez un carnet de voyage avec vos coups de coeur et partagez...</p>
+    </div>
+    <div class="col-md-4 text-center">
+      <%= image_tag 'valise.png' %>
+      <p class="feature">Terminé la fastidieuse étape du tri d'informations sur une multitudes de sites, de blogs, de forums... Shareyourtrip vous donne accès à l'essentiel."</p>
+    </div>
+  </div>
+  <div class="row">
+    <h2> Quelques coups de coeur</h2>
+    <div class="block-contain">
+      <div class="container-fluid">
+        <div class="row">
+          <% @experiences.each do |experience| %>
+            <div class="col-xs-12 col-sm-4">
+              <%= render "shared/card", experience: experience %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
   </div>
 </div>

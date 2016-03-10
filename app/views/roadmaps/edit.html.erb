@@ -6,11 +6,11 @@
           <div class="row">
             <div class="col-lg-6">
               <%= f.input :start_destination, label: 'au départ de' %>
-              <%= f.input :start_date, label: 'au départ de' %>
+              <%= f.input :start_date, label: 'au départ de', input_html: { class:'datepicker'} %>
             </div>
             <div class="col-lg-6">
               <%= f.input :end_destination, label: 'arrivé à'%>
-              <%= f.input :end_date, label: 'arrivé à'%>
+              <%= f.input :end_date, label: 'arrivé à', input_html: { class:'datepicker'} %>
             </div>
           </div>
         <%= f.input :travellers_num, input_html: { class: 'form-inline' } , label: 'nombre de voyageurs' %>
@@ -52,35 +52,6 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <% content_for :after_js do %>
   <script>
     $(document).ready(function(){
@@ -96,7 +67,7 @@
               $("#activity-"+activityID.split("-")[1]+"-date").val("");
             });
       });
-      $("input.datepicker").each(function(input){
+      $(".datepicker").each(function(input){
         $(this).datepicker({
           dateFormat: "dd-mm-yy",
           altField: $(this).next(),

@@ -14,7 +14,7 @@
       <p><%= experience.description[0..160] + "..." %></p>
     </div>
     <div class="card-location">
-      <i class="fa fa-map-marker"></i><!-- <p><#= experience.city %>, <#= experience.country %></p> -->
+      <i class="fa fa-map-marker"></i><p><%= experience.city %>, <%= experience.country %></p>
     </div>
 </div>
 <% end %>

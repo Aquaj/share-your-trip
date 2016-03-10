@@ -1,20 +1,11 @@
 <!-- Button trigger modal -->
 <% if user_signed_in? %>
-<button type="button" class="btn btn-primary btn-lg fa fa-heart" data-toggle="modal" data-target="#addExperience">
+<button type="button" class="btn btn-primary btn-lg fa fa-heart">
   Partage ton coup de Coeur
 </button>
 
 <% else %>
-  <%= link_to t(".sign_in", default: "Connecte toi et partage dès maintenant!"), new_user_session_path, class: "btn btn-primary btn-lg fa fa-heart" %>
+  <%= link_to t(".sign_in", default: "Connecte toi et partage dès maintenant !"), new_user_session_path, class: "btn btn-primary btn-lg btn-home" %>
 <% end %>
 <!-- Modal -->
 
-<% content_for :after_js do %>
-  <script>
-      $(document).ready(function(){
-        $('<div class="attachinary-input"></div>').bind('fileuploaddone', function(e, data) {
-          console.log("fini");
-        });
-      });
-  </script>
-<% end %>

@@ -12,6 +12,26 @@
   box-sizing: border-box;
 }
 
+.home-content {
+  padding-top: 55px;
+
+  .feature {
+    margin: 15px auto 0;
+    width: 80%;
+    color: #828282;
+  }
+
+  h2 {
+    position: relative;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    text-align: center;
+    font-weight: 600;
+    font-size: 25px;
+    color:#828282;
+  }
+}
+
 .block-contain {
   position: relative;
   padding-bottom: 80px;
@@ -66,7 +86,7 @@
 .Site-content {
   flex: 1;
   background-color: #fff;
-  padding-top: 70px;
+  padding-top: 100px;
 }
 
 .banner {
@@ -91,8 +111,21 @@
   margin-bottom: 20px;
 }
 
+.fa-heart {
+  margin-right: 10px;
+}
 
+.btn-home {
+  padding: 15px 30px;
+  color: #fff;
+  border: none;
+  background-color: #F38181;
 
+&:hover {
+        color: #fff;
+      }
+
+      }
 // .card {
 //   height: 275px;
 //   text-shadow: 0 1px 3px rgba(0,0,0,0.6);

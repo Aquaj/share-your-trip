@@ -54,11 +54,13 @@
 }
 
 .card-location {
+  display: flex;
   position: absolute;
   bottom: 10px;
   left: 10px;
 
   p {
+    margin-left: 5px;
     font-size: 12px;
   }
 }
