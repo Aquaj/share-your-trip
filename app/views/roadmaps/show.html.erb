@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-12 text-center">
-      <h2><%= title(@roadmap) %></h2>
+      <h2><%# title(@roadmap) %></h2>
     </div>
     <div class="col-md-6">
       <div class="col-md-12">
@@ -19,7 +19,7 @@
       <div class="col-md-12">
         <ul>
         <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
-          <li><%= activity.experience.title %></li>
+          <li><% activity.experience.title %></li>
         <% end %>
         </ul>
         <div id="steps"></div>
@@ -28,6 +28,18 @@
         <div class="end">
           <%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
         </div>
+      </div>
+      <% itinerary = @roadmap.itinerary %>
+      <div class="itinerary">
+        Villes parcourues :
+        <ol>
+        <% itinerary.map{|city| city}.uniq.each do |waypoint| %>
+          <li><%= waypoint %></li>
+        <% end %>
+        </ol>
+      </div>
+      <div class="schedule">
+      <%= render "schedule", roadmap: @roadmap %>
       </div>
     </div>
     <div class="col-md-6" style="height: 500px;">
@@ -69,7 +81,7 @@ function initMap() {
 function calculateAndDisplayRoute(directionsDisplay, directionsService,
     markerArray, stepDisplay, map) {
 
-  <% addresses = @roadmap.itinerary %>
+  <% addresses = itinerary %>
   <%# byebug %>
   directionsService.route({
     origin: "<%= addresses[0] %>",
@@ -93,14 +105,6 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService,
           '<b>' + 'Directions request failed due to ' + status + '</b>';
     }
   });
-  <% addresses[1...-1].each do |wp| %>
-     var marker = new google.maps.Marker;
-     marker.setMap(map);
-     marker.setPosition({
-      lat: <%= Geocoder.coordinates(wp)[0] %>,
-      lng: <%= Geocoder.coordinates(wp)[1] %>
-    });
-  <% end %>
 }
   </script>
 <% end %>

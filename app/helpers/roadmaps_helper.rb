@@ -1,28 +1,38 @@
 module RoadmapsHelper
   def title(roadmap)
-    locate = LocationService.new
     start = "Mon voyage "
 
-    addresses = []
+    # Traded sliiiiight amount of performance/memory
+    # to decrease significantly Geocoding queries.
+    cities = []
+    countries = []
+    continents = []
 
-    [roadmap.start_destination, roadmap.end_destination].each do |addr|
-      addresses << addr unless addr.nil?
+    unless roadmap.start_destination.nil?
+      cities << roadmap.start_city
+      countries << roadmap.start_country
+      continents << roadmap.start_continent
     end
 
-    addresses += roadmap.activities.map(&:address)
+    unless roadmap.end_destination.nil?
+      cities << roadmap.end_city
+      countries << roadmap.end_country
+      continents << roadmap.end_continent
+    end
 
     # in City (if everything happens in same city)
-    cities = addresses.map { |addr| locate.city(addr) }.uniq
-    return "#{start} à #{cities.first}" if cities.length == 1
+    cities += roadmap.activities.map(&:city)
+    return "#{start} à #{cities.first}" if cities.uniq.length == 1
 
     # in Country (if everything happens in same country)
-    countries = addresses.map { |addr| locate.country(addr) }.uniq
-    return "#{start} en #{countries.first}" if countries.length == 1
+    countries += roadmap.activities.map(&:country)
+    return "#{start} en #{countries.first}" if countries.uniq.length == 1
 
     # in Continent (if everything hapens on same continent)
     # Continent1 - Continent2 (if everything happens between two)
     # around the world (if more than two continents are involved)
-    continents = addresses.map { |addr| locate.continent(addr) }.uniq
+    continents += roadmap.activities.map(&:continent)
+    continents.uniq!
     return "#{start} en #{continents.first}" if continents.length == 1
     return "#{start} #{continents.first} - #{continents.last}" if continents.length == 2
     return "#{start} autour du globe"

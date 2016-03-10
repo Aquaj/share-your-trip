@@ -74,11 +74,11 @@ class SchedulerService
       day[:evening] << bars[0] if bars.present?
       unscheduled[:bars] = bars[1..-1] # Leftovers
 
-      day[:night] << hotels[0] if hotels.present?
-      unscheduled[:hotels] = hotels.empty? ? [] : hotels[1..-1]
-
       day[:night] << nightlife[0] if nightlife.present?
       unscheduled[:nightlife] = nightlife.empty? ? [] : nightlife[1..-1]
+
+      day[:night] << hotels[0] if hotels.present?
+      unscheduled[:hotels] = hotels.empty? ? [] : hotels[1..-1]
 
       day[:unscheduled] = unscheduled
     end

@@ -7,9 +7,6 @@ class Experience < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :roadmaps, through: :activities
 
-  geocoded_by :address
-  after_validation :geocode, if: :address_changed?
-
   validates :title, presence: true
   validates :category, presence: true
   validates :description, presence: true
@@ -57,14 +54,34 @@ class Experience < ActiveRecord::Base
   end
 
   def city
-    LocationService.new.city(address)
+    cache if self.city_cache.nil?
+    return city_cache
   end
 
-  def country(short = false)
-    LocationService.new.country(address)
+  def country
+    cache if self.country_cache.nil?
+    return country_cache
   end
 
   def continent
-    LocationService.new.continent(address)
+    cache if self.continent_cache.nil?
+    return continent_cache
   end
+
+private
+
+  def geocode_and_cache
+    geocode
+    cache
+  end
+
+  def cache
+    data = LocationService.new.full_info(address)
+    update(
+      city_cache: data[:city],
+      country_cache: data[:country],
+      continent_cache: data[:continent]
+    )
+  end
+
 end
