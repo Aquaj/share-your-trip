@@ -1,4 +1,5 @@
 .bundle
+.byebug*
 log/*.log
 tmp/**/*
 tmp/*

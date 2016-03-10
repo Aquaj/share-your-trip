@@ -50,6 +50,4 @@ module RoadmapsHelper
       content_tag_string(name, content_or_options_with_block, options, escape)
     end
   end
-
-
 end
