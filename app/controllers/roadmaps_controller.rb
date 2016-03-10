@@ -8,6 +8,13 @@ class RoadmapsController < ApplicationController
 
   def show
     authorize @roadmap
+    if @roadmap.start_destination.nil? ||
+       @roadmap.end_destination.nil? ||
+       @roadmap.start_destination.empty? ||
+       @roadmap.end_destination.empty?
+
+      redirect_to edit_roadmap_path(@roadmap)
+    end
   end
 
   def create
