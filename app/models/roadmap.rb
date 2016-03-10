@@ -10,8 +10,8 @@ class Roadmap < ActiveRecord::Base
   validate :start_date_is_valid
   validate :end_date_is_valid
 
-  before_save :cache_start_components, if: :start_destination_changed?
-  before_save :cache_end_components, if: :end_destination_changed?
+  after_save :cache_start_components, if: :start_destination_changed?
+  after_save :cache_end_components, if: :end_destination_changed?
 
   def planning
     PlannerService.new.plan_for(activities, start_city, start_date, end_city, end_date)
