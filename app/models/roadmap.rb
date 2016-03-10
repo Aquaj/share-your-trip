@@ -5,72 +5,25 @@ class Roadmap < ActiveRecord::Base
 
   validates :user, presence: true
 
-  def title
-    title = "Mon voyage "
+  def itinerary
+    addresses = []
+    scheduled = schedule
 
-    addresses = self.activities.map(&:experience).map(&:address)
+    addresses << start_destination unless start_destination.nil?
 
-    r_start = self.start_destination
-    r_end = self.end_destination
-
-    addresses << r_start if r_start.present?
-    addresses << r_end if r_end.present?
-
-    cities = addresses.map { |address| city(address) }
-    if cities.uniq.length == 1
-      title += "à " + cities.uniq[0]
-      # in City (if everything happens in same city)
-    else
-      countries = addresses.map { |address| country(address) }
-      if countries.uniq.length == 1
-        title += "en " + country(r_start)
-        # in Country (if everything happens in same country)
-      else
-        continents = addresses.map { |address| continent(address) }
-        if continents.uniq.length == 1
-          title += "en " + continent(r_start)
-          # in Continent (if everything happens in same continent)
-        elsif continents.uniq.length == 2
-          title += " #{continents.uniq[0]} - #{continents.uniq[1]}"
-          # around the world (if trip is across continents)
-        else
-          title += " autour du globe"
+    scheduled.each do |day|
+      %i(morning midday afternoon evening night).each do |part_of_day|
+        day[part_of_day].each do |activity|
+          addresses << activity.address
         end
       end
     end
 
+    addresses << end_destination unless end_destination.nil?
   end
 
-  private
-
-  def city(destination)
-    debug_city = []
-    while debug_city == [] do
-      debug_city = Geocoder.search(destination)
-    end
-    city_data = debug_city[0].data["address_components"].select{|a| a["types"].include? "locality"}
-    if city_data.length > 0
-      return city_data[0]["long_name"]
-    else
-      return nil
-    end
+  def schedule
+    SchedulerService.new.create_schedule(activities, start_date, end_date)
   end
 
-  def country(destination, short = false)
-    debug_country = []
-    while debug_country == [] do
-      debug_country = Geocoder.search(destination)
-    end
-    components = debug_country[0].data["address_components"].find{|comp| comp["types"].include? "country"}
-    if short
-      return components["short_name"]
-    else
-      return components["long_name"]
-    end
-  end
-
-  def continent(destination)
-    continents = YAML.load(open("config/continents.yml"))
-    continents.find{|continent, data| data["countries"].include? country(destination, short=true)}[1]["name"]
-  end
 end
