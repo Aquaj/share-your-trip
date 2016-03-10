@@ -16,7 +16,8 @@ class Experience < ActiveRecord::Base
   has_attachments :photos, maximum: 3
 
   geocoded_by :address
-  after_save :geocode_and_cache, if: :address_changed?
+  after_validation :geocode, if: :address_changed?
+  after_save :cache, if: :address_changed?
 
   def self.categories
     return %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne)
@@ -74,11 +75,6 @@ class Experience < ActiveRecord::Base
   end
 
 private
-
-  def geocode_and_cache
-    geocode
-    cache
-  end
 
   def cache
     data = LocationService.new.full_info(address)
