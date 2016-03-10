@@ -70,7 +70,7 @@ private
   end
 
   def experience_params
-    params.require(:experience).permit(:user_id, :category, :description, :address, :country, :title, photos: [])
+    params.require(:experience).permit(:user_id, :category, :description, :address, :title, photos: [])
   end
 
 end
