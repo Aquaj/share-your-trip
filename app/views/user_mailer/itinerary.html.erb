@@ -1,22 +1,55 @@
-<h1>Votre Itinéraire avec Share Your Trip!</h1>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Un Email Responsive</title>
+  <style type="text/css">
+    body {margin: 0; padding: 0; min-width: 100%!important;}
+    .content {width: 100%; max-width: 600px;}
+  </style>
+</head>
+<body yahoo bgcolor="#f6f8f1">
+  <table width="100%" bgcolor="#f6f8f1" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <table class="content" align="center" cellpadding="0" cellspacing="0" border="0">
+          <tr>
+            <td class="header" bgcolor="#c7d8a7">
+              <table align="left" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="padding: 20px;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-<p>
-  <%= @roadmap.start_destination %>
-  <%= @roadmap.start_date %>
-  <ol>
-    <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
-    <li><%= activity.experience.title %> - <%= activity.planned_on.to_formatted_s(:long)%></li>
-    <% end %>
-  </ol>
-  <ul>
-    <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
-    <li><%= activity.experience.title %></li>
-    <% end %>
-  </ul>
-  <%= @roadmap.end_date %>
-  <%= @roadmap.travellers_num %>
-</p>
+                      <h1>Votre itinéraire avec<br /> Share Your Trip!</h1>
+                      <p>
+                        <%= @roadmap.start_destination %>: <%= @roadmap.start_date %>
+                        <ol>
+                          <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
+                          <li><%= activity.experience.title %> - <%= activity.planned_on.to_formatted_s(:long)%></li>
+                          <% end %>
+                        </ol>
+                        <ul>
+                          <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
+                          <li><%= activity.experience.title %></li>
+                          <% end %>
+                        </ul>
 
-<p>Bon voyage!</p>
+                        <%= @roadmap.end_destination %>: <%= @roadmap.end_date %>
+                        <br />
+                        Nombre de voyageur: <%= @roadmap.travellers_num %>
+                      </p>
 
+                      <p>Bon voyage!</p>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
 
