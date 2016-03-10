@@ -19,7 +19,7 @@
         <% end %>
         </div>
         <div class="reviews col-md-12">
-          <%= render "schedule", schedule: planning[:schedule] %>
+          <%= render "schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %>
         </div>
       </div>
       </div>

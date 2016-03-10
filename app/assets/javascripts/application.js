@@ -3,6 +3,7 @@
 //= require bootstrap-sprockets
 //= require bootstrap-datepicker
 //= require bootstrap-datepicker-rails
+//= require bootstrap-datepicker/locales/bootstrap-datepicker.fr.js
 //= require underscore
 //= require gmaps/google
 //= require jquery-fileupload/basic
