@@ -58,6 +58,9 @@ GEM
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
+    bullet (5.0.0)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.9.0)
     byebug (8.2.2)
     cloudinary (1.1.2)
       aws_cf_signer
@@ -161,6 +164,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-mini-profiler (0.9.9.2)
+      rack (>= 1.2.0)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.5.1)
@@ -231,6 +236,7 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.2)
+    uniform_notifier (1.9.0)
     warden (1.2.6)
       rack (>= 1.0)
 
@@ -244,6 +250,7 @@ DEPENDENCIES
   binding_of_caller
   bootstrap-datepicker-rails
   bootstrap-sass
+  bullet
   cloudinary
   coffee-rails
   devise
@@ -263,6 +270,7 @@ DEPENDENCIES
   puma
   pundit
   quiet_assets
+  rack-mini-profiler
   rails (= 4.2.5.1)
   rails-assets-underscore!
   rails_12factor

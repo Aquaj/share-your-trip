@@ -39,6 +39,8 @@ group :development, :test do
   gem 'pry-rails'
   gem 'spring'
   gem "letter_opener"
+  gem "rack-mini-profiler"
+  gem "bullet"
 end
 
 group :production do
