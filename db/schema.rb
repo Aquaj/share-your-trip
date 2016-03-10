@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160303155834) do
+ActiveRecord::Schema.define(version: 20160310045122) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,12 +48,14 @@ ActiveRecord::Schema.define(version: 20160303155834) do
     t.string   "category"
     t.text     "description"
     t.string   "address"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
     t.string   "title"
     t.float    "latitude"
     t.float    "longitude"
-    t.string   "country"
+    t.string   "city_cache"
+    t.string   "country_cache"
+    t.string   "continent_cache"
   end
 
   add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree
@@ -77,8 +79,14 @@ ActiveRecord::Schema.define(version: 20160303155834) do
     t.string   "start_destination"
     t.string   "end_destination"
     t.integer  "travellers_num"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+    t.string   "start_city_cache"
+    t.string   "start_country_cache"
+    t.string   "start_continent_cache"
+    t.string   "end_city_cache"
+    t.string   "end_country_cache"
+    t.string   "end_continent_cache"
   end
 
   add_index "roadmaps", ["user_id"], name: "index_roadmaps_on_user_id", using: :btree

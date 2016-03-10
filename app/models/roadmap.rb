@@ -5,66 +5,91 @@ class Roadmap < ActiveRecord::Base
 
   validates :user, presence: true
 
-  def title
-    title = "Mon voyage "
+  after_validation :cache_start_components, if: :start_destination_changed?
+  after_validation :cache_end_components, if: :end_destination_changed?
 
-    addresses = self.activities.map(&:experience).map(&:address)
-
-    r_start = self.start_destination
-    r_end = self.end_destination
-
-    addresses << r_start if r_start.present?
-    addresses << r_end if r_end.present?
-
-    cities = addresses.map { |address| city(address) }
-    if cities.uniq.length == 1
-      title += "à " + cities.uniq[0]
-      # in City (if everything happens in same city)
-    else
-      countries = addresses.map { |address| country(address) }
-      if countries.uniq.length == 1
-        title += "en " + country(r_start)
-        # in Country (if everything happens in same country)
-      else
-        continents = addresses.map { |address| continent(address) }
-        if continents.uniq.length == 1
-          title += "en " + continent(r_start)
-          # in Continent (if everything happens in same continent)
-        elsif continents.uniq.length == 2
-          title += " #{continents.uniq[0]} - #{continents.uniq[1]}"
-          # around the world (if trip is across continents)
-        else
-          title += " autour du globe"
-        end
-      end
-    end
-
+  def planning
+    PlannerService.new.plan_for(activities, start_city, start_date, end_city, end_date)
   end
 
-  private
+  ## Explanation of functions below :
+  # When someone asks for the data (city/country/continent)
+  # we return the cached value.
+  # If cache is empty, we compute and cache all 3 components
+  # values for future use.
+  # Repeat for all 3 components for both start and end
 
-  def city(destination)
-    debug_city = Geocoder.search(destination)
-    city_data = debug_city[0].data["address_components"].select{|a| a["types"].include? "locality"}
-    if city_data.length > 0
-      return city_data[0]["long_name"]
-    else
-      return nil
+  # TODO: Metaprog all those away.
+  def start_city
+    cache_start_components if (start_city_cache.nil? && start_destination.present?)
+    return start_city_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def start_country
+    cache_start_components if (start_country_cache.nil? && start_destination.present?)
+    return start_country_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def start_continent
+    cache_start_components if (start_continent_cache.nil? && start_destination.present?)
+    return start_continent_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def end_city
+    cache_end_components if (end_city_cache.nil? && end_destination.present?)
+    return end_city_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def end_country
+    cache_end_components if (end_country_cache.nil? && end_destination.present?)
+    return end_country_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def end_continent
+    cache_end_components if (end_continent_cache.nil? && end_destination.present?)
+    return end_continent_cache
+  end
+
+private
+
+  # TODO: Metaprog all those away.
+  def cache_start_components
+    if start_destination.nil? # Case: removal of start_destination
+      update(
+          start_city_cache: nil,
+          start_country_cache: nil,
+          start_continent_cache: nil
+        )
+    else # Case: update of start_destination
+      start_components = LocationService.new.full_info(start_destination)
+      update(
+        start_city_cache: start_components[:city],
+        start_country_cache: start_components[:country],
+        start_continent_cache: start_components[:continent]
+      )
     end
   end
 
-  def country(destination, short = false)
-    debug_country = Geocoder.search(destination)
-    components = debug_country[0].data["address_components"].find{|comp| comp["types"].include? "country"}
-    if short
-      return components["short_name"]
-    else
-      return components["long_name"]
+  # TODO: Metaprog all those away.
+  def cache_end_components
+    if end_destination.nil? # Case: removal of end_destination
+      update(
+          end_city_cache: nil,
+          end_country_cache: nil,
+          end_continent_cache: nil
+        )
+    else # Case: update of end_destination
+      end_components = LocationService.new.full_info(end_destination)
+      update(
+        end_city_cache: end_components[:city],
+        end_country_cache: end_components[:country],
+        end_continent_cache: end_components[:continent]
+      )
     end
-  end
-
-  def continent(destination)
-    continents = YAML.load(open("config/continents.yml"))
-    continents.find{|continent, data| data["countries"].include? country(destination, short=true)}[1]["name"]
   end
 end

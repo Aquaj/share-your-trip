@@ -1,0 +1,98 @@
+Feuille de route :
+<%= flexible_content_tag :ul do %>
+  <% schedule.each do |day|%>
+    <% if day.any? { |k, v| k != :unscheduled && v.present? } || day[:unscheduled].any? { |_k, v| v.present? } %>
+      <%= flexible_content_tag :li do %>
+        <%# Find the date of the day we're rendering (checking the "planned_on" date of its 1st activity) %>
+        <%= day.flatten.flatten.find { |a| a.is_a? Activity}.planned_on.to_formatted_s(:long) %>
+        <%= flexible_content_tag :ul, class: "day" do%>
+          <%= flexible_content_tag :li do %>
+            <%= "Matin :" unless day[:morning].empty? %>
+            <%= flexible_content_tag :ul, class: "morning" do %>
+              <% day[:morning].each do |activity| %>
+                <%= flexible_content_tag :li, activity.title %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= flexible_content_tag :li do %>
+            <%= "Déjeuner :" unless day[:midday].empty? %>
+            <%= flexible_content_tag :ul, class: "midday" do %>
+              <% day[:midday].each do |activity| %>
+                <%= flexible_content_tag :li, activity.title %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= flexible_content_tag :li do %>
+            <%= "Après-midi :" unless day[:afternoon].empty? %>
+            <%= flexible_content_tag :ul, class: "afternoon" do %>
+              <% day[:afternoon].each do |activity| %>
+                <%= flexible_content_tag :li, activity.title %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= flexible_content_tag :li do %>
+            <%= "Soir :" unless day[:evening].empty? %>
+            <%= flexible_content_tag :ul, class: "evening" do %>
+              <% day[:evening].each do |activity| %>
+                <%= flexible_content_tag :li, activity.title %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= flexible_content_tag :li do %>
+            <%= "Nuit :" unless day[:night].empty? %>
+            <%= flexible_content_tag :ul, class: "night" do %>
+              <% day[:night].each do |activity| %>
+                <%= flexible_content_tag :li, activity.title %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <%= flexible_content_tag :li do %>
+            <%= "Sélection de :" unless day[:unscheduled].none? { |k, v| v.present? } %>
+              <%= flexible_content_tag :ul do %>
+                  <%= flexible_content_tag :li do %>
+                    <%= "Bars :" unless day[:unscheduled][:bars].empty? %>
+                    <%= flexible_content_tag :ul do %>
+                      <% day[:unscheduled][:bars].each do |bar| %>
+                        <%= flexible_content_tag :li, bar.title %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <%= flexible_content_tag :li do %>
+                    <%= "Restaurants :" unless day[:unscheduled][:restaurants].empty? %>
+                    <%= flexible_content_tag :ul do %>
+                      <% day[:unscheduled][:restaurants].each do |rest| %>
+                        <%= flexible_content_tag :li, rest.title %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <%= flexible_content_tag :li do %>
+                    <%= "Activités de jour :" unless day[:unscheduled][:occupations].empty? %>
+                    <%= flexible_content_tag :ul do %>
+                      <% day[:unscheduled][:occupations].each do |occ| %>
+                        <%= flexible_content_tag :li, occ.title %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <%= flexible_content_tag :li do %>
+                    <%= "Activités de nuit :" unless day[:unscheduled][:nightlife].empty? %>
+                    <%= flexible_content_tag :ul do %>
+                      <% day[:unscheduled][:nightlife].each do |night| %>
+                        <%= flexible_content_tag :li, night.title %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <%= flexible_content_tag :li do %>
+                    <%= "Hôtels :" unless day[:unscheduled][:hotels].empty? %>
+                    <%= flexible_content_tag :ul do %>
+                      <% day[:unscheduled][:hotels].each do |hotel| %>
+                        <%= flexible_content_tag :li, hotel.title %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+<% end %>

@@ -10,11 +10,6 @@ class RoadmapsController < ApplicationController
     authorize @roadmap
   end
 
-  def new
-    @roadmap = Roadmap.new
-    authorize @roadmap
-  end
-
   def create
     @roadmap = current_user.roadmaps.new
     authorize @roadmap
@@ -39,10 +34,12 @@ class RoadmapsController < ApplicationController
   def edit
     authorize @roadmap
     if @roadmap.start_destination.present?
-      around = Geocoder.address(@roadmap.start_destination).split(", ")[-1]
+      around = @roadmap.start_city
     end
-    @experiences = Experience.search({address: around}, policy_scope(Experience)) # For now > All.
+    @experiences = []
     @experiences += current_user.wishlisted_experiences
+    @experiences += Experience.search({address: around}, policy_scope(Experience)) # For now > All.
+    @experiences.uniq.sort!{ |exp| -exp.average_rating }
   end
 
   def destroy
