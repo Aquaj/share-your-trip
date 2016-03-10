@@ -5,8 +5,13 @@ class Roadmap < ActiveRecord::Base
 
   validates :user, presence: true
 
-  after_validation :cache_start_components, if: :start_destination_changed?
-  after_validation :cache_end_components, if: :end_destination_changed?
+  validate :start_date_is_a_date_or_nil
+  validate :end_date_is_a_date_or_nil
+  validate :start_date_is_valid
+  validate :end_date_is_valid
+
+  before_save :cache_start_components, if: :start_destination_changed?
+  before_save :cache_end_components, if: :end_destination_changed?
 
   def planning
     PlannerService.new.plan_for(activities, start_city, start_date, end_city, end_date)
@@ -59,15 +64,16 @@ private
 
   # TODO: Metaprog all those away.
   def cache_start_components
-    if start_destination.nil? # Case: removal of start_destination
-      update(
+    if start_destination.empty? # Case: removal of start_destination
+      byebug
+      update_columns(
           start_city_cache: nil,
           start_country_cache: nil,
           start_continent_cache: nil
         )
     else # Case: update of start_destination
       start_components = LocationService.new.full_info(start_destination)
-      update(
+      update_columns(
         start_city_cache: start_components[:city],
         start_country_cache: start_components[:country],
         start_continent_cache: start_components[:continent]
@@ -77,19 +83,43 @@ private
 
   # TODO: Metaprog all those away.
   def cache_end_components
-    if end_destination.nil? # Case: removal of end_destination
-      update(
+    if end_destination.empty? # Case: removal of end_destination
+      update_columns(
           end_city_cache: nil,
           end_country_cache: nil,
           end_continent_cache: nil
         )
     else # Case: update of end_destination
       end_components = LocationService.new.full_info(end_destination)
-      update(
+      update_columns(
         end_city_cache: end_components[:city],
         end_country_cache: end_components[:country],
         end_continent_cache: end_components[:continent]
       )
     end
+  end
+
+  def start_date_is_a_date_or_nil
+    if start_date.present?
+      if ![Date, DateTime].include? start_date.class
+        errors.add(:start_date, "n'est pas une date valide.")
+      end
+    end
+  end
+
+  def end_date_is_a_date_or_nil
+    if end_date.present?
+      if ![Date, DateTime].include? end_date.class
+        errors.add(:end_date, "n'est pas une date valide.")
+      end
+    end
+  end
+
+  def start_date_is_valid
+    start_date > created_at
+  end
+
+  def end_date_is_valid
+    end_date > start_date
   end
 end
