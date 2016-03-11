@@ -3,85 +3,88 @@
     <div class="col-lg-4">
       <div class="parameters">
         <%= simple_form_for @roadmap do |f| %>
-          <div class="row">
-            <div class="col-lg-6">
-              <%= f.input :start_destination, label: 'au départ de' %>
-              <%= f.input :start_date, label: 'au départ de', as: :bootstrap_datepicker %>
-            </div>
-            <div class="col-lg-6">
-              <%= f.input :end_destination, label: 'arrivé à'%>
-              <%= f.input :end_date, label: 'arrivé à', as: :bootstrap_datepicker %>
+        <div class="row">
+          <h3 style="text-align: center;">Détermine ton Itineraire</h3>
+          <div class="formulaire col-lg-6">
+            <%= f.input :start_destination, label: 'au départ de ' %>
+            <%= f.input :start_date, label: 'au départ de ', as: :bootstrap_datepicker, :input_html => { :size => 20 } %>
+          </div>
+          <div class="formulaire col-lg-6">
+            <%= f.input :end_destination, label: 'arrivé à '%>
+            <%= f.input :end_date, label: 'arrivé à ', as: :bootstrap_datepicker %>
+          </div>
+          <div class="formulaire col-lg-12">
+            <%= f.input :travellers_num, input_html: { class: 'form-inline' } , label: 'nombre de voyageurs' %>
+            <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+            <% end %>
+            <div class="itinerary">
+              <ul class="to-see">
+                <% @roadmap.activities.each do |activity| %>
+                <li>
+                  <%= activity.experience.title %>
+                  <%= link_to icon('times'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
+                  <% if activity.planned_on.present? %>
+                  <input class="datepicker" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>-<%= activity.planned_on.month %>-<%= activity.planned_on.year %>">
+                  <% else %>
+                  <input class="datepicker" id="activity-<%= activity.id %>-date" value="">
+                  <% end %>
+                  <a class="unplanner" id="activity-<%= activity.id %>-unplan" href="#"><%= icon('') %></a>
+                </li>
+                <% end %>
+              </ul>
             </div>
           </div>
-        <%= f.input :travellers_num, input_html: { class: 'form-inline' } , label: 'nombre de voyageurs' %>
-        <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-      <div class="itinerary">
-        <ul class="to-see">
-          <% @roadmap.activities.each do |activity| %>
-            <li>
-              <%= activity.experience.title %>
-              <%= link_to icon('times'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
-              <% if activity.planned_on.present? %>
-                <input class="datepicker" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>-<%= activity.planned_on.month %>-<%= activity.planned_on.year %>">
-              <% else %>
-                <input class="datepicker" id="activity-<%= activity.id %>-date" value="">
-              <% end %>
-              <a class="unplanner" id="activity-<%= activity.id %>-unplan" href="#"><%= icon('') %></a>
-            </li>
-          <% end %>
-        </ul>
+        </div>
       </div>
     </div>
     <div class="col-lg-8">
       <div class="container-fluid">
-        <div class="row">
-        <% @experiences.each do |experience| %>
-          <div class="col-lg-6">
-            <%= render "shared/card", experience: experience %>
-            <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience add-experience-#{experience.id}", remote: true, method: :post %>
+        <div class="parameters">
+          <h3 style="text-align: center; margin-bottom: 15px;">Ajoute des coups de coeur à voir !</h3>
+          <div class="row">
+            <% @experiences.each do |experience| %>
+            <div class="col-lg-6">
+              <%= render "shared/card", experience: experience %>
+              <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience add-experience-#{experience.id}", remote: true, method: :post %>
+            </div>
+            <% end %>
+          </div>
         </div>
-      <% end %>
       </div>
-      </div>
-    </div>
-  </div>
-</div>
     </div>
   </div>
 </div>
 
 <% content_for :after_js do %>
-  <script>
-    $(document).ready(function(){
-      $(".unplanner").click(function(e){
-        e.preventDefault();
-        var activityID = $(this)[0].id;
-        $.ajax({
-              method: "PATCH",
-              url: "/activities/"+activityID.split("-")[1],
-              data: { planned_on: "nil" }
-            }).done(function(e){
-              console.log("activity-"+activityID.split("-")[1]+"-date")
-              $("#activity-"+activityID.split("-")[1]+"-date").val("");
-            });
-      });
-      $(".datepicker").each(function(input){
-        $(this).datepicker({
-          dateFormat: "dd-mm-yy",
-          altField: $(this).next(),
-          onSelect: function(selected){
-            console.log(selected);
-            console.log("activity/"+($(this)[0].id).split("-")[1]);
-            $.ajax({
-              method: "PATCH",
-              url: "/activities/"+($(this)[0].id).split("-")[1],
-              data: { planned_on: selected }
-            });
-          }
-        });
+<script>
+  $(document).ready(function(){
+    $(".unplanner").click(function(e){
+      e.preventDefault();
+      var activityID = $(this)[0].id;
+      $.ajax({
+        method: "PATCH",
+        url: "/activities/"+activityID.split("-")[1],
+        data: { planned_on: "nil" }
+      }).done(function(e){
+        console.log("activity-"+activityID.split("-")[1]+"-date")
+        $("#activity-"+activityID.split("-")[1]+"-date").val("");
       });
     });
-  </script>
+    $(".datepicker").each(function(input){
+      $(this).datepicker({
+        dateFormat: "dd-mm-yy",
+        altField: $(this).next(),
+        onSelect: function(selected){
+          console.log(selected);
+          console.log("activity/"+($(this)[0].id).split("-")[1]);
+          $.ajax({
+            method: "PATCH",
+            url: "/activities/"+($(this)[0].id).split("-")[1],
+            data: { planned_on: selected }
+          });
+        }
+      });
+    });
+  });
+</script>
 <% end %>
