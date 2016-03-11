@@ -1,52 +1,40 @@
+<% planning = @roadmap.planning %>
+
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-12 text-center">
-      <h2><% title(@roadmap) %></h2>
-    </div>
-    <div class="col-md-6">
-      <div class="col-md-12">
-        <div class="start">
-          <%= @roadmap.start_destination %> - <%= @roadmap.start_date %>
+    <div class="block-left col-md-6">
+      <div class="row" style="position: relative; display: flex; flex-direction: column; margin-right: 25px; margin-left: 25px;">
+      <div class="text-center title">
+        <h2>
+          <%= title(@roadmap) %>
+          <%= link_to icon("pencil"), edit_roadmap_path(@roadmap), class: "roadmap-edit" %>
+        </h2>
+        </div>
+        <div class="text-and-author" style="margin-top:-20px; background-color: #F4F4F4 ;height: 100px; display: flex; align-items: center; justify-content: space-around;">
+        <% planning[:itinerary].each_with_index do |city, index| %>
+          <div class="city"><%= city %></div>
+          <% unless index == (planning[:itinerary].length-1) %>
+            <%= icon("long-arrow-right").html_safe %>
+          <% end %>
+        <% end %>
+        </div>
+        <div class="reviews col-md-12">
+          <%= render "schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %>
         </div>
       </div>
-      <div class="col-md-12">
-        <%= content_tag :ol do %>
-          <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
-            <%= content_tag :li, "#{activity.experience.title} - #{activity.planned_on.to_formatted_s(:long)}" %>
-          <% end %>
-        <% end %>
       </div>
-      <div class="col-md-12">
-        <%= content_tag :ul do %>
-          <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
-            <%= content_tag :li, "#{activity.experience.title}" %>
-          <% end %>
-        <% end %>
+      <div class="block-right block-fixed col-md-6">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="map-wrapper">
+              <div id="map" style="height: 100vh;"></div>
+            </div>
+          </div>
       </div>
-      <div class="col-md-12">
-        <div class="end">
-          <%= @roadmap.end_destination %> - <%= @roadmap.end_date %>
-        </div>
-      </div>
-      <% planning = @roadmap.planning %>
-      <div class="itinerary">
-        Villes parcourues :
-        <%= content_tag :ol do %>
-          <% planning[:itinerary].each do |waypoint| %>
-            <%= content_tag :li, waypoint %>
-          <% end %>
-        <% end %>
-      </div>
-      <div class="schedule">
-      <%= render "schedule", schedule: planning[:schedule] %>
-      </div>
-    </div>
-    <div class="col-md-6" style="height: 500px;">
-      <div id="map" style="height: 100%;"></div>
-      <%= link_to "M'envoyer mon itinéraire", roadmap_send_path(@roadmap) %>
     </div>
   </div>
 </div>
+
 
 <% content_for :after_js do %>
   <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
@@ -102,3 +90,9 @@ function calculateAndDisplayRoute(directionsDisplay, directionsService) {
 }
   </script>
 <% end %>
+
+
+
+
+
+

@@ -1,13 +1,27 @@
-<h2 class="text-center">Mes Itinéraires:</h2>
+<div class="container search-form">
+  <div class="search-center">
+    <h2>Mes itinéraires :</h2>
+  </div>
+</div>
+
 <div class="block-contain">
-  <div class="container-fluid">
-    <div class="row">
+  <div class="container search-form">
+    <div class="row card-container">
       <% @roadmaps.each do |roadmap| %>
-        <div class="col-xs-12 col-sm-4">
-          <%= render "shared/polaroid", roadmap: roadmap %>
+        <div class="col-xs-12 col-md-4 polaroid-center">
+          <%= render "shared/polaroid", roadmap: roadmap, planning: roadmap.planning %>
         </div>
       <% end %>
     </div>
   </div>
+  <div class="banner-bottom-cta">
+    <%= link_to roadmaps_path, method: :post, class: "btn btn-primary" do%>
+        <%= icon "globe" %> Créer un itinéraire.
+    <% end %>
+  </div>
+</div>
 
-<%= link_to "créer un intinéraire", roadmaps_path, method: :post, class: "btn btn-primary"%>
+<% content_for :after_js do %>
+    <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
+  <script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox_packed.js' type='text/javascript'></script>
+<% end %>

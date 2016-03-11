@@ -1,22 +1,86 @@
-<% @roadmaps.each do |roadmap| %>
 <%= link_to roadmap do %>
 <div class="polaroid text-center">
-  <img src="http://placehold.it/260">
+  <% if roadmap.start_destination && roadmap.end_destination %>
+  <div id="map-canvas" style="margin: 0 auto; height: 260px; width:260px;">
+    <div id="map-<%= roadmap.id %>" style="height: 100%; width:100%"></div>
+  </div>
+  <% else %>
+    <%= image_tag "carnet.png", style: "width: 260px; height: 260px"%>
+  <% end %>
   <div class="polaroid-info">
     <div class="polaroid-cities">
       <p class="pull-right">
-        <%= roadmap.start_destination %>
-      </p>
+        </p>
       <p class="pull-left">
-        <%= roadmap.end_destination %>
+
       </p>
     </div>
     <div class="polaroid-dates">
-      <p class="text-center">
-         <%= roadmap.start_date %> - <%= roadmap.end_date %>
-      </p>
+         <div><%= title(roadmap) %></div>
+         <% if roadmap.start_date && roadmap.end_date %>
+          <div><%= roadmap.start_date %> - <%= roadmap.end_date %></div>
+        <% end %>
     </div>
   </div>
 </div>
 <% end %>
+
+<% content_for :after_js do %>
+  <script>
+  var styleArray = [{"featureType":"administrative","elementType":"all","stylers":[{"visibility":"on"},{"lightness":33}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2e5d4"}]},{"featureType":"poi.park","elementType":"geometry","stylers":[{"color":"#c5dac6"}]},{"featureType":"poi.park","elementType":"labels","stylers":[{"visibility":"on"},{"lightness":20}]},{"featureType":"road","elementType":"all","stylers":[{"lightness":20}]},{"featureType":"road.highway","elementType":"geometry","stylers":[{"color":"#c5c6c6"}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#e4d7c6"}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#fbfaf7"}]},{"featureType":"water","elementType":"all","stylers":[{"visibility":"on"},{"color":"#acbcc9"}]}]
+  initMap();
+  <% addresses = planning[:itinerary] %>
+function initMap() {
+  // Instantiate a directions service.
+  var directionsService = new google.maps.DirectionsService;
+
+  // Create a map, apply our custom style on it.
+  var map = new google.maps.Map(document.getElementById('map-<%= roadmap.id %>'), {
+    zoom: 5,
+    style: styleArray,
+    disableDefaultUI: true
+  });
+  map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
+  // Create a renderer for directions and bind it to the map.
+  var directionsDisplay = new google.maps.DirectionsRenderer({map: map <%= j ", suppressMarkers: true" if addresses.length == 1%>});
+
+  var listener = google.maps.event.addListener(map, "idle", function() {
+    <% if addresses.length == 1 %>
+      map.setZoom(12);
+    <% end %>
+    google.maps.event.removeListener(listener);
+  });
+  // Display the route between the initial start and end selections.
+  calculateAndDisplayRoute(directionsDisplay, directionsService);
+}
+
+function calculateAndDisplayRoute(directionsDisplay, directionsService) {
+
+  directionsService.route({
+    origin: "<%= addresses.first %>",
+    destination: "<%= addresses.last %>",
+    // TODO: Add a way to pick between Walking/Driving/...
+    <% if addresses.length > 2 %>
+    waypoints: [
+                <% addresses[1...-1].each do |wp| %>
+                   {location: "<%= wp %>", stopover: false},
+                <% end %>
+               ],
+    <% end %>
+    travelMode: google.maps.TravelMode.WALKING
+  }, function(response, status) {
+    // Route the directions
+    if (status === google.maps.DirectionsStatus.OK) {
+      // Google warnings handling (deactivated for now.)
+      //document.getElementById('steps').innerHTML =
+        //  '<b>' + response.routes[0].warnings + '</b>';
+      directionsDisplay.setDirections(response);
+    } else {
+      // Error handling (deactivated for now.)
+      // document.getElementById('steps').innerHTML =
+         // '<b>' + 'Directions request failed due to ' + status + '</b>';
+    }
+  });
+}
+  </script>
 <% end %>

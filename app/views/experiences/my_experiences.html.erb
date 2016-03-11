@@ -1,12 +1,22 @@
-<h2 class="text-center"> Mes Coups coeur de voyage</h2>
-<div class="block-contain">
+<div class="container search-form">
+  <div class="search-center">
+    <h2>Mes coups de coeur :</h2>
+  </div>
+</div>
+
+<div class="block-contain" style="position: unset;">
   <div class="container-fluid">
-    <div class="row">
+    <div class="row card-container">
       <% @experiences.each do |experience| %>
         <div class="col-xs-12 col-sm-4">
           <%= render "shared/card", experience: experience %>
         </div>
       <% end %>
     </div>
+  </div>
+  <div class="banner-bottom-cta">
+    <%= link_to wishlists_path do %>
+      <i class="fa fa-heart"></i> <%= t ".mes coups de coeur", default: "Mes coups de coeur" %>
+    <% end %>
   </div>
 </div>

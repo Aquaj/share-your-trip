@@ -12,7 +12,7 @@ class ExperiencesController < ApplicationController
 
   def show
     authorize @experience
-    @close_by = @experience.nearbys.select do |experience|
+    @close_by = @experience.nearbys(10).select do |experience|
       # Only display Experiences with higher or equal average rating.
       experience.average_rating >= @experience.average_rating
     end
@@ -70,7 +70,7 @@ private
   end
 
   def experience_params
-    params.require(:experience).permit(:user_id, :category, :description, :address, :country, :title, photos: [])
+    params.require(:experience).permit(:user_id, :category, :description, :address, :title, photos: [])
   end
 
 end

@@ -43,3 +43,35 @@ a.add-experience {
     width: 100%
   }
 }
+
+.search-center h2{
+  margin-top: 11px;
+  color: $red;
+}
+
+.polaroid-center {
+  display: flex;
+  justify-content: center;
+}
+
+.roadmap-edit {
+  font-size: 30px;
+  color: black;
+  // position: absolute;
+  // top: 40px;
+  // right: 40px;
+
+  &:hover{
+    color: $blue;
+  }
+}
+
+//.city{
+  //position: relative;
+
+//  &::after {
+  //content: "<i class=\"fa fa-long-arrow-right\"></i>";
+//  position: absolute;
+  //right: -15px;
+//  }
+//}

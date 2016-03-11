@@ -26,7 +26,7 @@ module RoadmapsHelper
 
     # in Country (if everything happens in same country)
     countries += roadmap.activities.map(&:country)
-    return "#{start} en #{countries.first}" if countries.uniq.length == 1
+    return "#{start} #{(countries.first[-1] == 's') ? 'aux' : 'en'} #{countries.first}" if countries.uniq.length == 1
 
     # in Continent (if everything hapens on same continent)
     # Continent1 - Continent2 (if everything happens between two)

@@ -96,3 +96,13 @@ Feuille de route :
       <% end %>
     <% end %>
 <% end %>
+<%= flexible_content_tag :ul do %>
+  <%= flexible_content_tag :li do %>
+    <%= "Adresses à consulter :" unless unplanned.empty? %>
+    <%= flexible_content_tag :ul do %>
+      <% unplanned.each do |activity| %>
+        <%= flexible_content_tag :li, activity.title %>
+      <% end %>
+    <% end %>
+  <% end %>
+<% end %>
