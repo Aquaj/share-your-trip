@@ -6,9 +6,8 @@ body {
 }
 
 .map-wrapper{
-  height: 325px;
+  height: calc(100vh - 395px);
   margin: 0 -15px;
-
 }
 
 .search-form {
@@ -51,8 +50,15 @@ body {
 
 
 .block-left{
+  padding: 0;
   overflow-y: auto;
-  height: 100vh;
+  height: calc(100vh - 70px);
+}
+
+.block-right {
+  padding: 0;
+  height: calc(100vh - 70px);
+  overflow-y: auto;
 }
 
 .text-and-author{
@@ -143,27 +149,38 @@ body {
 }
 
 
-  .pictures{
+.pictures{
+  padding: 0;
+  width: 100%;
+  height: 325px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-content: space-between;
+
+  img{
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    background: #eee;
-    align-content: space-between;
-
-    img{
-      width: 100%;
-      height: 325px;
-      object-fit: cover;
-    }
-
-    img:not(.main-picture){
-      border: 1px solid rgba(#aaa, 0.5);
-      cursor: pointer;
-      width: 15%;
-      height: 50px;
-      margin-top: 10px;
-      margin-bottom: 10px;
-    }
+    height: 325px;
+    object-fit: cover;
   }
 
+  img:not(.main-picture){
+    border: 1px solid rgba(#aaa, 0.5);
+    cursor: pointer;
+    width: 25%;
+    height: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  .sub-pictures {
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+  }
+
+}

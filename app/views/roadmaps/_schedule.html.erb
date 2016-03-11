@@ -10,7 +10,7 @@ Feuille de route :
             <%= "Matin :" unless day[:morning].empty? %>
             <%= flexible_content_tag :ul, class: "morning" do %>
               <% day[:morning].each do |activity| %>
-                <%= flexible_content_tag :li, activity.title %>
+                <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
               <% end %>
             <% end %>
           <% end %>
@@ -18,7 +18,7 @@ Feuille de route :
             <%= "Déjeuner :" unless day[:midday].empty? %>
             <%= flexible_content_tag :ul, class: "midday" do %>
               <% day[:midday].each do |activity| %>
-                <%= flexible_content_tag :li, activity.title %>
+                <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
               <% end %>
             <% end %>
           <% end %>
@@ -26,7 +26,7 @@ Feuille de route :
             <%= "Après-midi :" unless day[:afternoon].empty? %>
             <%= flexible_content_tag :ul, class: "afternoon" do %>
               <% day[:afternoon].each do |activity| %>
-                <%= flexible_content_tag :li, activity.title %>
+                <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
               <% end %>
             <% end %>
           <% end %>
@@ -34,7 +34,7 @@ Feuille de route :
             <%= "Soir :" unless day[:evening].empty? %>
             <%= flexible_content_tag :ul, class: "evening" do %>
               <% day[:evening].each do |activity| %>
-                <%= flexible_content_tag :li, activity.title %>
+                <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
               <% end %>
             <% end %>
           <% end %>
@@ -42,7 +42,7 @@ Feuille de route :
             <%= "Nuit :" unless day[:night].empty? %>
             <%= flexible_content_tag :ul, class: "night" do %>
               <% day[:night].each do |activity| %>
-                <%= flexible_content_tag :li, activity.title %>
+                <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
               <% end %>
             <% end %>
           <% end %>
@@ -53,7 +53,7 @@ Feuille de route :
                     <%= "Bars :" unless day[:unscheduled][:bars].empty? %>
                     <%= flexible_content_tag :ul do %>
                       <% day[:unscheduled][:bars].each do |bar| %>
-                        <%= flexible_content_tag :li, bar.title %>
+                        <%= flexible_content_tag :li, "#{bar.title}<br>#{icon "map-marker"} [ #{bar.adress} ]" %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -61,7 +61,7 @@ Feuille de route :
                     <%= "Restaurants :" unless day[:unscheduled][:restaurants].empty? %>
                     <%= flexible_content_tag :ul do %>
                       <% day[:unscheduled][:restaurants].each do |rest| %>
-                        <%= flexible_content_tag :li, rest.title %>
+                        <%= flexible_content_tag :li, "#{rest.title}<br>#{icon "map-marker"} [ #{rest.adress} ]" %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -69,7 +69,7 @@ Feuille de route :
                     <%= "Activités de jour :" unless day[:unscheduled][:occupations].empty? %>
                     <%= flexible_content_tag :ul do %>
                       <% day[:unscheduled][:occupations].each do |occ| %>
-                        <%= flexible_content_tag :li, occ.title %>
+                        <%= flexible_content_tag :li, "#{occ.title}<br>#{icon "map-marker"} [ #{occ.adress} ]" %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -77,7 +77,7 @@ Feuille de route :
                     <%= "Activités de nuit :" unless day[:unscheduled][:nightlife].empty? %>
                     <%= flexible_content_tag :ul do %>
                       <% day[:unscheduled][:nightlife].each do |night| %>
-                        <%= flexible_content_tag :li, night.title %>
+                        <%= flexible_content_tag :li, "#{night.title}<br>#{icon "map-marker"} [ #{night.adress} ]" %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -85,7 +85,7 @@ Feuille de route :
                     <%= "Hôtels :" unless day[:unscheduled][:hotels].empty? %>
                     <%= flexible_content_tag :ul do %>
                       <% day[:unscheduled][:hotels].each do |hotel| %>
-                        <%= flexible_content_tag :li, hotel.title %>
+                        <%= flexible_content_tag :li, "#{hotel.title}<br>#{icon "map-marker"} [ #{hotel.adress} ]" %>
                       <% end %>
                     <% end %>
                   <% end %>
@@ -101,7 +101,7 @@ Feuille de route :
     <%= "Adresses à consulter :" unless unplanned.empty? %>
     <%= flexible_content_tag :ul do %>
       <% unplanned.each do |activity| %>
-        <%= flexible_content_tag :li, activity.title %>
+        <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
       <% end %>
     <% end %>
   <% end %>

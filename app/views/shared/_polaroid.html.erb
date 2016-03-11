@@ -1,25 +1,23 @@
 <%= link_to roadmap do %>
 <div class="polaroid text-center">
   <% if roadmap.start_destination && roadmap.end_destination %>
-  <div id="map-canvas" style="margin: 0 auto; height: 260px; width:260px;">
+  <div id="map-canvas" style="margin: 10px auto; height: 260px; width:260px;">
     <div id="map-<%= roadmap.id %>" style="height: 100%; width:100%"></div>
   </div>
   <% else %>
-    <%= image_tag "carnet.png", style: "width: 260px; height: 260px"%>
+    <div style="margin: 10px auto; height: 260px; width:260px;">
+      <%= image_tag "carnet.png", style: "width: 260px; height: 260px"%>
+    </div>
   <% end %>
   <div class="polaroid-info">
     <div class="polaroid-cities">
-      <p class="pull-right">
-        </p>
-      <p class="pull-left">
-
-      </p>
+      <h5><%= title(roadmap) %></h5>
     </div>
     <div class="polaroid-dates">
-         <div><%= title(roadmap) %></div>
-         <% if roadmap.start_date && roadmap.end_date %>
-          <div><%= roadmap.start_date %> - <%= roadmap.end_date %></div>
-        <% end %>
+      <% unless roadmap.start_date.nil? || roadmap.end_date.nil? %>
+        <div><%= roadmap.start_date.to_s(:rfc822) %></div>
+        <div><%= roadmap.end_date.to_s(:rfc822)%></div>
+      <% end %>
     </div>
   </div>
 </div>
@@ -36,7 +34,7 @@ function initMap() {
 
   // Create a map, apply our custom style on it.
   var map = new google.maps.Map(document.getElementById('map-<%= roadmap.id %>'), {
-    zoom: 5,
+    zoom: 12,
     style: styleArray,
     disableDefaultUI: true
   });
@@ -45,7 +43,7 @@ function initMap() {
   var directionsDisplay = new google.maps.DirectionsRenderer({map: map <%= j ", suppressMarkers: true" if addresses.length == 1%>});
 
   var listener = google.maps.event.addListener(map, "idle", function() {
-    <% if addresses.length == 1 %>
+    <% if addresses.uniq.length == 1 %>
       map.setZoom(12);
     <% end %>
     google.maps.event.removeListener(listener);
