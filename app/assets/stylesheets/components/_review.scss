@@ -1,12 +1,23 @@
 .reviews {
+  padding: 0 25px;
   margin: 0 auto;
-  width: 90%;
+  width: 100%;
+
   .review {
     margin: 5px 0;
     height: 125px;
     position: relative;
     background: white;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.6);
+    box-shadow: none !important;
+
+    &:first-of-type {
+      background-color: #f4f4f4;
+      border-radius: 3px;
+    }
+
+    &:not(:first-of-type){
+      height: 90px;
+    }
 
     .author {
       position: absolute;
@@ -19,7 +30,7 @@
 
     .rating {
       position: absolute;
-      color: black;
+      color: #F38181;
       top: 50px;
       right: 10px;
 
@@ -33,4 +44,8 @@
       }
     }
   }
+}
+
+.average-rating {
+  color: #F38181;
 }
