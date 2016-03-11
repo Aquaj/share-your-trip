@@ -4,7 +4,7 @@ class PlannerService
     schedule = create_schedule(activities, start_date, end_date)
     return {
       schedule: schedule,
-      itinerary: itinerary(schedule, activities.select{|a|a.planned_on.empty?}, start_city, end_city)
+      itinerary: itinerary(schedule, activities.select{|a|a.planned_on.nil?}, start_city, end_city)
     }
   end
 
