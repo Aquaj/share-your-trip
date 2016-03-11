@@ -6,9 +6,8 @@ body {
 }
 
 .map-wrapper{
-  height: 325px;
+  height: calc(100vh - 395px);
   margin: 0 -15px;
-
 }
 
 .search-form {
@@ -168,15 +167,20 @@ body {
   img:not(.main-picture){
     border: 1px solid rgba(#aaa, 0.5);
     cursor: pointer;
-    width: 15%;
+    width: 25%;
     height: 50px;
     margin-top: 10px;
     margin-bottom: 10px;
   }
-}
 
-.sub-picture {
-  position: absolute;
-  bottom: 0;
-}
+  .sub-pictures {
+    z-index: 3;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+  }
 
+}

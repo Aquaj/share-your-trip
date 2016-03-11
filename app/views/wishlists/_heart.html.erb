@@ -1,13 +1,14 @@
+<span>J'ajoute à mes favoris.</span>
 <% if wished %>
 
   <%= link_to wishlist_path(wishlist), method: :delete, remote: true do %>
-    <i class="fa fa-heart"></i>
+    <i class="fa fa-star"></i>
   <% end %>
 
 <% else %>
 
   <%= link_to experience_wishlists_path(experience), method: :post, remote: true do %>
-    <i class="fa fa-heart-o"></i>
+    <i class="fa fa-star-o"></i>
   <% end %>
 
 <% end %>
