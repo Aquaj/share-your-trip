@@ -153,7 +153,7 @@ private
   end
 
   def duration
-    if beginning.present? && finish.present?
+    if beginning.present? && finish.present? && (beginning != finish)
       return finish - beginning - 1
       # -1 cause you don't travel on the days of your flights
     else
