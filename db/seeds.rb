@@ -8,7 +8,7 @@
 
 puts "Seed started !"
 puts "-- Users"
-user1 = User.create!(email: 'a@abc.com', first_name: 'Alexandre', last_name: 'Dumas', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.orderofbooks.com/wp-content/uploads/2013/02/Alexandre-Dumas-pere.jpg")
+userjulien = User.create!(email: 'julien@benoit.com', first_name: 'Julien', last_name: 'Benoit', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://static1.puretrend.com/articles/8/91/82/8/@/1033635-j-620x0-1.jpg")
 print "     1"
 user2 = User.create!(email: 'b@abc.com', first_name: 'Charles', last_name: 'Bukowski', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://timesquatters.com/wp-content/uploads/2016/01/Charles-Bukowski-10.jpg")
 print " - 2"
@@ -35,13 +35,13 @@ puts "  -- Restaurant"
 experience_restaurant = user10.experiences.create!(category:'Restaurant',
                                                    description:'Dans une ambiance détendue et familiale où on se sent tout de suite à l\'aise, le patron, Léonard, nous sert ce qui est sans doutes la meilleure pizza de LA.',
                                                    address:'7929 Emerson Ave, Los Angeles, CA 90045',
-                                                   title: 'The Good Pizza has the Best Pizza ',
+                                                   title: ' The Best Pizza à LA',
                                                    photo_urls: ["http://archives.quarrygirl.com/wp-content/uploads/2009/01/purgatory-pizza-teese-pizza-570x304.jpg", "http://usa.sae.edu/assets/Campuses/Los-Angeles/2015/Los_Angeles_city_view.jpg"])
 puts "  -- Bar"
 experience_bar        = user9.experiences.create!(category:'Bar',
                                                   description:'Un magnifique bar avec des boissons pour tous les goûts, un service excellent par un personnel adorable !',
                                                   address:'637 10th Ave, New York, NY 10036',
-                                                  title: 'Je peux pas, j\'ai poney.',
+                                                  title: "Poney I'am home.",
                                                   photo_urls: [ "http://www.barsparis.com/wp-content/uploads/2012/02/harrys-bar-paris-3.jpg"])
 puts "  -- Leisure"
 experience_leisure    = user8.experiences.create!(category:'Hôtel',
@@ -92,8 +92,77 @@ experience_sport      = user7.experiences.create!(category:'Amusement',
                                                   address: '1999 Route du Bourrian, 83580 Gassin',
                                                   title: "Polo sur la presqu'île",
                                                   photo_urls: [ "http://static1.squarespace.com/static/52faa224e4b05c17d93e1b45/t/556383d4e4b0e65363e9b3a3/1432585181693/", "https://blog.sttropezhouse.com/wp-content/uploads/2013/06/polo_club_st_tropez1.jpg", "http://www.poloplus10.com/dt/uploads/2013/07/polo-club-saint-tropez1.jpg"])
+puts "-- Done2!"
 
-puts "-- Done!"
+puts "  -- Restaurant"
+experience_restaurant = user10.experiences.create!(category:'Restaurant',
+                                                   description:'Le délice de la ville imperiale de Hué cuisine familiale  nous sert ce Banh là une finesse remarquable',
+                                                   address:'Ward 6, 57 Hồ Xuân Hương, phường 6, Hồ Chí Minh, Vietnam',
+                                                   title: 'Le Banh la de miss Mai ',
+                                                   photo_urls: ["http://du-lich.chudu24.com/f/d/100728/banh-nam-dam-da-huong-vi-hue.jpg"])
+puts "  -- Bar"
+experience_bar        = user9.experiences.create!(category:'Bar',
+                                                  description:'Xu, un sublime bar avec des cocktails pour tous les goûts, un service excellent !',
+                                                  address:'75 Ward, 71 Hai Bà Trưng, Bến Nghé, Hồ Chí Minh, Vietnam',
+                                                  title: 'La Jeunesse dorée Saigonaise se presse au porte de ce temple mythique',
+                                                  photo_urls: [ "http://media.foody.vn/res/g3/26399/prof/s640x400/foody-mobile-xu-bar-tp-hcm.jpg"])
+puts "  -- Leisure"
+experience_leisure    = user8.experiences.create!(category:'Hôtel',
+                                                  description:' se détendre, du repos et du calme dans un décor mangnifique.',
+                                                  address:'Block Ha My Dong B, Điện Dương, Điện Bàn, Quảng Nam, Vietnam',
+                                                  title: 'Nam Hai le Luxe à la Robinson',
+                                                  photo_urls: [ "http://www.sixsenses.com/assets/six_senses_gyro/content/images/975x660_01_ocean_front_villa.jpg"])
+puts "  -- Sport"
+experience_sport      = user7.experiences.create!(category:'Restaurant',
+                                                  description:'manger dans la rue comme un local le rêve à Saïgon',
+                                                  address: '23 Hoang Sa St., Phuong Da Kao, District 1',
+                                                  title: 'The Lunch Lady',
+                                                  photo_urls: [ "http://media.tumblr.com/tumblr_lx7at6CG0y1qha2qr.jpg"])
+puts "  -- Hotel"
+vespa_tour      = user6.experiences.create!(category:'Amusement',
+                                                  description:'Ce tour de la ville  en vespa vintage lieux atypiques',
+                                                  address:'169A Đề Thám, Phạm Ngũ Lão, 1, Hồ Chí Minh, Vietnam',
+                                                  title: 'Vespa Vintage tour !',
+                                                  photo_urls: [ "http://vivaster.com/media/cache/excursion_slider_photo/images/excursion/photo/img_5662da90f0a3a7_44518193.jpeg"])
+puts "  -- Panorama"
+experience_panorama   = user5.experiences.create!(category:'Vie Nocturne',
+                                                  description:'La plus haute tour du Vietnam une vue nocturne sur la Saigon river extra.',
+                                                  address:'36 Hồ Tùng Mậu, Bến Nghé Hồ Chí Minh, Vietnam',
+                                                  title: 'Saigon Skydeck',
+                                                  photo_urls: ["http://www.bitexcofinancialtower.com/wp-content/themes/responsive/core/images/2.jpg"])
+puts "-- Done3!"
+puts "  -- Restaurant"
+cite_imperiale = user10.experiences.create!(category:'Visite',
+                                                   description:'Peu de sites méritent autant le détour que ce Palais ',
+                                                   address:'cité imperiale, hue, Vietnam',
+                                                   title: 'Le Palais Impérial de Hué',
+                                                   photo_urls: ["http://blog.crdp-versailles.fr/worldtour/public/Vietnam/Hue/palais_imperial.jpg"])
+puts "  -- Bar"
+experience_bar        = user9.experiences.create!(category:'Restaurant',
+                                                  description:'un personnel adorable un service excellent !',
+                                                  address:' 88 Thai Phien, Hôi An, Vietnam',
+                                                  title: 'Phi Banh Mi',
+                                                  photo_urls: ["https://media-cdn.tripadvisor.com/media/photo-s/0a/56/13/84/phi-banh-mi.jpg"])
+puts "  -- Leisure"
+experience_leisure    = user8.experiences.create!(category:'Hôtel',
+                                                  description:"L'hotel est situé dans une toute petite rue calme ce qui reste un luxe dans cette ville si bruyante par les nombreux Klaxons des 2 roues. ",
+                                                  address:'133A Nguyen Dinh Chinh Street | Phu Nhuan District, Ho Chi Minh City, Vietnam',
+                                                  title: 'The Alcove Library Hotel',
+                                                  photo_urls: [ "http://media-cdn.tripadvisor.com/media/photo-o/08/1e/21/b9/the-alcove-library-hotel.jpg"])
+puts "  -- Sport"
+experience_sport      = user7.experiences.create!(category:'Hôtel',
+                                                  description:"découvrir de sport magnifique dans un environment de rêve, c'est gratuit",
+                                                  address: 'Providence, Rhode Island 02912, USA',
+                                                  title: "Etape Idéal",
+                                                  photo_urls: [ "http://www.5mnaperdre.fr/wp-content/uploads/2014/02/cabane-dans-les-bois.jpg"])
+puts "-- Done!4"
+experience_sport      = user7.experiences.create!(category:'Restaurant',
+                                                  description:"découvrir la gastronomie belge de rue les bulots à la Belge",
+                                                  address: ' Rue Sainte-Catherine 45, 1000 Bruxelles, Belgium',
+                                                  title: "Place Sainte-Catherine les caricolles",
+                                                  photo_urls: [ "http://www.agendamagazine.be/sites/default/files/1385_food_noordzee_c_saskia_vanderstichele.jpg"])
+
+
 
 puts "-- Reviews"
 review3 = user2.ratings.create!(experience_id: experience_bar.id, rating:4, review: 'Super soirée dans un super bar! Je recommande!')
@@ -106,9 +175,9 @@ review3 = user8.ratings.create!(experience_id: experience_leisure.id, rating:5, 
 puts "-- Done!"
 
 puts "-- Wishlists"
-wishlist1 = user1.wishlists.create!(experience_id: experience_bar.id)
-wishlist2 = user1.wishlists.create!(experience_id: experience_restaurant.id)
-wishlist3 = user1.wishlists.create!(experience_id: experience_panorama.id)
+wishlist1 = userjulien.wishlists.create!(experience_id: cite_imperiale.id)
+wishlist2 = userjulien.wishlists.create!(experience_id: vespa_tour.id)
+wishlist3 = userjulien.wishlists.create!(experience_id: experience_panorama.id)
 wishlist4 = user2.wishlists.create!(experience_id: experience_hotel.id)
 wishlist5 = user2.wishlists.create!(experience_id: experience_sport.id)
 wishlist6 = user3.wishlists.create!(experience_id: experience_bar.id)
@@ -130,11 +199,12 @@ wishlist20 = user10.wishlists.create!(experience_id: experience_leisure.id)
 
 puts "-- Roadmaps"
 
-roadmap1 = user1.roadmaps.create!(start_destination: "Toulouse", end_destination: "Saint-Tropez")
-roadmap2 = user1.roadmaps.create!(start_destination: "Boston", end_destination: "Brooklyn")
-roadmap3 = user1.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Berlin")
-roadmap4 = user1.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Bordeaux")
-roadmap5 = user1.roadmaps.create!
+roadmap1 = userjulien.roadmaps.create!(start_destination: "Toulouse", end_destination: "Saint-Tropez")
+roadmap2 = userjulien.roadmaps.create!(start_destination: "Boston", end_destination: "Brooklyn")
+roadmap3 = userjulien.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Berlin")
+roadmap5 = userjulien.roadmaps.create!
+roadmap4 = userjulien.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Bordeaux")
+
 
 
 
