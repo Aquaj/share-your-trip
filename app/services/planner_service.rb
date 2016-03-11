@@ -4,7 +4,7 @@ class PlannerService
     schedule = create_schedule(activities, start_date, end_date)
     return {
       schedule: schedule,
-      itinerary: itinerary(schedule, activities.select{|a|a.planned_on.nil?}, start_city, end_city)
+      itinerary: itinerary(schedule, start_city, end_city)
     }
   end
 
@@ -12,7 +12,7 @@ private
 
   # Lists the cities the traveller is gonna go through in the order
   # they will cross them from a Schedule
-  def itinerary(schedule, unplanned, start_city, end_city)
+  def itinerary(schedule, start_city, end_city)
     itinerary_stops = []
 
     itinerary_stops << start_city unless start_city.nil?
@@ -40,9 +40,9 @@ private
 
     # Not making the service really stateful.
     # Just sparing myself parameters on every private method call.
-    @activities = activities.freeze
-    @start_date = start_date.freeze
-    @end_date = end_date.freeze
+    @activities = activities
+    @start_date = start_date
+    @end_date = end_date
 
     # Day activities are stocked in an Array even if there's only one for two reasons :
     #   - Extendability/Modification
@@ -154,8 +154,7 @@ private
 
   def duration
     if beginning.present? && finish.present? && (beginning != finish)
-      return finish - beginning - 1
-      # -1 cause you don't travel on the days of your flights
+      return finish - beginning
     else
       return 7 # Current default.
       # TODO: Implement Weekend / Week / Month long choices for trips.

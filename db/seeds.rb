@@ -150,7 +150,7 @@ experience_leisure    = user8.experiences.create!(category:'Hôtel',
                                                   title: 'The Alcove Library Hotel',
                                                   photo_urls: [ "http://media-cdn.tripadvisor.com/media/photo-o/08/1e/21/b9/the-alcove-library-hotel.jpg"])
 puts "  -- Sport"
-experience_sport      = user7.experiences.create!(category:'Hôtel',
+providence      = user7.experiences.create!(category:'Hôtel',
                                                   description:"découvrir de sport magnifique dans un environment de rêve, c'est gratuit",
                                                   address: 'Providence, Rhode Island 02912, USA',
                                                   title: "Etape Idéal",
@@ -215,11 +215,15 @@ puts "-- Roadmaps"
 
 roadmap1 = userjulien.roadmaps.create!(start_destination: "Toulouse", end_destination: "Saint-Tropez")
 roadmap2 = userjulien.roadmaps.create!(start_destination: "Boston", end_destination: "Brooklyn")
+roadmap2.update_columns(
+  start_date: Date.new(2016,1,10),
+  end_date: Date.new(2016,1,13)
+  )
 roadmap3 = userjulien.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Berlin")
 roadmap5 = userjulien.roadmaps.create!
 roadmap4 = userjulien.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Bordeaux")
 
-
+roadmap2.activities.create!(experience_id: providence.id, planned_on: Date.new(2016,1,12))
 
 
 puts "-- Done!"
