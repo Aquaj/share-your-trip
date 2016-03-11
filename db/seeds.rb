@@ -123,7 +123,7 @@ vespa_tour      = user6.experiences.create!(category:'Amusement',
                                                   description:'Ce tour de la ville  en vespa vintage lieux atypiques',
                                                   address:'169A Đề Thám, Phạm Ngũ Lão, 1, Hồ Chí Minh, Vietnam',
                                                   title: 'Vespa Vintage tour !',
-                                                  photo_urls: [ "http://vivaster.com/media/cache/excursion_slider_photo/images/excursion/photo/img_5662da90f0a3a7_44518193.jpeg"])
+                                                  photo_urls: [ "http://vivaster.com/media/cache/excursion_slider_photo/images/excursion/photo/img_5662da90f0a3a7_44518193.jpeg", "http://vespaadventures.com/wp-content/uploads/2014/08/slideshow_saigonafterdark-580x385.jpg", "http://vespaadventures.com/wp-content/uploads/2014/08/slideshow_saigonafterdark-580x385.jpg"])
 puts "  -- Panorama"
 experience_panorama   = user5.experiences.create!(category:'Vie Nocturne',
                                                   description:'La plus haute tour du Vietnam une vue nocturne sur la Saigon river extra.',
@@ -166,16 +166,26 @@ experience_leisure    = user8.experiences.create!(category:'Hôtel',
                                                   description:' Massage, repos et du calme dans un endroit magique.',
                                                   address:'Ninh Vân, tx. Ninh Hòa, Khánh Hòa, Vietnam',
                                                   title: 'Sixsenses Nha Trang',
-                                                  photo_urls: [ "http://www.sixsenses.com/assets/six_senses_gyro/content/images/975x660_01_ocean_front_villa.jpg"])
+                                                  photo_urls: [ "http://www.sixsenses.com/assets/six_senses_gyro/content/images/975x660_hilltop_villa5.jpg"])
 
 puts "-- Reviews"
 review3 = user2.ratings.create!(experience_id: experience_bar.id, rating:4, review: 'Super soirée dans un super bar! Je recommande!')
 review1 = user3.ratings.create!(experience_id: experience_restaurant.id, rating:2, review: 'J\'ai trouvé la pizza de Chez Gino bien meilleure.')
 review2 = user4.ratings.create!(experience_id: experience_restaurant.id, rating:3, review: 'Bonne pizza et bonne ambiance. Meilleure pizza de LA? Hm.')
-review3 = user5.ratings.create!(experience_id: experience_panorama.id, rating:4, review: 'Belle vue mais attention au vent en hiver! Prévoir son écharpe.')
+review3 = user4.ratings.create!(experience_id: vespa_tour.id, rating:4, review: 'Belle vue mais attention à la circulation! Prévoir un casque.')
 review3 = user6.ratings.create!(experience_id: experience_hotel.id, rating:5, review: 'Grand fan du film, j\'ai été ravi.')
 review3 = user7.ratings.create!(experience_id: experience_sport.id, rating:2, review: 'Intense peut-être mais l\'accueil était horrible.')
-review3 = user8.ratings.create!(experience_id: experience_leisure.id, rating:5, review: 'Détente totale.')
+review3 = user8.ratings.create!(experience_id: cite_imperiale.id, rating:5, review: 'Détente totale.')
+review3 = user3.ratings.create!(experience_id: experience_bar.id, rating:4, review: 'Super soirée dans un super bar! Je recommande!')
+review1 = user2.ratings.create!(experience_id: experience_restaurant.id, rating:2, review: 'J\'ai trouvé la pizza de Chez Gino bien meilleure.')
+review2 = user5.ratings.create!(experience_id: experience_restaurant.id, rating:3, review: 'Bonne pizza et bonne ambiance. Meilleure pizza de LA? Hm.')
+review3 = user10.ratings.create!(experience_id: vespa_tour.id, rating:4, review: 'Belle vue mais attention au vent en hiver! Prévoir son écharpe.')
+review3 = user3.ratings.create!(experience_id: experience_hotel.id, rating:5, review: 'Grand fan du film, j\'ai été ravi.')
+review3 = user10.ratings.create!(experience_id: cite_imperiale.id, rating:2, review: 'Intense peut-être mais l\'accueil était horrible.')
+review3 = user2.ratings.create!(experience_id: experience_leisure.id, rating:5, review: 'Détente totale.')
+review1 = user2.ratings.create!(experience_id: vespa_tour.id, rating:2, review: 'J\'ai trouvé le circuit sympa mais il manquait d\'essence dans les vespa dommage.')
+review2 = user5.ratings.create!(experience_id: vespa_tour.id, rating:3, review: 'Bonne vespa et bonne ambiance. un peu dangereux tout de même.')
+
 puts "-- Done!"
 
 puts "-- Wishlists"
@@ -190,7 +200,7 @@ wishlist8 = user3.wishlists.create!(experience_id: experience_sport.id)
 wishlist9 = user3.wishlists.create!(experience_id: experience_hotel.id)
 wishlist10 = userjulien.wishlists.create!(experience_id: experience_restaurant.id)
 wishlist11 = user4.wishlists.create!(experience_id: experience_restaurant.id)
-wishlist12 = user5.wishlists.create!(experience_id: experience_panorama.id)
+wishlist12 = user6.wishlists.create!(experience_id: experience_panorama.id)
 wishlist13 = user7.wishlists.create!(experience_id: experience_leisure.id)
 wishlist14 = user8.wishlists.create!(experience_id: experience_hotel.id)
 wishlist15 = user9.wishlists.create!(experience_id: experience_bar.id)
