@@ -1,21 +1,6 @@
 <h1>Votre Itinéraire avec Share Your Trip!</h1>
-
-<p>
-  <%= @roadmap.start_destination %>
-  <%= @roadmap.start_date %>
-  <ol>
-    <% @roadmap.activities.where("planned_on IS NOT NULL").each do |activity| %>
-    <li><%= activity.experience.title %> - <%= activity.planned_on.to_formatted_s(:long)%></li>
-    <% end %>
-  </ol>
-  <ul>
-    <% @roadmap.activities.where("planned_on IS NULL").each do |activity| %>
-    <li><%= activity.experience.title %></li>
-    <% end %>
-  </ul>
-  <%= @roadmap.end_date %>
-  <%= @roadmap.travellers_num %>
-</p>
+  <% planning = @roadmap.planning %>
+  <%= render "roadmaps/schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %>
 
 <p>Bon voyage!</p>
 
