@@ -44,10 +44,12 @@
       <div class="block-right col-md-6">
         <div class="row">
           <div class="pictures col-md-12">
-            <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :fill %>
-            <% @experience.photos.each do |photo| %>
-            <%= cl_image_tag photo.path, crop: :lfill, class: "sub-picture"  %>
-            <% end %>
+            <%= cl_image_tag @experience.photos[0].path, class: "main-picture", crop: :fill %>
+            <div class="sub-pictures">
+              <% @experience.photos.each do |photo| %>
+                <%= cl_image_tag photo.path, crop: :lfill, class: "sub-picture" %>
+              <% end %>
+            </div>
           </div>
           <div class="col-md-12">
             <div class="map-wrapper">
@@ -64,13 +66,13 @@
 <script>
   $(document).ready(function(){
     $('.pictures img').hover(function(e){
-      save = $("#main-picture")[0].src
-      $("#main-picture")[0].src = $(this)[0].src;
+      save = $(".main-picture")[0].src
+      $(".main-picture")[0].src = $(this)[0].src;
     }, function(e){
-      $("#main-picture")[0].src = save;
+      $(".main-picture")[0].src = save;
     });
     $('.pictures img').click(function(e){
-      save = $("#main-picture")[0].src
+      save = $(".main-picture")[0].src
     });
   });
 </script>

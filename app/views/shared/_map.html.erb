@@ -1,4 +1,4 @@
-<div id="map" style="height: 283px;"></div>
+<div id="map"></div>
 
 <% content_for :after_js do %>
   <script src="//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js"></script>
@@ -19,7 +19,9 @@
     var marker = handler.addMarker({
       lat: <%= @experience.latitude %>,
       lng: <%= @experience.longitude %>,
-      infowindow: '<%= j render("shared/infowindow", experience: @experience) %>'
+      infowindow: '<%= j render("shared/infowindow", experience: @experience) %>',
+      icon: 'http://gmaps-samples.googlecode.com/svn/trunk/markers/green/blank.png'
+
     });
     <% @close_by.each do |experience| %>
       handler.addMarker({
