@@ -66,6 +66,18 @@ a.add-experience {
   }
 }
 
+#map-canvas{
+  height: calc(100vh - 70px);
+}
+
+#map{
+  height: 100%;
+  width: 100%;
+}
+
+.block-right{
+  padding: 0 15px;
+}
 //.city{
   //position: relative;
 

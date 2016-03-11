@@ -2,14 +2,17 @@ class PlannerService
 
   def plan_for(activities, start_city=nil, start_date=nil, end_city=nil, end_date=nil)
     schedule = create_schedule(activities, start_date, end_date)
-    return {schedule: schedule, itinerary: itinerary(schedule, start_city, end_city)}
+    return {
+      schedule: schedule,
+      itinerary: itinerary(schedule, activities.select{|a|a.planned_on.nil?}, start_city, end_city)
+    }
   end
 
 private
 
   # Lists the cities the traveller is gonna go through in the order
   # they will cross them from a Schedule
-  def itinerary(schedule, start_city, end_city)
+  def itinerary(schedule, unplanned, start_city, end_city)
     itinerary_stops = []
 
     itinerary_stops << start_city unless start_city.nil?
@@ -150,7 +153,7 @@ private
   end
 
   def duration
-    if beginning.present? && finish.present?
+    if beginning.present? && finish.present? && (beginning != finish)
       return finish - beginning - 1
       # -1 cause you don't travel on the days of your flights
     else

@@ -30,10 +30,11 @@ class Experience < ActiveRecord::Base
       if city.present? # city
         experiences.near(search[:address], 20)
       else # country
-        experiences.select{ |e| e.country == locate.country(search[:address]) }
+        country = locate.country(search[:address])
+        experiences.select{ |e| e.country == country}
       end
     else
-      experiences
+      experiences.sample(6)
     end
   end
 
