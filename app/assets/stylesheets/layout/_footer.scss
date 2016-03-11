@@ -4,6 +4,7 @@ footer {
   justify-content: center;
   background: #333333;
   padding: 60px 0;
+  flex-direction: column;
 }
 
 .Footer {
@@ -12,6 +13,7 @@ footer {
   color: white;
   font-size: 0.85em;
   text-align: center;
+  flex-direction: column;
 }
 
 .Footer a {
@@ -28,13 +30,13 @@ footer {
 
 .Footer-credits {
   color: #fff;
-  margin: 0;
-  padding: 0;
+
+  display: inline-block;
 }
 
 .Footer-credit {
-  display: block;
-  margin: 0;
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .Footer-creditSeparator {
@@ -46,7 +48,6 @@ footer {
 .Footer-social iframe {
   display: inline-block;
   margin: 0 0 1em;
-  vertical-align: top;
 }
 
 @media (--break-md) {
@@ -58,4 +59,13 @@ footer {
     display: inline-block;
     padding: 0 0.25em;
   }
+}
+.lucky{
+  color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.luckycolor{
+  color: #0cff00;
+  font-size: 20px;
 }
