@@ -8,7 +8,7 @@
 
 puts "Seed started !"
 puts "-- Users"
-user1 = User.create!(email: 'a@abc.com', first_name: 'Alexandre', last_name: 'Dumas', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://www.orderofbooks.com/wp-content/uploads/2013/02/Alexandre-Dumas-pere.jpg")
+userjulien = User.create!(email: 'julien@benoit.com', first_name: 'Julien', last_name: 'Benoit', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://static1.puretrend.com/articles/8/91/82/8/@/1033635-j-620x0-1.jpg")
 print "     1"
 user2 = User.create!(email: 'b@abc.com', first_name: 'Charles', last_name: 'Bukowski', password: '123soleil', password_confirmation: '123soleil', avatar_url: "http://timesquatters.com/wp-content/uploads/2016/01/Charles-Bukowski-10.jpg")
 print " - 2"
@@ -92,8 +92,73 @@ experience_sport      = user7.experiences.create!(category:'Amusement',
                                                   address: '1999 Route du Bourrian, 83580 Gassin',
                                                   title: "Polo sur la presqu'île",
                                                   photo_urls: [ "http://static1.squarespace.com/static/52faa224e4b05c17d93e1b45/t/556383d4e4b0e65363e9b3a3/1432585181693/", "https://blog.sttropezhouse.com/wp-content/uploads/2013/06/polo_club_st_tropez1.jpg", "http://www.poloplus10.com/dt/uploads/2013/07/polo-club-saint-tropez1.jpg"])
+puts "-- Done2!"
 
+puts "  -- Restaurant"
+experience_restaurant = user10.experiences.create!(category:'Restaurant',
+                                                   description:'Le délice de la ville imperiale de Hué cuisine familiale  nous sert ce Banh là une finesse remarquable',
+                                                   address:'Ward 6, 57 Hồ Xuân Hương, phường 6, Hồ Chí Minh, Vietnam',
+                                                   title: 'Le Banh la de miss Mai ',
+                                                   photo_urls: ["http://du-lich.chudu24.com/f/d/100728/banh-nam-dam-da-huong-vi-hue.jpg"])
+puts "  -- Bar"
+experience_bar        = user9.experiences.create!(category:'Bar',
+                                                  description:'Xu, un sublime bar avec des cocktails pour tous les goûts, un service excellent !',
+                                                  address:'75 Ward,, 71 Hai Bà Trưng, Bến Nghé, Hồ Chí Minh, Vietnam',
+                                                  title: 'La Jeunesse dorée Saigonaise se presse au porte de ce temple mythique',
+                                                  photo_urls: [ "http://media.foody.vn/res/g3/26399/prof/s640x400/foody-mobile-xu-bar-tp-hcm.jpg"])
+puts "  -- Leisure"
+experience_leisure    = user8.experiences.create!(category:'Hôtel',
+                                                  description:' se détendre, du repos et du calme dans un décor mangnifique.',
+                                                  address:'Dat Doc Beach, Con Dao Dist, Con Son, 74000, Vietnam',
+                                                  title: 'Con Dao le Luxe à la Robinson',
+                                                  photo_urls: [ "http://www.sixsenses.com/assets/six_senses_gyro/content/images/975x660_01_ocean_front_villa.jpg"])
+puts "  -- Sport"
+experience_sport      = user7.experiences.create!(category:'Restaurant',
+                                                  description:'manger dans la rue comme un local le rêve à Saïgon',
+                                                  address: '23 Hoang Sa St., District 1 | Phuong Da Kao, District 1',
+                                                  title: 'The Lunch Lady',
+                                                  photo_urls: [ "http://media.tumblr.com/tumblr_lx7at6CG0y1qha2qr.jpg"])
+puts "  -- Hotel"
+experience_hotel      = user6.experiences.create!(category:'Amusement',
+                                                  description:'Ce tour de la ville  en vespa vintage lieux atypiques',
+                                                  address:'169A Đề Thám, Phạm Ngũ Lão, 1, Hồ Chí Minh, Vietnam',
+                                                  title: 'Vespa Vintage tour !',
+                                                  photo_urls: [ "http://vivaster.com/media/cache/excursion_slider_photo/images/excursion/photo/img_5662da90f0a3a7_44518193.jpeg"])
+puts "  -- Panorama"
+experience_panorama   = user5.experiences.create!(category:'Vie Nocturne',
+                                                  description:'La plus haute tour du Vietnam une vue nocturne sur la Saigon river extra.',
+                                                  address:'Pont de Pierre, 33000 Bordeaux',
+                                                  title: 'Saigon Skydeck',
+                                                  photo_urls: ["36 Hồ Tùng Mậu, Bến Nghé Hồ Chí Minh, Vietnam"])
 puts "-- Done!"
+puts "  -- Restaurant"
+experience_restaurant = user10.experiences.create!(category:'Restaurant',
+                                                   description:'Dans une ambiance familiale où on se sent tout de suite à l\'aise, le patron, Olivier, nous sert ce qui est sans doutes la meilleure pizza de LA.',
+                                                   address:'8 Place du Palais, Bordeaux',
+                                                   title: 'La Cagette ',
+                                                   photo_urls: ["http://www.papillesetpupilles.fr/wp-content/uploads/2014/02/La-cagette.jpg"])
+puts "  -- Bar"
+experience_bar        = user9.experiences.create!(category:'Bar',
+                                                  description:'un service excellent par un personnel adorable !',
+                                                  address:' 13 Place du Palais, Bordeaux',
+                                                  title: 'Chez Fred, le bar des Vedettes',
+                                                  photo_urls: [ "http://www.gillespudlowski.com/wp-content/uploads/2014/11/l1200186-1024x680.jpg"])
+puts "  -- Leisure"
+experience_leisure    = user8.experiences.create!(category:'Amusement',
+                                                  description:'Cinéma et cantine sympa  dans un décor mangnifique.',
+                                                  address:'5 Place Camille Jullian, 33000 Bordeaux',
+                                                  title: 'Utopia le ciné branchouille',
+                                                  photo_urls: [ "http://www.bordeaux-quartiers.fr/wp-content/uploads/2014/02/utopia-bordeaux-cinema.jpg", "http://images.sudouest.fr/images/2010/12/25/276015_15259528_460x306.jpg"])
+puts "  -- Sport"
+experience_sport      = user7.experiences.create!(category:'Amusement',
+                                                  description:"découvrir de sport magnifique dans un environment de rêve, c'est gratuit",
+                                                  address: '1999 Route du Bourrian, 83580 Gassin',
+                                                  title: "Polo sur la presqu'île",
+                                                  photo_urls: [ "http://static1.squarespace.com/static/52faa224e4b05c17d93e1b45/t/556383d4e4b0e65363e9b3a3/1432585181693/", "https://blog.sttropezhouse.com/wp-content/uploads/2013/06/polo_club_st_tropez1.jpg", "http://www.poloplus10.com/dt/uploads/2013/07/polo-club-saint-tropez1.jpg"])
+puts "-- Done!"
+
+
+
 
 puts "-- Reviews"
 review3 = user2.ratings.create!(experience_id: experience_bar.id, rating:4, review: 'Super soirée dans un super bar! Je recommande!')
@@ -106,9 +171,9 @@ review3 = user8.ratings.create!(experience_id: experience_leisure.id, rating:5, 
 puts "-- Done!"
 
 puts "-- Wishlists"
-wishlist1 = user1.wishlists.create!(experience_id: experience_bar.id)
-wishlist2 = user1.wishlists.create!(experience_id: experience_restaurant.id)
-wishlist3 = user1.wishlists.create!(experience_id: experience_panorama.id)
+wishlist1 = userjulien.wishlists.create!(experience_id: experience_bar.id)
+wishlist2 = userjulien.wishlists.create!(experience_id: experience_restaurant.id)
+wishlist3 = userjulien.wishlists.create!(experience_id: experience_panorama.id)
 wishlist4 = user2.wishlists.create!(experience_id: experience_hotel.id)
 wishlist5 = user2.wishlists.create!(experience_id: experience_sport.id)
 wishlist6 = user3.wishlists.create!(experience_id: experience_bar.id)
@@ -130,11 +195,11 @@ wishlist20 = user10.wishlists.create!(experience_id: experience_leisure.id)
 
 puts "-- Roadmaps"
 
-roadmap1 = user1.roadmaps.create!(start_destination: "Toulouse", end_destination: "Saint-Tropez")
-roadmap2 = user1.roadmaps.create!(start_destination: "Boston", end_destination: "Brooklyn")
-roadmap3 = user1.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Berlin")
-roadmap4 = user1.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Bordeaux")
-roadmap5 = user1.roadmaps.create!
+roadmap1 = userjulien.roadmaps.create!(start_destination: "Toulouse", end_destination: "Saint-Tropez")
+roadmap2 = userjulien.roadmaps.create!(start_destination: "Boston", end_destination: "Brooklyn")
+roadmap3 = userjulien.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Berlin")
+roadmap4 = userjulien.roadmaps.create!(start_destination: "Bordeaux", end_destination: "Bordeaux")
+roadmap5 = userjulien.roadmaps.create!
 
 
 
