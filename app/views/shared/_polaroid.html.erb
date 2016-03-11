@@ -9,17 +9,12 @@
   <% end %>
   <div class="polaroid-info">
     <div class="polaroid-cities">
-      <p class="pull-right">
-        </p>
-      <p class="pull-left">
-
-      </p>
+      <div><h3><%= title(roadmap) %></h3></div>
     </div>
     <div class="polaroid-dates">
-         <div><%= title(roadmap) %></div>
-         <% if roadmap.start_date && roadmap.end_date %>
-          <div><%= roadmap.start_date %> - <%= roadmap.end_date %></div>
-        <% end %>
+      <% if roadmap.start_date && roadmap.end_date %>
+        <div><%= roadmap.start_date %> - <%= roadmap.end_date %></div>
+      <% end %>
     </div>
   </div>
 </div>

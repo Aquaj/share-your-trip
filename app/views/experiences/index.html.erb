@@ -7,7 +7,7 @@
 <div class="block-contain">
   <div class="container-fluid">
     <div class="row card-container">
-      <% @experiences.limit(6).each do |experience| %>
+      <% @experiences.each do |experience| %>
         <div class="col-xs-12 col-sm-4">
           <%= render "shared/card", experience: experience %>
         </div>
