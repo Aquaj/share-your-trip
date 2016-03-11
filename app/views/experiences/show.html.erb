@@ -41,12 +41,12 @@
           <% end %>
         </div>
       </div>
-      <div class="block-fixed col-md-6">
+      <div class="block-right col-md-6">
         <div class="row">
           <div class="pictures col-md-12">
             <%= cl_image_tag @experience.photos[0].path, class: "main-picture", id: "main-picture", crop: :fill %>
             <% @experience.photos.each do |photo| %>
-            <%= cl_image_tag photo.path, crop: :lfill  %>
+            <%= cl_image_tag photo.path, crop: :lfill, class: "sub-picture"  %>
             <% end %>
           </div>
           <div class="col-md-12">
