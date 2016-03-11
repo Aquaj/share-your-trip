@@ -162,7 +162,11 @@ experience_sport      = user7.experiences.create!(category:'Restaurant',
                                                   title: "Place Sainte-Catherine les caricolles",
                                                   photo_urls: [ "http://www.agendamagazine.be/sites/default/files/1385_food_noordzee_c_saskia_vanderstichele.jpg"])
 
-
+experience_leisure    = user8.experiences.create!(category:'Hôtel',
+                                                  description:' Massage, repos et du calme dans un endroit magique.',
+                                                  address:'Ninh Vân, tx. Ninh Hòa, Khánh Hòa, Vietnam',
+                                                  title: 'Sixsenses Nha Trang',
+                                                  photo_urls: [ "http://www.sixsenses.com/assets/six_senses_gyro/content/images/975x660_01_ocean_front_villa.jpg"])
 
 puts "-- Reviews"
 review3 = user2.ratings.create!(experience_id: experience_bar.id, rating:4, review: 'Super soirée dans un super bar! Je recommande!')
@@ -177,14 +181,14 @@ puts "-- Done!"
 puts "-- Wishlists"
 wishlist1 = userjulien.wishlists.create!(experience_id: cite_imperiale.id)
 wishlist2 = userjulien.wishlists.create!(experience_id: vespa_tour.id)
-wishlist3 = userjulien.wishlists.create!(experience_id: experience_panorama.id)
+wishlist3 = user5.wishlists.create!(experience_id: experience_panorama.id)
 wishlist4 = user2.wishlists.create!(experience_id: experience_hotel.id)
 wishlist5 = user2.wishlists.create!(experience_id: experience_sport.id)
 wishlist6 = user3.wishlists.create!(experience_id: experience_bar.id)
 wishlist7 = user3.wishlists.create!(experience_id: experience_leisure.id)
 wishlist8 = user3.wishlists.create!(experience_id: experience_sport.id)
 wishlist9 = user3.wishlists.create!(experience_id: experience_hotel.id)
-wishlist10 = user3.wishlists.create!(experience_id: experience_restaurant.id)
+wishlist10 = userjulien.wishlists.create!(experience_id: experience_restaurant.id)
 wishlist11 = user4.wishlists.create!(experience_id: experience_restaurant.id)
 wishlist12 = user5.wishlists.create!(experience_id: experience_panorama.id)
 wishlist13 = user7.wishlists.create!(experience_id: experience_leisure.id)
