@@ -4,4 +4,9 @@
 <% else %>
   console.log("Appending activity.");
   $('.to-see').append("<%= j render("shared/inline_activity", activity: @activity) %>");
+  $(".bootstrap-datepicker.activity-date").datepicker({
+    isRTL: false,
+    autoclose:true,
+    language: 'fr'
+  });
 <% end %>
