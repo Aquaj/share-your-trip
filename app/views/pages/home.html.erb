@@ -1,5 +1,7 @@
 <% content_for :navbar do %>
-  <%= render "shared/navbar", transparent: true %>
+  <% unless notice || alert %>
+    <%= render "shared/navbar", transparent: true %>
+  <% end %>
 <% end %>
 
 <link href='https://fonts.googleapis.com/css?family=Raleway:300' rel='stylesheet' type='text/css'>
