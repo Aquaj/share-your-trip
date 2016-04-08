@@ -8,6 +8,17 @@ class ExperiencesController < ApplicationController
       marker.lat experience.latitude
       marker.lng experience.longitude
     end
+    sort, order = nil, nil
+    if params[:search]
+      sort = params[:search][:sort]
+      order = params[:search][:order]
+    end
+    if sort == "note"
+      @experiences = @experiences.sort { |e, f| e.average_rating - f.average_rating }
+    elsif sort == "date"
+      @experiences = @experiences.sort { |e, f| e.created_at - f.created_at }
+    end
+    @experiences = @experiences.reverse if order == "desc"
   end
 
   def show

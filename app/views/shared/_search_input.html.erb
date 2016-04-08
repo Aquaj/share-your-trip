@@ -1,10 +1,35 @@
-<%# SEARCH INPUT ON EXPERIENCES/INDEX %>
-
+<%# SEARCH INPUT ON EXPERIENCES/INDEX + HOME %>
+<%# One per page due to ID regulation,       %>
+<%# extract id to partial parameter and u go %>
 <div class="index-search-field">
 
-  <%= simple_form_for :search, url: experiences_path, method: 'get', html: { class: 'form-search' } do |f| %>
-  <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Où souhaitez-vous aller ?", class: "input-medium search-query" %>
-  <%= f.submit "Chercher", class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
-<% end %>
+  <%= simple_form_for :search, url: experiences_path, method: 'get', html: { class: 'form-search form-inline' } do |f| %>
+    <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Où souhaitez-vous aller ?", class: "input-medium search-query" %>
+    <%= f.input_field :sort,
+      include_blank: false, #"Classer par...",
+      as: :select,
+      collection: [:date, :note],
+      label_method: ->(i){ {date: "Date", note: "Note moyenne"}[i] },
+      class: "select form-control" %>
+    <%= f.input_field :order,
+      as: :select,
+      include_blank: false,
+      collection: [:asc, :desc],
+      label_method: ->(i){ {asc: "Ascendant", desc: "Descendant"}[i] },
+      class: "select form-control" %>
+    <%= f.submit "Chercher", class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
+  <% end %>
 
 </div>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+
+    google.maps.event.addDomListener(window, 'load', function() {
+      initializeAutocomplete('user_input_autocomplete_address');
+    });
+
+   });
+  </script>
+<% end %>

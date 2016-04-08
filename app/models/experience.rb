@@ -35,7 +35,7 @@ class Experience < ActiveRecord::Base
         experiences.select{ |e| e.country == country}
       end
     else
-      experiences.sample(6)
+      experiences
     end
   end
 
