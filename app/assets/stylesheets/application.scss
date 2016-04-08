@@ -27,6 +27,7 @@
   input[type="text"] {
     padding: 8px 20px;
     width: 320px;
+    color: black;
   }
 
   input[type="submit"] {
@@ -35,8 +36,8 @@
     font-weight: 600;
     background-color: $syt-brand;
     border: 1px solid $syt-brand;
-    color: #fff;
     text-shadow: none;
+    color: white;
     @include transition(all, 0.3s, ease-in-out);
 
     &:hover {
