@@ -49,11 +49,11 @@
 
 /* Navbar standard link */
 .navbar-wagon-link {
-  color: #F38181;
+  color: $syt-brand;
   font-size: 14px;
 }
 .navbar-wagon-link:hover {
-  color: #F38181;
+  color: $syt-brand;
   text-decoration: none;
 }
 
@@ -67,45 +67,15 @@
   color: white;
   font-size: 14px;
   border: 3px solid white;
+
+  .fa-heart:before{
+    margin-left: 5px;
+  }
 }
 .navbar-wagon-button:hover {
-  color: #F38181;
+  color: lighten($syt-brand, 35%);
   background: transparent;
-  border-color: #F38181;
-}
-
-/* Navbar search form */
-.navbar-wagon-search {
-  flex: 0 1 300px;
-  display: flex;
-  // justify-content: flex-end;
-  padding: 0 10px;
-  position: relative;
-}
-.navbar-wagon-search-btn {
-  line-height: 40px;
-  color: #E6E6E6;
-  border: none;
-  background: transparent;
-  position: absolute;
-  right: 14px;
-  top: -2px;
-  z-index: 1;
-}
-.navbar-wagon-search-input {
-  flex: 0 1 300px;
-  transition: all 0.15s ease;
-  line-height: 40px;
-  font-weight: lighter;
-  color: #666666;
-  border: 1px solid #E6E6E6;
-  border-radius: 5px;
-  padding: 0 10px;
-  font-size: 14px;
-  outline: none;
-}
-.navbar-wagon-search-input:focus  {
-  border: 1px solid #CCCCCC;
+  border-color: $syt-brand;
 }
 
 /* Navbar dropdown menu */
@@ -143,22 +113,6 @@
   align-items: center;
 }
 
-.btn-square {
-  border-radius: 5px;
-  background-color: transparent;
-  color: #F38181;
-  border: 2px solid #F38181;
-  text-shadow: none;
-
-  &:hover {
-    border: 2px solid rgba(243, 129, 129, 0.74);
-  }
-}
-
-.fa-heart:before{
-  margin-left: 5px;
-}
-
 .padding-right-thin{
   padding-right: 10px;
 }
@@ -168,11 +122,9 @@
 }
 
 .btn:focus{
-  color: #F38181;
   outline: 0px auto;
 }
 
 .btn:active:focus{
-  color: #F38181;
   outline: 0px auto;
 }

@@ -50,7 +50,7 @@
     width: 100%;
     height: 120px;
     bottom: 0;
-    background-color: #F38181;
+    background-color: $syt-brand;
 
     a,
     a:active,
@@ -67,7 +67,7 @@
       @include transition(all, 0.3s, ease-in-out);
 
       &:hover {
-        color: #F38181;
+        color: $syt-brand;
         background-color: #fff;
       }
 
@@ -125,7 +125,7 @@
   padding: 15px 30px;
   color: #fff;
   border: none;
-  background-color: #F38181;
+  background-color: $syt-brand;
 
   &:hover {
     color: #fff;
