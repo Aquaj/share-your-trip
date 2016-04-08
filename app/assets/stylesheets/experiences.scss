@@ -126,7 +126,15 @@ body {
   }
 }
 
+@media (max-width: 600px) {
+  .bookmark {
+    display: none;
+  }
+}
 
+.bookmark {
+  font-size: 18px;
+}
 
 .experience-wrapper{
   display: flex;
