@@ -13,7 +13,7 @@
                 <%= @experience.title %>
                 <% if policy(@experience).edit? %>
                   <%= link_to icon("pencil"), edit_experience_path(@experience), class: "icon-controlled-access" %>
-                  <%# link_to icon("pencil"), edit_experience_path(@experience), class: "icon-controlled-access" %>
+                  <%= link_to icon("times"), @experience, method: :delete, class: "icon-controlled-access" %>
                 <% end %>
                 </h3>
               </div>

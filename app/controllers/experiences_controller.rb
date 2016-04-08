@@ -64,7 +64,12 @@ class ExperiencesController < ApplicationController
 
   def destroy
     authorize @experience
-    @experience.destroy
+    if @experience.destroy
+      redirect_to experiences_path
+    else
+      flash[:alert] = "Une erreur s'est produite."
+      render @experience
+    end
   end
 
   def my_experiences
