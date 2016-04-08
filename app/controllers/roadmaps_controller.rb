@@ -8,6 +8,7 @@ class RoadmapsController < ApplicationController
 
   def show
     authorize @roadmap
+    # Ensuring basic completion before display.
     if @roadmap.start_destination.nil? ||
        @roadmap.end_destination.nil? ||
        @roadmap.start_destination.empty? ||
@@ -16,6 +17,8 @@ class RoadmapsController < ApplicationController
       redirect_to edit_roadmap_path(@roadmap)
     end
   end
+
+  # New doesn't exist. You want a new one => Create > Edit
 
   def create
     @roadmap = current_user.roadmaps.new

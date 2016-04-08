@@ -1,4 +1,5 @@
 class WishlistsController < ApplicationController
+# Wishlists are a collection of Experiences specific to each user that they can then browse.
 
   def index
     @wishlists = policy_scope(Wishlist)

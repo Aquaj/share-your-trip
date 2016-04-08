@@ -5,9 +5,18 @@
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
-  padding: 0px 30px;
+  padding: 10px 15px 0 5px;
   align-items: center;
   justify-content: space-between;
+}
+
+.navbar-wagon-transparent {
+  background: transparent;
+  position: absolute;
+  top:0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 /* Optional class to fix the navbar on top */
@@ -52,12 +61,12 @@
 .navbar-wagon-button {
   margin-left: 10px;
   padding: 0 20px;
-  border-radius: 3px;
-  line-height: 40px;
+  border-radius: 5px;
+  line-height: 35px;
   background-color: transparent;
-  color: #F38181;
+  color: white;
   font-size: 14px;
-  border: 2px solid #F38181;
+  border: 3px solid white;
 }
 .navbar-wagon-button:hover {
   color: #F38181;

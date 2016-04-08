@@ -23,28 +23,6 @@ body {
     background-color: rgba(252,227,138,0.4);
     border-radius: 5px;
   }
-
-  .index-search-field {
-    input[type="text"] {
-      padding: 8px 20px;
-      width: 320px;
-    }
-
-    input[type="submit"] {
-      width: 150px;
-      text-transform: uppercase;
-      font-weight: 600;
-      background-color: #F38181;
-      border: 1px solid #F38181;
-      color: #fff;
-      text-shadow: none;
-      @include transition(all, 0.3s, ease-in-out);
-
-      &:hover {
-        background-color: rgba(243, 129, 129, 0.74);
-      }
-    }
-  }
 }
 
 
@@ -75,7 +53,6 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  // align-items: center;
 }
 
 .author-details{
@@ -98,7 +75,6 @@ body {
 .interaction-buttons{
   display: flex;
   text-align: center;
-  display: flex;
   align-items: center;
   justify-content: space-between;
   padding-bottom: 5px;

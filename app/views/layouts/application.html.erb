@@ -16,7 +16,11 @@
     <%= stylesheet_link_tag    'application', media: 'all' %>
   </head>
   <body class="Site">
-    <%= render 'shared/navbar' %>
+  <% if content_for? :navbar %>
+    <%= content_for :navbar %>
+  <% else %>
+    <%= render "shared/navbar" %>
+  <% end %>
 
   <!-- Modal -->
 <% if user_signed_in? %>
