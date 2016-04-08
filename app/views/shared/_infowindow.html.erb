@@ -1,9 +1,13 @@
-<%= link_to experience.title, experience %>
- <div class="rating">
-   <span class="average-rating">
-      <%= render "shared/rating", rating: experience.average_rating %>
-   </span>
- </div>
- <%= link_to experience do %>
-  <%= cl_image_tag(experience.photos[0].path, height: 50) %>
- <% end %>
+<div style="display: flex">
+  <div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-right: 15px;">
+    <div><%= link_to experience.title, experience %></div>
+    <div class="average-rating">
+          <%= render "shared/rating", rating: experience.average_rating %>
+    </div>
+  </div>
+  <div>
+   <%= link_to experience do %>
+    <%= cl_image_tag(experience.photos[0].path, height: 50) %>
+   <% end %>
+  </div>
+</div>
