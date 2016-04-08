@@ -35,74 +35,83 @@
               <%= link_to my_experiences_path do %>
                 <i class="fa fa-heart"></i> <%= t ".mes coups de coeur", default: "Mes coups de coeur" %>
               <% end %>
-              <li>
-                <%= link_to wishlists_path do %>
-                  <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to roadmaps_path do %>
-                  <i class="fa fa-globe"></i> <%= t ".mes itinéraires", default: "Mes Itinéraires" %>
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_user_session_path, method: :delete do %>
-                  <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
-                <% end %>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-      <% else %>
-        <!-- Login text link -->
-        <%= link_to "Publier un #{ icon("heart")}".html_safe, new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
-        <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
-      <% end %>
-
-    </div>
-
-    <div class="navbar-wagon-item hidden-md hidden-lg">
-      <% if user_signed_in? %>
-        <div class="dropdown">
-          <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
-          <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
-            <li>
-              <%= link_to roadmaps_path, method: :post do %>
-                Créer un itinéraire <%= icon "globe" %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to "", "data-toggle": "modal", "data-target":"#addExperience" do %>
-                Publier un <%= icon("heart") %>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to my_experiences_path do %>
-                <p style="text-align:right"><%= t ".mes coups de coeur", default: "Mes coups de coeur " %> <i class="fa fa-heart"></i></p>
-              <% end %>
             </li>
             <li>
               <%= link_to wishlists_path do %>
-                <p style="text-align:right"><%= t ".mes favoris", default: "Mes Favoris " %> <i class="fa fa-star"></i></p>
+                <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
               <% end %>
             </li>
             <li>
               <%= link_to roadmaps_path do %>
-                <p style="text-align:right"><%= t ".mes itinéraires", default: "Mes Itinéraires " %> <i class="fa fa-globe"></i></p>
+                <i class="fa fa-globe"></i> <%= t ".mes itinéraires", default: "Mes Itinéraires" %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to edit_user_registration_path(current_user) do %>
+                <i class="fa fa-user"></i>  <%= t ".sign_out", default: "Éditer mon profil" %>
               <% end %>
             </li>
             <li>
               <%= link_to destroy_user_session_path, method: :delete do %>
-                <p style="text-align:right"><%= t ".sign_out", default: "Log out " %> <i class="fa fa-sign-out"></i></p>
+                <i class="fa fa-sign-out"></i>  <%= t ".sign_out", default: "Log out" %>
               <% end %>
             </li>
           </ul>
         </div>
-      <% else %>
-        <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
-      <% end %>
-    </div>
+      </div>
+
+    <% else %>
+      <!-- Login text link -->
+      <%= link_to "Publier un #{ icon("heart")}".html_safe, new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
+      <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
+    <% end %>
 
   </div>
+
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <% if user_signed_in? %>
+      <%= link_to edit_user_registration_path(current_user) do %>
+        <%= cl_image_tag current_user.avatar.path, size: "30x30", crop: :fill, class: "avatar dropdown-toggle", id: "navbar-wagon-menu", "data-toggle": "dropdown" %>
+      <% end %>
+      <div class="dropdown">
+        <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li>
+            <%= link_to roadmaps_path, method: :post do %>
+              Créer un itinéraire <%= icon "globe" %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "", "data-toggle": "modal", "data-target":"#addExperience" do %>
+              Publier un <%= icon("heart") %>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to my_experiences_path do %>
+              <p style="text-align:right"><%= t ".mes coups de coeur", default: "Mes coups de coeur " %> <i class="fa fa-heart"></i></p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to wishlists_path do %>
+              <p style="text-align:right"><%= t ".mes favoris", default: "Mes Favoris " %> <i class="fa fa-star"></i></p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to roadmaps_path do %>
+              <p style="text-align:right"><%= t ".mes itinéraires", default: "Mes Itinéraires " %> <i class="fa fa-globe"></i></p>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_user_session_path, method: :delete do %>
+              <p style="text-align:right"><%= t ".sign_out", default: "Log out " %> <i class="fa fa-sign-out"></i></p>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% else %>
+      <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
+    <% end %>
+  </div>
+
+</div>
 
