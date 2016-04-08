@@ -3,7 +3,7 @@ class PagesController < ApplicationController
 
   def home
     authorize :home, :home?
-    @experiences = policy_scope(Experience).sort{ |e| e.average_rating }[0..2]
+    @experiences = policy_scope(Experience).sort{ |e, f| f.average_rating - e.average_rating }[0..2]
     if user_signed_in?
       redirect_to experiences_path
     end
