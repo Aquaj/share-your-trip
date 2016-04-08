@@ -1,5 +1,16 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
+  def create
+    super
+    flash.delete(:notice)
+  end
+
+  def delete
+    super
+    flash.delete(:notice)
+  end
+
+
   private
 
   def sign_up_params
