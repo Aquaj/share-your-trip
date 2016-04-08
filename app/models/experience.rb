@@ -12,6 +12,7 @@ class Experience < ActiveRecord::Base
   validates :description, presence: true
   validates :address, presence: true
   validates :category, inclusion: { in: %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne) }
+  validates :photos, presence: true
 
   has_attachments :photos, maximum: 3
 
