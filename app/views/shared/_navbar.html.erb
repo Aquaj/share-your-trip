@@ -19,10 +19,9 @@
       </button>
 
       <%= link_to "Créer un itinéraire #{icon "globe"}".html_safe, roadmaps_path, method: :post, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button"%><!-- Notification -->
-      <%= link_to wishlists_path, class: "navbar-wagon-item navbar-wagon-link" do %>
+      <%= link_to wishlists_path, class: "navbar-wagon-item navbar-wagon-link", style: "padding-right: 0;" do %>
       <div class="badge-container">
-        <i class="fa fa-star-o"></i>
-        <div class="badge badge-blue"><%= current_user.wishlists.length %></div>
+        <i class="fa fa-heart-o"></i>
       </div>
       <% end %>
 
@@ -38,7 +37,7 @@
             </li>
             <li>
               <%= link_to wishlists_path do %>
-                <i class="fa fa-star"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
+                <i class="fa fa-heart"></i> <%= t ".mes favoris", default: "Mes Favoris" %>
               <% end %>
             </li>
             <li>
