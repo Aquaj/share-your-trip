@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310045122) do
+ActiveRecord::Schema.define(version: 20160409183806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20160310045122) do
     t.string   "city_cache"
     t.string   "country_cache"
     t.string   "continent_cache"
+    t.string   "url"
   end
 
   add_index "experiences", ["user_id"], name: "index_experiences_on_user_id", using: :btree

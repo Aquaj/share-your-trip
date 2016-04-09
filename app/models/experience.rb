@@ -1,3 +1,5 @@
+require 'uri'
+
 class Experience < ActiveRecord::Base
   belongs_to :user
 
@@ -9,10 +11,11 @@ class Experience < ActiveRecord::Base
 
   validates :title, presence: true
   validates :category, presence: true
+  validates :category, inclusion: { in: %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne) }
   validates :description, presence: true
   validates :address, presence: true
-  validates :category, inclusion: { in: %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne) }
   validates :photos, presence: true
+  validate :valid_url
 
   has_attachments :photos, maximum: 3
 
@@ -87,4 +90,11 @@ private
     )
   end
 
+  def valid_url
+  return if self.url == nil
+  uri = URI.parse(self.url)
+  errors.add(:url, "n'est pas une URL valide.") unless uri.kind_of?(URI::HTTP)
+  rescue URI::InvalidURIError
+    errors.add(:url, "n'est pas une URL valide.")
+  end
 end

@@ -26,6 +26,11 @@
             <div class="experience-description">
               <%= @experience.description %>
             </div>
+            <% unless @experience.url.nil? %>
+              <div style="display: flex; justify-content: flex-end;">
+                <%= link_to "Visiter", @experience.url, class: "btn btn-primary" %>
+              </div>
+            <% end %>
             <div class="author-details">
               <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
               <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
