@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   get "my_experiences" => "experiences#my_experiences"
 
   resources :wishlists, only: [:index, :destroy]
+  resources :ratings, only: [:destroy]
 
   # Example resource route with options:
   #   resources :products do

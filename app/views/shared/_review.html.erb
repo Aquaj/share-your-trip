@@ -1,4 +1,4 @@
-<div class="review">
+<div class="review" id="review_<%= locals[:review].id %>">
   <div class="author">
     <%= cl_image_tag locals[:review].user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
     <span class="username"><%= locals[:review].user.first_name.capitalize %></span>
@@ -9,4 +9,9 @@
   <div class="rating">
     <%= render "shared/rating", rating: locals[:review].rating %>
   </div>
+  <% if policy(locals[:review]).destroy? %>
+    <%= link_to rating_path(locals[:review]), method: :delete do %>
+      <%= icon('times') %>
+    <% end %>
+  <% end %>
 </div>
