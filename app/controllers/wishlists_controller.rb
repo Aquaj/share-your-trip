@@ -2,7 +2,9 @@ class WishlistsController < ApplicationController
 # Wishlists are a collection of Experiences specific to each user that they can then browse.
 
   def index
-    @wishlists = policy_scope(Wishlist)
+    wishlists = policy_scope(Wishlist)
+    @groups = wishlists.group_by { |w| w.experience.country }
+    @groups = @groups.each { |country, g| @groups[country] = g.group_by { |w| w.experience.city } }
   end
 
   def create

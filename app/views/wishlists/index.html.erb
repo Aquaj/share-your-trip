@@ -1,13 +1,23 @@
 <h2 class="text-center"> Mes Favoris</h2>
 
 <div class="block-contain">
-  <div class="container-fluid">
-    <div class="row">
-      <% @wishlists.each do |wishlist| %>
-        <div class="col-xs-12 col-sm-4">
-          <%= render "shared/card", experience: wishlist.experience %>
+  <div class="container">
+    <% @groups.each do |country, content| %>
+      <div class="row">
+        <h3><%= country %></h3>
+        <div class="container" style="padding-left:50px;">
+          <% content.sort_by { |_,w| -w.length }.each do |city, wishlists| %>
+            <div class="row">
+              <h3><%= city %></h3>
+              <% wishlists.each do |wishlist| %>
+                <div class="col-xs-12 col-sm-4">
+                  <%= render "shared/card", experience: wishlist.experience %>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
-      <% end %>
-    </div>
+      </div>
+    <% end %>
   </div>
 </div>
