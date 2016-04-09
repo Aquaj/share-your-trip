@@ -38,9 +38,7 @@
               </div>
               <div class="interaction-buttons">
                 <% if user_signed_in? %>
-                <div id="wishlist">
-                  <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
-                </div>
+                <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
                 <%= render "shared/facebook_share" %>
                 <% end %>
               </div>

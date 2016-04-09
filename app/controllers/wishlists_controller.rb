@@ -11,7 +11,8 @@ class WishlistsController < ApplicationController
     @wishlist = current_user.wishlists.new()
     @wishlist.experience = Experience.find(params[:experience_id])
     authorize(@wishlist)
-
+    @experience = @wishlist.experience
+    @notext = (params[:notext] == "true")
     if @wishlist.save
       @wished = true
       respond_to do |format|
@@ -28,6 +29,7 @@ class WishlistsController < ApplicationController
 
   def destroy
     @wishlist = Wishlist.find(params[:id])
+    @notext = (params[:notext] == "true")
     authorize(@wishlist)
     @wishlist.destroy
     @wished = false

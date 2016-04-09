@@ -1,14 +1,47 @@
-<span class="bookmark">Bookmark </span>
-<% if wished %>
-
-  <%= link_to wishlist_path(wishlist), method: :delete, remote: true do %>
-    <i class="fa fa-heart"></i>
+<div class="wishlist-btn" id="wishlist_<%= experience.id %>">
+  <% notext ||= false %>
+  <% unless notext %>
+    <span class="bookmark">Bookmark </span>
   <% end %>
 
-<% else %>
+  <% if wished %>
 
-  <%= link_to experience_wishlists_path(experience), method: :post, remote: true do %>
-    <i class="fa fa-heart-o"></i>
+    <%= link_to '#', id:"wishlist-#{experience.id}-link" do %>
+      <i class="fa fa-heart"></i>
+    <% end %>
+
+  <% else %>
+
+    <%= link_to '#', id:"wishlist-#{experience.id}-link" do %>
+      <i class="fa fa-heart-o"></i>
+    <% end %>
+
   <% end %>
+</div>
 
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+      $("#wishlist-<%= experience.id %>-link").click(function(e){
+        e.preventDefault();
+        <% if wished %>
+          $.ajax({
+            method: "delete",
+            url: "<%= j wishlist_path(wishlist) %>.js",
+            data: {
+              notext: <%= notext %>
+            }
+          });
+        <% else %>
+          $.ajax({
+            method: "post",
+            url: "<%= j experience_wishlists_path(experience) %>.js",
+            data: {
+              notext: <%= notext %>
+            }
+          });
+        <% end %>
+      })
+    });
+  </script>
 <% end %>
