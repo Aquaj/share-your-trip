@@ -1,5 +1,6 @@
 class WishlistsController < ApplicationController
 # Wishlists are a collection of Experiences specific to each user that they can then browse.
+  before_action :getParams, only: [:create, :destroy]
 
   def index
     wishlists = policy_scope(Wishlist)
@@ -12,7 +13,6 @@ class WishlistsController < ApplicationController
     @wishlist.experience = Experience.find(params[:experience_id])
     authorize(@wishlist)
     @experience = @wishlist.experience
-    @notext = (params[:notext] == "true")
     if @wishlist.save
       @wished = true
       respond_to do |format|
@@ -29,7 +29,6 @@ class WishlistsController < ApplicationController
 
   def destroy
     @wishlist = Wishlist.find(params[:id])
-    @notext = (params[:notext] == "true")
     authorize(@wishlist)
     @wishlist.destroy
     @wished = false
@@ -46,6 +45,11 @@ class WishlistsController < ApplicationController
   def wishlist_params
     params[:wishlist][:experience_id] = params[:experience_id] if params[:wishlist]
     params.require(:wishlist).permit(:user_id, :experience_id)
+  end
+
+  def getParams
+    @delete_after = (params[:deleteAfter] == "true")
+    @notext = (params[:notext] == "true")
   end
 end
 

@@ -11,7 +11,7 @@
               <h3><%= city %></h3>
               <% wishlists.each do |wishlist| %>
                 <div class="col-xs-12 col-sm-4">
-                  <%= render "shared/card", experience: wishlist.experience %>
+                  <%= render "shared/card", experience: wishlist.experience, deletable: true %>
                 </div>
               <% end %>
             </div>

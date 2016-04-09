@@ -1,5 +1,6 @@
 <div class="wishlist-btn" id="wishlist_<%= experience.id %>">
   <% notext ||= false %>
+  <% delete_after ||= false %>
   <% unless notext %>
     <span class="bookmark">Bookmark </span>
   <% end %>
@@ -29,7 +30,8 @@
             method: "delete",
             url: "<%= j wishlist_path(wishlist) %>.js",
             data: {
-              notext: <%= notext %>
+              notext: <%= notext %>,
+              deleteAfter: <%= delete_after %>
             }
           });
         <% else %>
@@ -37,7 +39,8 @@
             method: "post",
             url: "<%= j experience_wishlists_path(experience) %>.js",
             data: {
-              notext: <%= notext %>
+              notext: <%= notext %>,
+              deleteAfter: <%= delete_after %>
             }
           });
         <% end %>

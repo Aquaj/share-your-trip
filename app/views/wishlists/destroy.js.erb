@@ -1,6 +1,9 @@
-$('#wishlist_<%= @experience.id %>').replaceWith("<%= j render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience, notext: @notext %>");
-$('#wishlist_<%= @experience.id %> i').addClass('heart-beating');
-
+<% if @delete_after %>
+   $('#wishlist_<%= @experience.id %>').parent().parent().parent().remove();
+<% else %>
+  $('#wishlist_<%= @experience.id %>').replaceWith("<%= j render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience, notext: @notext %>");
+  $('#wishlist_<%= @experience.id %> i').addClass('heart-beating');
+<% end %>
 $(document).ready(function(){
   $("#wishlist-<%= @experience.id %>-link").click(function(e){
     e.preventDefault();
