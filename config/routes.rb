@@ -22,14 +22,14 @@ Rails.application.routes.draw do
     resources :wishlists, only: [:create]
   end
 
+  post "gps_coordinates" => "images#get_gps"
+
   resources :roadmaps do
     get "send_roadmap" => "roadmaps#send_roadmap", as: 'send'
     resources :experiences do
       resources :activities, only: [:create]
     end
   end
-
-
 
   resources :roadmaps
   resources :activities, only: [:update, :destroy]
