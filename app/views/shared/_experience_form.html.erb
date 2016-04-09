@@ -1,0 +1,25 @@
+<% id ||= 'experience_autocomplete' %>
+<%# To allow Gmaps JS to work its magic even when we call the partial several times %>
+
+<%= simple_form_for experience do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :title, label: "Titre" %>
+  <%= f.input :category, as: :select, label: "Catégories", collection: Experience.categories %>
+  <%= f.input :description, label: "Description" %>
+  <%= f.input :address, label: "Adresse", input_html: {id: id} %>
+  <%= f.input :photos, as: :attachinary %>
+  <hr>
+  <%= f.button :submit, "Partage !", class:'btn btn-success btn-block' %>
+<% end %>
+
+<% content_for :after_js do %>
+  <script>
+    $(document).ready(function(){
+
+    google.maps.event.addDomListener(window, 'load', function() {
+      initializeAutocomplete("<%= j id %>");
+    });
+
+   });
+  </script>
+<% end %>

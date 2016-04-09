@@ -2,7 +2,7 @@ function initializeAutocomplete(id) {
   var element = document.getElementById(id);
   if (element) {
     var autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode', 'establishment'] });
-    console.log(autocomplete);
+    // console.log(autocomplete);
     google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
   }
 }
@@ -11,7 +11,7 @@ function initializeAutocomplete(id) {
 function onPlaceChanged() {
   var place = this.getPlace();
 
-  console.log(place);  // Uncomment this line to view the full object returned by Google API.
+  // console.log(place);  // Uncomment this line to view the full object returned by Google API.
 
   for (var i in place.address_components) {
     var component = place.address_components[i];

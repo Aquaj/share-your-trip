@@ -1,11 +1,8 @@
-<h2>Créez un nouveau coup de coeur !</h2>
-<%= simple_form_for @experience do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :title, label: "Titre" %>
-  <%= f.input :category, as: :select, label: "Catégories", collection: Experience.categories %>
-  <%= f.input :description, label: "Description" %>
-  <%= f.input :address, label: "Adresse" %>
-  <%= f.input :photos, as: :attachinary %>
-  <hr>
-  <%= f.button :submit, "Partage !", class:'btn btn-success btn-block' %>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2>Publiez votre coup de coeur.</h2>
+      <%= render "shared/experience_form", experience: @experience, id: "new_exp_autocomplete" %>
+    </div>
+  </div>
+</div>
