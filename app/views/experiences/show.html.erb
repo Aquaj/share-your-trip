@@ -32,16 +32,18 @@
               </div>
             <% end %>
             <div class="author-details">
-              <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
-              <div class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></div>
-            </div>
-            <div class="interaction-buttons">
-              <% if user_signed_in? %>
-              <div id="wishlist">
-                <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
+              <div>
+                <%= cl_image_tag @experience.user.avatar.path, crop: :fill, size: "30x30", class: "avatar", gravity: :face %>
+                <span class="author-name"><%= "#{@experience.user.first_name} #{@experience.user.last_name[0].upcase}." %></span>
               </div>
-              <%= render "shared/facebook_share" %>
-              <% end %>
+              <div class="interaction-buttons">
+                <% if user_signed_in? %>
+                <div id="wishlist">
+                  <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
+                </div>
+                <%= render "shared/facebook_share" %>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
