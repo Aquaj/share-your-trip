@@ -1,5 +1,3 @@
-require 'open-uri'
-
 class ImageDataService
   def get_gps_from_id(public_id)
     exif = Cloudinary::Api.resource(public_id, exif: true)["exif"]
