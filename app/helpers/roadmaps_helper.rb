@@ -1,40 +1,21 @@
 module RoadmapsHelper
   def title(roadmap)
-    start = "Mon voyage "
+    start = "Mon voyage"
 
-    # Traded sliiiiight amount of performance/memory
-    # to decrease significantly Geocoding queries.
-    cities = []
-    countries = []
-    continents = []
-
-    unless roadmap.start_destination.nil?
-      cities << roadmap.start_city
-      countries << roadmap.start_country
-      continents << roadmap.start_continent
+    details = roadmap.details
+    case details[:kind]
+    when :city
+      return "#{start} à #{details[:where]}"
+    when :country
+      return "#{start} #{(details[:where][-1] == 's') ? 'aux' : 'en'} #{details[:where]}"
+    when :continent
+      return "#{start} en #{details[:where]}"
+    when :bicontinent
+      return "#{start} #{details[:where]}"
+    when :global
+      return "#{start} autour du globe"
+    else
+      return "#{start}"
     end
-
-    unless roadmap.end_destination.nil?
-      cities << roadmap.end_city
-      countries << roadmap.end_country
-      continents << roadmap.end_continent
-    end
-
-    # in City (if everything happens in same city)
-    cities += roadmap.activities.map(&:city)
-    return "#{start} à #{cities.first}" if cities.uniq.length == 1
-
-    # in Country (if everything happens in same country)
-    countries += roadmap.activities.map(&:country)
-    return "#{start} #{(countries.first[-1] == 's') ? 'aux' : 'en'} #{countries.first}" if countries.uniq.length == 1
-
-    # in Continent (if everything hapens on same continent)
-    # Continent1 - Continent2 (if everything happens between two)
-    # around the world (if more than two continents are involved)
-    continents += roadmap.activities.map(&:continent)
-    continents.uniq!
-    return "#{start} en #{continents.first}" if continents.length == 1
-    return "#{start} #{continents.first} - #{continents.last}" if continents.length == 2
-    return "#{start} autour du globe"
   end
 end

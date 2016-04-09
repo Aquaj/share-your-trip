@@ -60,6 +60,41 @@ class Roadmap < ActiveRecord::Base
     return end_continent_cache
   end
 
+  def details
+    # Traded in sliiiiight amount of performance/memory
+    # to decrease significantly Geocoding queries.
+    cities = []
+    countries = []
+    continents = []
+
+    unless self.start_destination.nil?
+      cities << self.start_city
+      countries << self.start_country
+      continents << self.start_continent
+    end
+
+    unless self.end_destination.nil?
+      cities << self.end_city
+      countries << self.end_country
+      continents << self.end_continent
+    end
+
+    # in City (if everything happens in same city)
+    cities += self.activities.map(&:city)
+    return {kind: :city, where: cities.first} if cities.uniq.length == 1
+
+    # in Country (if everything happends in same country)
+    countries += self.activities.map(&:country)
+    return {kind: :country, where: countries.first} if countries.uniq.length == 1
+
+    continents += self.activities.map(&:continent)
+    continents.uniq!
+
+    return {kind: :continent, where: continents.first} if continents.length == 1
+    return {kind: :bicontinent, where: "#{continents.first} - #{continents.last}"} if continents.length == 2
+    return {kind: :global}
+  end
+
 private
 
   # TODO: Metaprog all those away.
@@ -97,7 +132,6 @@ private
       )
     end
   end
-
 
   ### Validators ###
 
