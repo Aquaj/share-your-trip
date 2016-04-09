@@ -1,21 +1,21 @@
 /* Main class */
 .navbar-wagon {
-  background: white;
+  background: transparent;
   transition: all 0.3s ease;
   display: flex;
   height: 70px;
   padding: 10px 15px 0 5px;
   align-items: center;
   justify-content: space-between;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2;
 }
 
 .navbar-wagon-white {
   background: transparent;
-  position: absolute;
-  top:0;
-  left: 0;
-  width: 100%;
-  z-index: 2;
 
   .navbar-wagon-button {
     margin-left: 10px;
@@ -82,7 +82,7 @@
   padding: 0 20px;
   border-radius: 5px;
   line-height: 35px;
-  background-color: transparent;
+  background-color: white;
   color: $syt-brand;
   font-size: 14px;
   border: 3px solid $syt-brand;
@@ -92,9 +92,9 @@
   }
 }
 .navbar-wagon-button:hover {
-  color: lighten($syt-brand, 35%);
-  background: transparent;
+  color: darken($syt-brand, 35%);
   border-color: $syt-brand;
+  background-color: rgba(white, 0.7);
 }
 
 /* Navbar dropdown menu */
