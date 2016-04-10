@@ -14,8 +14,11 @@
 
 <div class="fb-share-button" data-href="<%= url %>" data-layout="button_count"></div>
 
-<meta property="og:url"         content="http://share-your-trip.herokuapp.com" />
-<meta property="og:type"        content="website" />
-<meta property="og:title"       content="<%= title %>"/>
-<meta property="og:description" content="<%= description %>" />
-<meta property="og:image"       content="<%= photo %>" />
+
+<% content_for :head do %>
+  <meta property="og:url"         content="http://share-your-trip.herokuapp.com" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:title"       content="<%= title %>"/>
+  <meta property="og:description" content="<%= description %>" />
+  <meta property="og:image"       content="<%= photo %>" />
+<% end %>
