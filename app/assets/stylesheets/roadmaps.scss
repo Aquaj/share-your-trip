@@ -57,9 +57,6 @@ a.add-experience {
 .icon-controlled-access {
   font-size: 30px;
   color: black;
-  // position: absolute;
-  // top: 40px;
-  // right: 40px;
 
   &:hover{
     color: $blue;
@@ -78,12 +75,3 @@ a.add-experience {
 .block-right{
   padding: 0 15px;
 }
-//.city{
-  //position: relative;
-
-//  &::after {
-  //content: "<i class=\"fa fa-long-arrow-right\"></i>";
-//  position: absolute;
-  //right: -15px;
-//  }
-//}
