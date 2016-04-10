@@ -27,7 +27,7 @@
         <div class="reviews col-md-12" style="position: relative;">
           <%= render "schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %>
           <div style="position: absolute; top: 10px; right: 25px;">
-            <%= render "shared/facebook_share", url: roadmap_path(@roadmap), title: title(@roadmap), description: "Le voyage de #{@roadmap.user.first_name.capitalize}", photo: image_path("hiker-#{(1..2).to_a.sample}.jpg") %>
+            <%= render "shared/facebook_share", url: roadmap_url(@roadmap), title: title(@roadmap), description: "Le voyage de #{@roadmap.user.first_name.capitalize}", photo: image_url("hiker-#{(1..2).to_a.sample}.jpg") %>
           </div>
         </div>
       </div>
