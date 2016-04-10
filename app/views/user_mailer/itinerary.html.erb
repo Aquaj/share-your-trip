@@ -1,7 +1,9 @@
-<h1>Votre Itinéraire avec Share Your Trip!</h1>
-  <% planning = @roadmap.planning %>
-  <%= render "roadmaps/schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %>
+<h1>Votre Itinéraire avec ShareYourTrip !</h1>
+<% planning = @roadmap.planning %>
+<h2>Voici l'itinéraire du trajet : <%= title(@roadmap) %></h2>
+  <p><%= render "roadmaps/schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %></p>
 
-<p>Bon voyage!</p>
+<p>Bon voyage !</p>
+<p>Toute l'équipe de ShareYourTrip !</p>
 
 
