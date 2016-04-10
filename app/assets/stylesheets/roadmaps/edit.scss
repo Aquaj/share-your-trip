@@ -32,6 +32,10 @@
   margin-bottom: 40px;
   height: calc(100vh - 60px - 70px);
   overflow-y: auto;
+
+  .wishlist-btn{
+    display: none;
+  }
 }
 
 .itinerary {
