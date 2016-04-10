@@ -9,7 +9,7 @@
   <meta property="og:type"        content="website" />
   <meta property="og:title"       content="<%= title %>"/>
   <meta property="og:description" content="<%= description %>" />
-  <%= if photo.include?("http") %>
+  <% if photo.include?("http") %>
     <meta property="og:image"     content="<%= photo %>" />
   <% else %>
     <meta property="og:image"     content="http://share-your-trip.herokuapp.com/<%= photo %>" />
