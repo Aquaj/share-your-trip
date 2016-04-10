@@ -71,7 +71,7 @@ class Roadmap < ActiveRecord::Base
   # Repeat for all 3 components for both start and end
 
   def start_address
-    start_destination
+    start_destination if start_destination != start_city
   end
 
   # TODO: Metaprog all those away.
@@ -87,7 +87,7 @@ class Roadmap < ActiveRecord::Base
   end
 
   def end_address
-    end_destination
+    end_destination if end_destination != end_city
   end
 
   # TODO: Metaprog all those away.
