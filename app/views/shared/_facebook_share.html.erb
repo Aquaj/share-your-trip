@@ -12,7 +12,7 @@
   <% if photo.include?("http") %>
     <meta property="og:image"     content="<%= photo %>" />
   <% else %>
-    <meta property="og:image"     content="http://share-your-trip.herokuapp.com/<%= photo %>" />
+    <meta property="og:image"     content="http://share-your-trip.herokuapp.com<%= photo %>" />
   <% end %>
 <% end %>
 
