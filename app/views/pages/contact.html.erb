@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-sm-offset-3">
+      <h2>Contactez l'équipe.</h2>
+      <%= simple_form_for :contact do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :contact_address, label: "Votre adresse email.", placeholder: "jean.martin@gmail.com" %>
+        <%= f.input :subject, label: "Sujet du message.", placeholder: "Mon problème à moi." %>
+        <%= f.input :body, as: :text, label: "Message", placeholder: "Un problème ? Une suggestion ? Parlez-nous en." %>
+        <hr>
+        <%= f.button :submit, "Partage !", class:'btn btn-success btn-block' %>
+      <% end %>
+    </div>
+  </div>
+</div>
