@@ -5,11 +5,15 @@
 
 <% content_for :head do %>
   <meta property="fb:app_id"      content="<%= ENV['FB_ID'] %>"/>
-  <meta property="og:url"         content="<%= url %>" />
+  <meta property="og:url"         content="http://share-your-trip.herokuapp.com<%= url %>" />
   <meta property="og:type"        content="website" />
   <meta property="og:title"       content="<%= title %>"/>
   <meta property="og:description" content="<%= description %>" />
-  <meta property="og:image"       content="<%= photo %>" />
+  <%= if photo.include?("http") %>
+    <meta property="og:image"     content="<%= photo %>" />
+  <% else %>
+    <meta property="og:image"     content="http://share-your-trip.herokuapp.com/<%= photo %>" />
+  <% end %>
 <% end %>
 
 <% content_for :after_js do %>
