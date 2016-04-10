@@ -1,10 +1,10 @@
 class PlannerService
 
-  def plan_for(activities, start_city=nil, start_date=nil, end_city=nil, end_date=nil)
+  def plan_for(activities, start_=nil, start_date=nil, end_=nil, end_date=nil, scope=nil)
     schedule = create_schedule(activities, start_date, end_date)
     return {
       schedule: schedule,
-      itinerary: itinerary(schedule, start_city, end_city)
+      itinerary: itinerary(schedule, start_, end_, scope)
     }
   end
 
@@ -12,23 +12,32 @@ private
 
   # Lists the cities the traveller is gonna go through in the order
   # they will cross them from a Schedule
-  def itinerary(schedule, start_city, end_city)
+  def itinerary(schedule, start_, end_, scope)
+    case scope
+    when :city
+      function = :address
+    when :country
+      function = :city
+    else
+      function = :city
+    end
+
     itinerary_stops = []
 
-    itinerary_stops << start_city unless start_city.nil?
+    itinerary_stops << start_ unless start_.nil?
 
     schedule.each do |day|
       # For every day on the schedule
       %i(morning midday afternoon evening night).each do |part_of_day|
         day[part_of_day].each do |activity|
-          # Add the city of the activities the user
+          # Add the city/address of the activities the user
           # has planned to our itinerary
-          itinerary_stops << activity.city
+          itinerary_stops << activity.send(function)
         end
       end
     end
 
-    itinerary_stops << end_city unless end_city.nil?
+    itinerary_stops << end_ unless end_.nil?
 
     itinerary_stops.chunk{|x| x}.map(&:first)
     # Removes consecutive duplicates

@@ -14,50 +14,18 @@ class Roadmap < ActiveRecord::Base
   after_save :cache_end_components, if: :end_destination_changed?
 
   def planning
-    PlannerService.new.plan_for(activities, start_city, start_date, end_city, end_date)
-  end
+    case self.details[:kind]
+    when :city
+      function = :address
+    when :country
+      function = :city
+    else
+      function = :city
+    end
 
-  ## Explanation of functions below :
-  # When someone asks for the data (city/country/continent)
-  # we return the cached value.
-  # If cache is empty, we compute and cache all 3 components
-  # values for future use.
-  # Repeat for all 3 components for both start and end
-
-  # TODO: Metaprog all those away.
-  def start_city
-    cache_start_components if (start_city_cache.nil? && start_destination.present?)
-    return start_city_cache
-  end
-
-  # TODO: Metaprog all those away.
-  def start_country
-    cache_start_components if (start_country_cache.nil? && start_destination.present?)
-    return start_country_cache
-  end
-
-  # TODO: Metaprog all those away.
-  def start_continent
-    cache_start_components if (start_continent_cache.nil? && start_destination.present?)
-    return start_continent_cache
-  end
-
-  # TODO: Metaprog all those away.
-  def end_city
-    cache_end_components if (end_city_cache.nil? && end_destination.present?)
-    return end_city_cache
-  end
-
-  # TODO: Metaprog all those away.
-  def end_country
-    cache_end_components if (end_country_cache.nil? && end_destination.present?)
-    return end_country_cache
-  end
-
-  # TODO: Metaprog all those away.
-  def end_continent
-    cache_end_components if (end_continent_cache.nil? && end_destination.present?)
-    return end_continent_cache
+    start_ = send("start_#{function}")
+    end_ = send("end_#{function}")
+    PlannerService.new.plan_for(activities, start_, start_date, end_, end_date, self.details[:kind])
   end
 
   def details
@@ -93,6 +61,57 @@ class Roadmap < ActiveRecord::Base
     return {kind: :continent, where: continents.first} if continents.length == 1
     return {kind: :bicontinent, where: "#{continents.first} - #{continents.last}"} if continents.length == 2
     return {kind: :global}
+  end
+
+  ## Explanation of functions below :
+  # When someone asks for the data (city/country/continent)
+  # we return the cached value.
+  # If cache is empty, we compute and cache all 3 components
+  # values for future use.
+  # Repeat for all 3 components for both start and end
+
+  def start_address
+    start_destination
+  end
+
+  # TODO: Metaprog all those away.
+  def start_city
+    cache_start_components if (start_city_cache.nil? && start_destination.present?)
+    return start_city_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def start_country
+    cache_start_components if (start_country_cache.nil? && start_destination.present?)
+    return start_country_cache
+  end
+
+  def end_address
+    end_destination
+  end
+
+  # TODO: Metaprog all those away.
+  def start_continent
+    cache_start_components if (start_continent_cache.nil? && start_destination.present?)
+    return start_continent_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def end_city
+    cache_end_components if (end_city_cache.nil? && end_destination.present?)
+    return end_city_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def end_country
+    cache_end_components if (end_country_cache.nil? && end_destination.present?)
+    return end_country_cache
+  end
+
+  # TODO: Metaprog all those away.
+  def end_continent
+    cache_end_components if (end_continent_cache.nil? && end_destination.present?)
+    return end_continent_cache
   end
 
 private
