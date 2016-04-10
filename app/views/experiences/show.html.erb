@@ -39,7 +39,7 @@
               <div class="interaction-buttons">
                 <% if user_signed_in? %>
                 <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
-                <%= render "shared/facebook_share" %>
+                <%= render "shared/facebook_share", url: experience_path(@experience), title: @experience.title, description: @experience.description, photo: @experience.photos[0].url %>
                 <% end %>
               </div>
             </div>

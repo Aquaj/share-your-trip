@@ -12,7 +12,7 @@
           <%= link_to icon("envelope-o"), roadmap_send_path(@roadmap), class: "icon-controlled-access" %>
         </h2>
         </div>
-        <div class="text-and-author" style="margin-top:-20px; background-color: #F4F4F4 ;height: 100px; display: flex; align-items: center; justify-content: space-around;">
+        <div class="text-and-author" style="margin-top:-20px; background-color: #F4F4F4 ;height: 100px; display: flex; align-items: center; justify-content: space-around; flex-wrap: wrap;">
         <% planning[:itinerary].each_with_index do |city, index| %>
           <div class="city"><%= city %></div>
           <% unless index == (planning[:itinerary].length-1) %>
@@ -20,8 +20,11 @@
           <% end %>
         <% end %>
         </div>
-        <div class="reviews col-md-12">
+        <div class="reviews col-md-12" style="position: relative;">
           <%= render "schedule", schedule: planning[:schedule], unplanned: @roadmap.activities.where("planned_on IS NULL") %>
+          <div style="position: absolute; top: 10px; right: 25px;">
+            <%= render "shared/facebook_share", url: roadmap_path(@roadmap), title: title(@roadmap), description: "Le voyage de #{@roadmap.user.first_name.capitalize}", photo: image_path("hiker-#{(1..2).to_a.sample}.jpg") %>
+          </div>
         </div>
       </div>
       </div>

@@ -12,10 +12,10 @@
 </script>
 <% end %>
 
-<div class="fb-share-button" data-href="https://share-your-trip.herokuapp.com/experiences/<%= @experience.id %>" data-layout="button_count"></div>
+<div class="fb-share-button" data-href="<%= url %>" data-layout="button_count"></div>
 
-<meta property="og:url"           content="http://www.share-your-trip.herokuapp.com/experiences.html" />
-<meta property="og:type"        content="http://www.share-your-trip.herokuapp.com" />
-<meta property="og:title"       content="<%= @experience.title %>"/>
-<meta property="og:description" content="<%= @experience.description %>" />
-<meta property="og:image"       content="<%= @experience.photos[0] %>" />
+<meta property="og:url"         content="http://share-your-trip.herokuapp.com" />
+<meta property="og:type"        content="website" />
+<meta property="og:title"       content="<%= title %>"/>
+<meta property="og:description" content="<%= description %>" />
+<meta property="og:image"       content="<%= photo %>" />
