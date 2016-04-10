@@ -15,7 +15,8 @@ Rails.application.configure do
   config.action_controller.perform_caching = true
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { host: 'share-your-trip.herokuapp.com' }# Enable Rack::Cache to put a simple HTTP cache in front of your application
+  config.action_mailer.default_url_options = { host: ENV['HOST'] }
+  # Enable Rack::Cache to put a simple HTTP cache in front of your application
   # Add `rack-cache` to your Gemfile before enabling this.
   # For large-scale production use, consider using a caching reverse proxy like
   # NGINX, varnish or squid.

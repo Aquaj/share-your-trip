@@ -1,6 +1,6 @@
 class RoadmapsController < ApplicationController
   before_action :find_roadmap, only: [:edit, :update, :destroy, :show]
-  skip_before_action :authenticate_user!, only: [:send_roadmap, :show]
+  skip_before_action :authenticate_user!, only: [:show]
 
   def index
     @roadmaps = policy_scope(Roadmap).where("user_id = ?", user.id)
@@ -59,6 +59,7 @@ class RoadmapsController < ApplicationController
 
   def send_roadmap
     @roadmap = Roadmap.find(params[:roadmap_id])
+    authorize @roadmap
     UserMailer.itinerary(current_user, @roadmap).deliver
     flash[:notice] = "Votre itinéraire vous a été envoyé par email"
     redirect_to @roadmap

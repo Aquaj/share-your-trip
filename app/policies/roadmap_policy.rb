@@ -32,4 +32,8 @@ class RoadmapPolicy < ApplicationPolicy
   def destroy?
     record.user == user
   end
+
+  def send_roadmap?
+    true
+  end
 end
