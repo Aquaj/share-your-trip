@@ -1,9 +1,9 @@
 class RoadmapsController < ApplicationController
   before_action :find_roadmap, only: [:edit, :update, :destroy, :show]
-  skip_after_action :verify_authorized, only: [:send_roadmap]
+  skip_before_action :authenticate_user!, only: [:send_roadmap, :show]
 
   def index
-    @roadmaps = policy_scope(Roadmap)
+    @roadmaps = policy_scope(Roadmap).where("user_id = ?", user.id)
   end
 
   def show

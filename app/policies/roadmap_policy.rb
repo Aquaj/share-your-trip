@@ -1,7 +1,7 @@
 class RoadmapPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.where("user_id = ?", user.id)
+      scope.all
     end
   end
 
@@ -10,7 +10,7 @@ class RoadmapPolicy < ApplicationPolicy
   end
 
   def show
-    record.user == user
+    true
   end
 
   def update?
