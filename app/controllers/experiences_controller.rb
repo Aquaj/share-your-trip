@@ -18,7 +18,7 @@ class ExperiencesController < ApplicationController
     else
       @experiences = @experiences.sort { |e, f| e.created_at - f.created_at }
     end
-    @experiences = @experiences.reverse unless order == "asc"
+    @experiences = @experiences.reverse if order == "asc"
   end
 
   def show

@@ -47,10 +47,10 @@
         </div>
         <div class="reviews col-md-10 col-offset-1">
           <% if user_signed_in? && policy(@rating).new? %>
-          <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
+            <%= render "shared/review_form", locals: { parent: @experience, review: @rating } %>
           <% end %>
           <% @experience.ratings.each do |rating| %>
-          <%= render "shared/review", locals: { review: rating } %>
+            <%= render "shared/review", locals: { review: rating } %>
           <% end %>
         </div>
       </div>
