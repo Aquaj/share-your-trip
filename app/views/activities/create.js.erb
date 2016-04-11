@@ -2,11 +2,18 @@
   console.log("Errors in activity.");
   raise
 <% else %>
-  console.log("Appending activity.");
-  $('.to-see').append("<%= j render("shared/inline_activity", activity: @activity) %>");
+  $('.to-see').append("<%= j render("shared/inline_activity", activity: @activity, display_date: @date_needed) %>");
   $(".bootstrap-datepicker.activity-date").datepicker({
     isRTL: false,
     autoclose:true,
     language: 'fr'
   });
+  <% if @details[:kind] == :city %>
+    $("#roadmap_city").text("<%= @details[:where] %>");
+    $(".input_place_roadmap").css("display", "none");
+    $(".input_place_roadmap_placeholder").css("display", "");
+  <% else %>
+    $(".input_place_roadmap_placeholder").css("display", "none");
+    $(".input_place_roadmap").css("display", "");
+  <% end %>
 <% end %>

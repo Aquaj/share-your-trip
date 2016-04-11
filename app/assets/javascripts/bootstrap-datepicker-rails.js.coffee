@@ -11,3 +11,13 @@ $ ->
       url: "/activities/"+($(this)[0].id).split("-")[1],
       data: { planned_on: evt.date }
     });
+  $(document).on 'changeDate', '#roadmap_start_date.bootstrap-datepicker', (evt) ->
+    if $('#roadmap_start_date.bootstrap-datepicker').val() == $('#roadmap_end_date.bootstrap-datepicker').val()
+      $(".roadmap-activity .right").hide();
+    else
+      $(".roadmap-activity .right").show();
+  $(document).on 'changeDate', '#roadmap_end_date.bootstrap-datepicker', (evt) ->
+    if $('#roadmap_start_date.bootstrap-datepicker').val() == $('#roadmap_end_date.bootstrap-datepicker').val()
+      $(".roadmap-activity .right").hide();
+    else
+      $(".roadmap-activity .right").show();

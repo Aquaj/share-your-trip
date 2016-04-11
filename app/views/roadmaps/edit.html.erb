@@ -1,70 +1,93 @@
+<% display = nil %>
+<% display_counter = nil %>
+<% display = "display:none;" if @roadmap.kind == :city %>
+<% display_counter = "display:none;" unless @roadmap.kind == :city %>
+<%# see later comments about start point/end point%>
+
 <div class="container-fluid">
   <div class="row">
     <div class="col-lg-4">
-      <div class="parameters">
-        <%= simple_form_for @roadmap do |f| %>
-        <div class="row">
+      <%= simple_form_for @roadmap do |f| %>
+        <div class="parameters">
           <h3 style="text-align: center;">Construisez votre itinéraire.</h3>
-          <div class="formulaire col-lg-6">
-            <%= f.input :start_destination, label: 'Départ', placeholder: "Où ?" %>
-            <%= f.input :start_date, label: 'Du ', as: :bootstrap_datepicker, placeholder: "Quand ?" %>
-          </div>
-          <div class="formulaire col-lg-6">
-            <%= f.input :end_destination, label: 'Arrivée', placeholder: "Où ?" %>
-            <%= f.input :end_date, label: 'Au ', as: :bootstrap_datepicker, placeholder: "Quand ?" %>
-          </div>
-          <div class="formulaire col-lg-12">
-            <%= f.submit "Enregistrer", class: "btn btn-primary" %>
-          </div>
-            <% end %>
-        </div>
-      </div>
-      <div class="itinerary">
-        <div class="to-see">
-          <% @roadmap.activities.each do |activity| %>
-            <div class="roadmap-activity">
-              <div class="left">
-                <%= link_to icon('times'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
-                <p><%= activity.experience.title %></p>
-              </div>
-              <div class="right">
-              <% if activity.planned_on.present? %>
-                <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>/<%= activity.planned_on.month %>/<%= activity.planned_on.year %>">
-              <% else %>
-                <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" placeholder="Quand ?">
-              <% end %>
-              </div>
+          <div class="row input_place_roadmap" style="<%= display %>">
+            <div class="formulaire col-lg-6">
+              <%# When travelling in a city: use the first Experience as start point. %>
+              <%= f.input :start_destination, label: 'Départ', placeholder: "Où ?" %>
             </div>
-          <% end %>
+            <div class="formulaire col-lg-6">
+              <%# When travelling in a city: use the last Experience as end point. %>
+              <%= f.input :end_destination, label: 'Arrivée', placeholder: "Où ?" %>
+            </div>
+          </div>
+          <div class="row input_place_roadmap_placeholder" style="text-align: center;<%= display_counter %>">
+            <div class="col-lg-12">
+              <p>Vous être en train de construire un voyage pour la ville de</p>
+              <p id="roadmap_city" style="font-weight: bold;"><%= @roadmap.details[:where] %></p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="formulaire col-lg-6">
+                <%= f.input :start_date, label: 'Du ', as: :bootstrap_datepicker, placeholder: "Quand ?" %>
+            </div>
+            <div class="formulaire col-lg-6">
+                <%= f.input :end_date, label: 'Au ', as: :bootstrap_datepicker, placeholder: "Quand ?" %>
+            </div>
+          </div>
+        </div>
+        <div class="itinerary">
+          <div class="to-see">
+            <% @roadmap.activities.each do |activity| %>
+              <div class="roadmap-activity">
+                <div class="left">
+                  <%= link_to icon('times'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
+                  <p><%= activity.experience.title %></p>
+                </div>
+                <div class="right">
+                <% if activity.planned_on.present? %>
+                  <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>/<%= activity.planned_on.month %>/<%= activity.planned_on.year %>">
+                <% else %>
+                  <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" placeholder="Quand ?">
+                <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="parameters" style="padding: 0; height: 40px; margin-top: 5px;">
+          <div class="row">
+            <div class="formulaire col-lg-12">
+             <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+            </div>
+          </div>
         </div>
       </div>
-
-    </div>
-    <div class="col-lg-8">
-      <div class="experiences-roadmap">
-      <div class="container-fluid">
-        <% @groups.each do |country, content| %>
-          <div class="row">
-            <h3><%= country %></h3>
-            <div class="container_fluid" style="padding-left:30px;">
-              <% content.sort_by { |_,w| -w.length }.each do |city, experience| %>
-                <div class="row">
-                  <h3><%= city %></h3>
-                  <% experience.each do |experience| %>
-                    <div class="col-xs-12 col-sm-4">
-                      <%= render "shared/card", experience: experience %>
-                      <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience", id: "add-experience-#{experience.id}", remote: true, method: :post %>
+      <% end %>
+      <div class="col-lg-8">
+        <div class="experiences-roadmap">
+          <div class="container-fluid">
+            <% @groups.sort_by { |_, c| -c.reduce(0){ |a, e| a + e.length } }.each do |country, content| %>
+              <div class="row">
+                <h3><%= country %></h3>
+                <div class="container_fluid" style="padding-left:30px;">
+                  <% content.sort_by { |_,e| -e.length }.each do |city, experience| %>
+                    <div class="row">
+                      <h3><%= city %></h3>
+                      <% experience.each do |experience| %>
+                        <div class="col-xs-12 col-sm-4">
+                          <%= render "shared/card", experience: experience %>
+                          <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience", id: "add-experience-#{experience.id}", remote: true, method: :post %>
+                        </div>
+                      <% end %>
                     </div>
                   <% end %>
                 </div>
-              <% end %>
-            </div>
+              </div>
+            <% end %>
           </div>
-        <% end %>
+        </div>
       </div>
     </div>
-    </div>
-  </div>
 </div>
 
 <% content_for :after_js do %>
@@ -89,13 +112,8 @@
         console.log("activity-"+activityID.split("-")[1]+"-date")
         $("#activity-"+activityID.split("-")[1]+"-date").val("");
       });
+    });
 
-    });
-    $(".bootstrap-datepicker.roadmap-date").datepicker({
-      isRTL: false,
-      autoclose:true,
-      language: 'fr'
-    });
     $(".bootstrap-datepicker.activity-date").datepicker({
       isRTL: false,
       autoclose:true,

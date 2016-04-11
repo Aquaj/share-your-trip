@@ -1,1 +1,9 @@
 $('a.remove-experience-<%= @id %>').parent().parent().remove();
+<% if @details[:kind] == :city %>
+  $(".input_place_roadmap").css("display", "none");
+  $(".input_place_roadmap_placeholder").css("display", "");
+  $("#roadmap_city").text("<%= @details[:where] %>");
+<% else %>
+  $(".input_place_roadmap_placeholder").css("display", "none");
+  $(".input_place_roadmap").css("display", "");
+<% end %>

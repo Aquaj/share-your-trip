@@ -7,6 +7,11 @@ class ActivitiesController < ApplicationController
       @activity = Activity.new(experience: @experience, roadmap: @roadmap)
       authorize @activity
       if @activity.save
+        @details = @roadmap.details
+        @date_needed = true
+        unless @roadmap.start_date.nil? || @roadmap.end_date.nil?
+          @date_needed = (@roadmap.start_date == @roadmap.end_date)
+        end
         respond_to do |format|
           format.js
         end
@@ -33,7 +38,9 @@ class ActivitiesController < ApplicationController
     def destroy
       authorize @activity
       @id = @activity.id
+      roadmap = @activity.roadmap
       @activity.destroy
+      @details = roadmap.details
       respond_to do |format|
         format.js
       end

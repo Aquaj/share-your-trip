@@ -3,11 +3,13 @@
     <%= link_to icon('times'), activity_path(activity), method: :delete, remote: true, class: "remove-experience remove-experience-#{activity.id}" %>
     <p><%= activity.experience.title %></p>
   </div>
-  <div class="right">
-  <% if activity.planned_on.present? %>
-    <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>/<%= activity.planned_on.month %>/<%= activity.planned_on.year %>">
-  <% else %>
-    <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" placeholder="Quand ?">
+  <% if display_date %>
+    <div class="right">
+    <% if activity.planned_on.present? %>
+      <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>/<%= activity.planned_on.month %>/<%= activity.planned_on.year %>">
+    <% else %>
+      <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" placeholder="Quand ?">
+    <% end %>
+    </div>
   <% end %>
-  </div>
 </div>
