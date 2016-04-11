@@ -15,10 +15,10 @@ class ExperiencesController < ApplicationController
     end
     if sort == "note"
       @experiences = @experiences.sort { |e, f| e.average_rating - f.average_rating }
-    elsif sort == "date"
+    else
       @experiences = @experiences.sort { |e, f| e.created_at - f.created_at }
     end
-    @experiences = @experiences.reverse if order == "desc"
+    @experiences = @experiences.reverse unless order == "asc"
   end
 
   def show
