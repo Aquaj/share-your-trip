@@ -7,9 +7,10 @@
 
   <%= simple_form_for :search, url: experiences_path, method: :get, html: { class: 'form-search form-inline' } do |f| %>
     <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Où souhaitez-vous aller ?", class: "input-medium search-query" %>
+    <%= f.submit "Chercher", class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
     <% unless noorder %>
       <%= f.input_field :sort,
-        include_blank: false, #"Classer par...",
+        include_blank: "Trier par...",
         as: :select,
         collection: [:date, :note],
         label_method: ->(i){ {date: "Date", note: "Note moyenne"}[i] },
@@ -21,7 +22,6 @@
         label_method: ->(i){ {asc: "Ascendant", desc: "Descendant"}[i] },
         class: "select form-control" %>
     <% end %>
-    <%= f.submit "Chercher", class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn btn-square" %>
   <% end %>
 
 </div>
