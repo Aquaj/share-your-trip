@@ -7,7 +7,7 @@ class RoadmapsController < ApplicationController
   end
 
   def show
-    authorize
+    authorize(@roadmap)
     # Ensuring basic completion before display.
     if @roadmap.start_destination.nil? ||
        @roadmap.end_destination.nil? ||
@@ -46,10 +46,10 @@ class RoadmapsController < ApplicationController
     if @roadmap.start_destination.present?
       around = @roadmap.start_city
     end
-    @experiences = []
-    @experiences += current_user.wishlisted_experiences
-    @experiences += Experience.search({address: around}, policy_scope(Experience)) # For now > All.
-    @experiences.uniq.sort!{ |exp| -exp.average_rating }
+    experiences = current_user.wishlisted_experiences
+    experiences.uniq.sort! { |exp| -exp.average_rating }
+    @groups = experiences.group_by { |e| e.country }
+    @groups = @groups.each { |country, g| @groups[country] = g.group_by { |e| e.city } }
   end
 
   def destroy

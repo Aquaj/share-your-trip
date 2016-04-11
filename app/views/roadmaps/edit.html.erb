@@ -4,7 +4,7 @@
       <div class="parameters">
         <%= simple_form_for @roadmap do |f| %>
         <div class="row">
-          <h3 style="text-align: center;">Construis ton itinéraire.</h3>
+          <h3 style="text-align: center;">Construisez votre itinéraire.</h3>
           <div class="formulaire col-lg-6">
             <%= f.input :start_destination, label: 'Départ', placeholder: "Où ?" %>
             <%= f.input :start_date, label: 'Du ', as: :bootstrap_datepicker, placeholder: "Quand ?" %>
@@ -43,14 +43,24 @@
     <div class="col-lg-8">
       <div class="experiences-roadmap">
       <div class="container-fluid">
-        <div class="row">
-          <% @experiences.each do |experience| %>
-          <div class="col-lg-6">
-            <%= render "shared/card", experience: experience %>
-            <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience", id: "add-experience-#{experience.id}", remote: true, method: :post %>
+        <% @groups.each do |country, content| %>
+          <div class="row">
+            <h3><%= country %></h3>
+            <div class="container_fluid" style="padding-left:30px;">
+              <% content.sort_by { |_,w| -w.length }.each do |city, experience| %>
+                <div class="row">
+                  <h3><%= city %></h3>
+                  <% experience.each do |experience| %>
+                    <div class="col-xs-12 col-sm-4">
+                      <%= render "shared/card", experience: experience %>
+                      <%= link_to icon('plus'), roadmap_experience_activities_path(@roadmap, experience), class: "add-experience", id: "add-experience-#{experience.id}", remote: true, method: :post %>
+                    </div>
+                  <% end %>
+                </div>
+              <% end %>
+            </div>
           </div>
         <% end %>
-        </div>
       </div>
     </div>
     </div>
