@@ -4,14 +4,13 @@ class ActivitiesController < ApplicationController
     before_action :find_roadmap, only: [:create]
 
     def create
-      @activity = Activity.new(experience: @experience, roadmap: @roadmap)
+      planned = nil
+      planned = @roadmap.start_date if params[:single_day] == 'true'
+      @activity = Activity.new(experience: @experience, roadmap: @roadmap, planned_on: planned)
       authorize @activity
       if @activity.save
         @details = @roadmap.details
-        @date_needed = true
-        unless @roadmap.start_date.nil? || @roadmap.end_date.nil?
-          @date_needed = (@roadmap.start_date == @roadmap.end_date)
-        end
+        @date_needed = !params[:single_day]
         respond_to do |format|
           format.js
         end

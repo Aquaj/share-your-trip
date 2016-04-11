@@ -28,6 +28,10 @@ class Roadmap < ActiveRecord::Base
     PlannerService.new.plan_for(activities, start_, start_date, end_, end_date, self.kind)
   end
 
+  def single_day?
+    !self.start_date.nil? && self.start_date == self.end_date
+  end
+
   def kind
     self.details[:kind]
   end
@@ -75,6 +79,7 @@ class Roadmap < ActiveRecord::Base
   # Repeat for all 3 components for both start and end
 
   def start_address
+    return nil if self.kind == :city
     start_destination if start_destination != start_city
   end
 
@@ -90,14 +95,15 @@ class Roadmap < ActiveRecord::Base
     return start_country_cache
   end
 
-  def end_address
-    end_destination if end_destination != end_city
-  end
-
   # TODO: Metaprog all those away.
   def start_continent
     cache_start_components if (start_continent_cache.nil? && start_destination.present?)
     return start_continent_cache
+  end
+
+  def end_address
+    return nil if self.kind == :city
+    end_destination if end_destination != end_city
   end
 
   # TODO: Metaprog all those away.
