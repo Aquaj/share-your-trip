@@ -3,11 +3,11 @@ class RoadmapsController < ApplicationController
   skip_before_action :authenticate_user!, only: [:show]
 
   def index
-    @roadmaps = policy_scope(Roadmap).where("user_id = ?", user.id)
+    @roadmaps = policy_scope(Roadmap).where("user_id = ?", current_user.id)
   end
 
   def show
-    authorize @roadmap
+    authorize
     # Ensuring basic completion before display.
     if @roadmap.start_destination.nil? ||
        @roadmap.end_destination.nil? ||
