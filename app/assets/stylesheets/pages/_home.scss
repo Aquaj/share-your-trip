@@ -105,6 +105,7 @@
   background-position: center center;
   position: relative;
 }
+
 .banner-content {
   position: absolute;
   bottom: 0;
@@ -123,6 +124,15 @@
     font-weight: lighter;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 20px;
+  }
+}
+@media (max-width: 920px) {
+  .banner-content{
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
 }
 

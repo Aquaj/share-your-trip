@@ -24,6 +24,10 @@
 @import "roadmaps";
 
 .index-search-field {
+  input, select {
+    margin-bottom: 5px;
+  }
+
   input[type="text"] {
     padding: 8px 20px;
     width: 320px;

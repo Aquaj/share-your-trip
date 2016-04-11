@@ -3,7 +3,7 @@
 <%# extract id to partial parameter and u go %>
 <div class="index-search-field">
 
-  <%= simple_form_for :search, url: experiences_path, method: 'get', html: { class: 'form-search form-inline' } do |f| %>
+  <%= simple_form_for :search, url: experiences_path, method: :get, html: { class: 'form-search form-inline' } do |f| %>
     <%= f.input_field :address, id: "user_input_autocomplete_address", placeholder: "Où souhaitez-vous aller ?", class: "input-medium search-query" %>
     <%= f.input_field :sort,
       include_blank: false, #"Classer par...",
