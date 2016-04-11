@@ -107,11 +107,15 @@
 }
 
 .banner-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: absolute;
-  bottom: 0;
+  flex-direction: column;
+  top: 0;
   left: 0;
   right: 0;
-  height: 20%;
+  height: 100%;
   h1 {
     font-family: "Raleway", sans-serif;
     font-weight: 300;
@@ -124,15 +128,6 @@
     font-weight: lighter;
     color: rgba(255, 255, 255, 0.7);
     margin-bottom: 20px;
-  }
-}
-@media (max-width: 920px) {
-  .banner-content{
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
   }
 }
 
