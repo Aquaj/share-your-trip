@@ -18,12 +18,7 @@
         Publier un <%= icon("heart") %>
       </button>
 
-      <%= link_to "Créer un itinéraire #{icon "globe"}".html_safe, roadmaps_path, method: :post, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button"%><!-- Notification -->
-      <%= link_to wishlists_path, class: "navbar-wagon-item navbar-wagon-link", style: "padding-right: 0;" do %>
-      <div class="badge-container">
-        <i class="fa fa-heart-o"></i>
-      </div>
-      <% end %>
+      <%= link_to "Créer un itinéraire #{icon "globe"}".html_safe, roadmaps_path, method: :post, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button"%>
 
       <!-- Profile picture and dropdown -->
       <div class="navbar-wagon-item">
@@ -62,6 +57,7 @@
     <% else %>
       <!-- Login text link -->
       <%= link_to "Publier un #{ icon("heart")}".html_safe, new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
+      <%= link_to "Créer un itinéraire #{icon "globe"}".html_safe, new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
       <%= link_to t(".sign_in", default: "Connexion"), new_user_session_path, class: "navbar-wagon-item navbar-wagon-link navbar-wagon-button btn" %>
     <% end %>
 
