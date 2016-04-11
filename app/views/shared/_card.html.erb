@@ -1,7 +1,7 @@
 <% deletable ||= false %>
 <div class="card_wrapper" style="position:relative;">
   <%= link_to experience do %>
-    <div class="card text-center" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.4) 100%), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
+    <div class="card text-center" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.3) 100%), url('<%= cl_image_path experience.photos[0].path, size: "500x300", crop: :fill; %>');">
       <div class="card-user">
         <%= cl_image_tag experience.user.avatar.path, class:"avatar-radius", size: "40x40",crop: :fill, gravity: :faces, title: experience.user.first_name %>
       </div>
