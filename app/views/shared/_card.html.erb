@@ -12,8 +12,20 @@
         <%= experience.category %>
       </p>
       <div class="card-description">
-        <h3><%= experience.title %></h3>
-        <p><%= experience.description[0...300] + "..." %></p>
+        <h3>
+          <% if experience.title.length > 30 %>
+            <%= "#{experience.title[0...27]}..." %>
+          <% else %>
+            <%= experience.title %>
+          <% end %>
+        </h3>
+        <p>
+          <% if experience.description.length > 300 %>
+            <%= "#{experience.description[0...297]}..." %>
+          <% else %>
+            <%= experience.description %>
+          <% end %>
+        </p>
       </div>
       <div class="card-location">
         <i class="fa fa-map-marker"></i><p><%= experience.city %>, <%= experience.country %></p>

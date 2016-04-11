@@ -39,7 +39,7 @@
               <div class="interaction-buttons">
                 <% if user_signed_in? %>
                 <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
-                <%= render "shared/facebook_share", url: experience_path(@experience), title: @experience.title, description: @experience.description, photo: @experience.photos[0].url %>
+                <%= render "shared/facebook_share", url: experience_path(@experience), title: @experience.title, description: @experience.description, photo: @experience.photos[0].path %>
                 <% end %>
               </div>
             </div>
@@ -59,8 +59,10 @@
           <div class="pictures col-md-12">
             <%= cl_image_tag @experience.photos[0].path, class: "main-picture", crop: :fill %>
             <div class="sub-pictures">
-              <% @experience.photos.each do |photo| %>
-                <%= cl_image_tag photo.path, crop: :lfill, class: "sub-picture" %>
+              <% if @experience.photos.length > 1 %>
+                <% @experience.photos.each do |photo| %>
+                  <%= cl_image_tag photo.path, crop: :lfill, class: "sub-picture" %>
+                <% end %>
               <% end %>
             </div>
           </div>
