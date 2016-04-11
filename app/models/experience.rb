@@ -2,6 +2,7 @@ require 'uri'
 
 class Experience < ActiveRecord::Base
   belongs_to :user
+  belongs_to :category
 
   has_many :ratings, dependent: :destroy
   has_many :wishlists, dependent: :destroy
@@ -11,7 +12,6 @@ class Experience < ActiveRecord::Base
 
   validates :title, presence: true
   validates :category, presence: true
-  validates :category, inclusion: { in: %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne) }
   validates :description, presence: true
   validates :address, presence: true
   validates :photos, presence: true
@@ -22,10 +22,6 @@ class Experience < ActiveRecord::Base
   geocoded_by :address
   after_validation :geocode, if: :address_changed?
   after_save :cache, if: :address_changed?
-
-  def self.categories
-    return %W(Amusement Panorama Visite Nature Musée Évènement Hôtel Restaurant Bar Vie\ Nocturne)
-  end
 
   def self.search(search, experiences) # Second parameter needed to account for Pundit scope
     locate = LocationService.new
@@ -43,12 +39,12 @@ class Experience < ActiveRecord::Base
   end
 
   def is_occupation?
-    return !%W(Hôtel Restaurant Bar Vie\ Nocturne).include?(self.category)
+    return !%W(Hôtel Restaurant Bar Vie\ Nocturne).include?(self.category.title)
   end
 
   # Not used (yet?)
   def is_reusable?
-    return self.category == "Hôtel"
+    return self.category.title == "Hôtel"
   end
 
   def average_rating

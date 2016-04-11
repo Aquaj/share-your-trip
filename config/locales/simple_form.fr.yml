@@ -1,4 +1,5 @@
-simple_form:
+fr:
+  simple_form:
     "yes": 'Oui'
     "no": 'Non'
     required:

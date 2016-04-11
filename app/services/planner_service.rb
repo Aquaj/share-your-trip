@@ -73,16 +73,16 @@ private
 
       #  -- Everything non-occupational :
       #     -- Restaurants
-      restaurants = day[:unscheduled].select { |poi| poi.category == "Restaurant" }.shuffle
+      restaurants = day[:unscheduled].select { |poi| poi.category.title == "Restaurant" }.shuffle
 
       #     -- Bars
-      bars = day[:unscheduled].select { |poi| poi.category == "Bar" }.shuffle
+      bars = day[:unscheduled].select { |poi| poi.category.title == "Bar" }.shuffle
 
       #     -- Hotels
-      hotels = day[:unscheduled].select { |poi| poi.category == "Hotel" }.shuffle
+      hotels = day[:unscheduled].select { |poi| poi.category.title == "Hotel" }.shuffle
 
       #     -- Nightlife
-      nightlife = day[:unscheduled].select { |poi| poi.category == "Vie nocturne" }.shuffle
+      nightlife = day[:unscheduled].select { |poi| poi.category.title == "Vie nocturne" }.shuffle
 
       # Initializing the Hash that'll keep track of what couldn't fit.
       unscheduled = {occupations: [], bars: [], restaurants: [], hotels: [], nightlife: []}

@@ -7,9 +7,6 @@ fr:
       default: "%d/%m/%Y"
       long: ! '%d %B, %Y'
   activerecord:
-    errors:
-      messages:
-        record_invalid: 'La validation a échoué : %{errors}'
     date:
       abbr_day_names:
       - dim
@@ -111,6 +108,7 @@ fr:
     errors:
       format: "%{attribute} %{message}"
       messages:
+        record_invalid: 'La validation a échoué : %{errors}'
         accepted: doit être accepté(e)
         blank: doit être rempli(e)
         present: doit être vide

@@ -5,7 +5,17 @@
 <%= simple_form_for experience do |f| %>
   <%= f.error_notification %>
   <%= f.input :title, label: "Titre" %>
-  <%= f.input :category, as: :select, label: "Catégories", collection: Experience.categories %>
+  <%= f.input :category,
+              as: :select,
+              label: "Catégories",
+              collection: Category.as_tree,
+              label_method: ->(c) do
+                if c.parent_category.nil?
+                  c.title
+                else
+                  "| -- #{c.title}"
+                end
+              end %>
   <%= f.input :description, label: "Description" %>
   <%= f.input :url, label: "Lien" %>
   <%= f.input :photos, as: :attachinary, input_html: {id: "#{id}_attachinary_input"} %>

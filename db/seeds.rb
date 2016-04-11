@@ -30,25 +30,25 @@ cHb = Category.create!(title:"Hébergement")
 puts "    -- Hôtel"
 cHt = Category.create!(title:"Hôtel", parent_category: cHb)
 
-puts "    -- Autres"
+puts "    -- Autres hébergements"
 cHa = Category.create!(title:"Autres", parent_category: cHb)
 
 puts "  -- Restauration"
 cRs = Category.create!(title:"Restauration")
 
 puts "    -- Restaurant"
-cRt = Category.create!(title:"Restaurant", parent_category: cRt)
+cRt = Category.create!(title:"Restaurant", parent_category: cRs)
 
 puts "    -- Sur le pouce"
-cRp = Category.create!(title:"Sur le pouce", parent_category: cRt)
+cRp = Category.create!(title:"Sur le pouce", parent_category: cRs)
 
 puts "  -- Bar/café"
 cBc = Category.create!(title:"Bar/café")
 
-puts "    -- De jour"
+puts "    -- Bar-café de jour"
 cBj = Category.create!(title:"De jour", parent_category: cBc)
 
-puts "    -- De nuit"
+puts "    -- Bar-café de nuit"
 cBn = Category.create!(title:"De nuit", parent_category: cBc)
 
 puts "  -- Lieu"
@@ -225,7 +225,7 @@ puts "-- Done!"
 puts "-- Wishlists"
 wishlist1 = userjulien.wishlists.create!(experience_id: experience_cite.id)
 wishlist2 = userjulien.wishlists.create!(experience_id: experience_vespa_tour.id)
-wishlist10 = userjulien.wishlists.create!(experience_id: experience_bahn.id)
+wishlist10 = userjulien.wishlists.create!(experience_id: experience_banh.id)
 wishlist3 = user5.wishlists.create!(experience_id: experience_pierre.id)
 wishlist4 = user2.wishlists.create!(experience_id: experience_lost.id)
 wishlist5 = user2.wishlists.create!(experience_id: experience_cricket.id)
