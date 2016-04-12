@@ -4,7 +4,7 @@ class PlannerService
     schedule = create_schedule(activities, start_date, end_date)
     return {
       schedule: schedule,
-      itinerary: itinerary(schedule, start_, end_, scope)
+      itinerary: itinerary(activities, start_, end_, scope)
     }
   end
 
@@ -12,7 +12,8 @@ private
 
   # Lists the cities the traveller is gonna go through in the order
   # they will cross them from a Schedule
-  def itinerary(schedule, start_, end_, scope)
+  def itinerary(source, start_, end_, scope)
+    # source was a schedule, now just a list of activities
     case scope
     when :city
       function = :address
@@ -26,7 +27,12 @@ private
 
     itinerary_stops << start_ unless start_.nil?
 
-    schedule.each do |day|
+
+
+=begin
+  # Not used for now. We'll see
+
+    source.each do |day|
       # For every day on the schedule
       %i(morning midday afternoon evening night).each do |part_of_day|
         day[part_of_day].each do |activity|
@@ -36,6 +42,8 @@ private
         end
       end
     end
+
+=end
 
     itinerary_stops << end_ unless end_.nil?
 
@@ -73,16 +81,37 @@ private
 
       #  -- Everything non-occupational :
       #     -- Restaurants
-      restaurants = day[:unscheduled].select { |poi| poi.category.title == "Restaurant" }.shuffle
+      restaurants = day[:unscheduled].select do |poi|
+        Category.find_by_title("Restauration")
+        .with_child
+        .include? poi.category
+      end
+      restaurants.shuffle!
 
       #     -- Bars
-      bars = day[:unscheduled].select { |poi| poi.category.title == "Bar" }.shuffle
+      bars = day[:unscheduled].select do |poi|
+        Category.find_by_title("Bar/café")
+          .with_child
+          .reject { |c| c.title == "De nuit" }
+          .include? poi.category
+      end
+      bars.shuffle!
 
       #     -- Hotels
-      hotels = day[:unscheduled].select { |poi| poi.category.title == "Hotel" }.shuffle
+      hotels = day[:unscheduled].select do |poi|
+        Category.find_by_title("Hébergement")
+          .with_child
+          .include? poi.category
+        end
+        hotels.shuffle!
 
       #     -- Nightlife
-      nightlife = day[:unscheduled].select { |poi| poi.category.title == "Vie nocturne" }.shuffle
+      nightlife = day[:unscheduled].select do |poi|
+        Category.find_by_title("De nuit")
+        .with_child
+        .include? poi.category
+      end
+      nightlife.shuffle!
 
       # Initializing the Hash that'll keep track of what couldn't fit.
       unscheduled = {occupations: [], bars: [], restaurants: [], hotels: [], nightlife: []}

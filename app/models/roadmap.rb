@@ -25,7 +25,8 @@ class Roadmap < ActiveRecord::Base
 
     start_ = send("start_#{function}")
     end_ = send("end_#{function}")
-    PlannerService.new.plan_for(activities, start_, start_date, end_, end_date, self.kind)
+    PlannerService.new
+    .plan_for(activities, start_, start_date, end_, end_date, self.kind)
   end
 
   def single_day?

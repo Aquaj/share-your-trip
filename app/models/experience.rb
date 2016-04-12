@@ -61,7 +61,9 @@ class Experience < ActiveRecord::Base
   end
 
   def is_occupation?
-    return !%W(Hôtel Restaurant Bar Vie\ Nocturne).include?(self.category.title)
+    return !%W(Hébergement Restauration Bar/café Commerçant\ Local)
+      .map { |t| Category.find_by_title(t).with_children.flatten }
+      .include?(self.category.title)
   end
 
   # Not used (yet?)
