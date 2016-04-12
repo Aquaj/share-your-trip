@@ -6,7 +6,7 @@ body {
 }
 
 .map-wrapper{
-  height: calc(100vh - 395px);
+  height: calc(100vh - 395px - 2px);
   margin: 0 -15px;
 }
 
@@ -52,6 +52,7 @@ body {
   padding: 0;
   height: calc(100vh - 70px);
   overflow-y: auto;
+  border-right: 2px solid white;
 }
 
 .text-and-author{
@@ -175,6 +176,7 @@ body {
   flex-wrap: wrap;
   justify-content: space-around;
   align-content: space-between;
+  margin-bottom: 2px;
 
   img{
     width: 100%;
