@@ -15,12 +15,6 @@
         collection: [:date, :note],
         label_method: ->(i){ {date: "Date", note: "Note moyenne"}[i] },
         class: "select form-control" %>
-      <%= f.input_field :order,
-        as: :select,
-        include_blank: "Ordre",
-        collection: [:asc, :desc],
-        label_method: ->(i){ {asc: "Ascendant", desc: "Descendant"}[i] },
-        class: "select form-control" %>
     <% end %>
   <% end %>
 

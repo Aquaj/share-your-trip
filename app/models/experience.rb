@@ -24,9 +24,11 @@ class Experience < ActiveRecord::Base
   after_save :cache, if: :address_changed?
 
   def self.search(search, experiences) # Second parameter needed to account for Pundit scope
+    # TODO: Extract the three parts in respective methods.
     locate = LocationService.new
     results = experiences
     if search
+      # Localization
       if !search[:address].blank?
         city = locate.city(search[:address]) # if it's not city it's a country
         if city.present? # city
@@ -36,11 +38,24 @@ class Experience < ActiveRecord::Base
           results = results.select{ |e| e.country == country}
         end
       end
+
+      # Category
       if !search[:category].blank?
         filter_category = Category.find(search[:category])
         results = results.select { |e| filter_category.with_children.include? e.category }
       end
+
+      # Sorting/ordering
+      sort = search[:sort]
+      if sort == "note"
+        # Best to worst // + to -
+        results = results.sort { |e, f| f.average_rating - e.average_rating }
+      else
+        # Most recent to oldest // - to +
+        results = results.sort { |e, f| e.created_at - f.created_at }
+      end
     end
+
     results
   end
 
