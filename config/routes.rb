@@ -27,7 +27,10 @@ Rails.application.routes.draw do
   end
 
   resources :roadmaps
-  resources :activities, only: [:update, :destroy]
+  resources :activities, only: [:update, :destroy] do
+    post "up" => "activities#up"
+    post "down" => "activities#down"
+  end
 
   get "my_experiences" => "experiences#my_experiences"
 

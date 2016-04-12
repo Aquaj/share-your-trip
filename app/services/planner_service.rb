@@ -44,6 +44,7 @@ private
     end
 
 =end
+    itinerary_stops += source.map(&function)
 
     itinerary_stops << end_ unless end_.nil?
 
@@ -83,7 +84,7 @@ private
       #     -- Restaurants
       restaurants = day[:unscheduled].select do |poi|
         Category.find_by_title("Restauration")
-        .with_child
+        .with_children
         .include? poi.category
       end
       restaurants.shuffle!
@@ -91,7 +92,7 @@ private
       #     -- Bars
       bars = day[:unscheduled].select do |poi|
         Category.find_by_title("Bar/café")
-          .with_child
+          .with_children
           .reject { |c| c.title == "De nuit" }
           .include? poi.category
       end
@@ -100,7 +101,7 @@ private
       #     -- Hotels
       hotels = day[:unscheduled].select do |poi|
         Category.find_by_title("Hébergement")
-          .with_child
+          .with_children
           .include? poi.category
         end
         hotels.shuffle!
@@ -108,7 +109,7 @@ private
       #     -- Nightlife
       nightlife = day[:unscheduled].select do |poi|
         Category.find_by_title("De nuit")
-        .with_child
+        .with_children
         .include? poi.category
       end
       nightlife.shuffle!

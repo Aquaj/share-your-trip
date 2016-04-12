@@ -1,5 +1,6 @@
 class ActivitiesController < ApplicationController
     before_action :find_activity, only: [:update, :destroy]
+    before_action :set_activity, only: [:up, :down]
     before_action :find_experience, only: [:create]
     before_action :find_roadmap, only: [:create]
 
@@ -45,10 +46,26 @@ class ActivitiesController < ApplicationController
       end
     end
 
+    def up
+      authorize @activity
+      @activity.up
+      @sisters = @activity.sisters
+    end
+
+    def down
+      authorize @activity
+      @activity.down
+      @sisters = @activity.sisters
+    end
+
   private
 
     def find_activity
       @activity = Activity.find(params[:id])
+    end
+
+    def set_activity
+      @activity = Activity.find(params[:activity_id])
     end
 
     def find_experience

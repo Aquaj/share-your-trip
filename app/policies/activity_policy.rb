@@ -16,4 +16,12 @@ class ActivityPolicy < ApplicationPolicy
   def destroy?
     record.roadmap.user == user
   end
+
+  def up?
+    update?
+  end
+
+  def down?
+    update?
+  end
 end

@@ -1,0 +1,5 @@
+<% @sisters.each do |act| %>
+  $activity = $('.to-see .roadmap-activity[data-mid=<%= act.id %>]');
+  $activity.data("pid", <%= act.position %>);
+  $activity.prependTo('.to-see');
+<% end %>
