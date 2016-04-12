@@ -2,6 +2,22 @@
     <div></div>
 <% end %>
 
+<style>
+  .block2{
+    height: 20vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    font-weight: 300;
+    font-family: 'Raleway', 'Open Sans', sans-serif;
+  }
+  @media (max-width: 600px;) {
+    height: 40vh;
+  }
+</style>
+
 <div class="banner" style="background-image: linear-gradient(-180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.2) 100%), url('<%= image_path("background.jpg") %>'); height: 80vh;">
   <div class="banner-content" style="height:80%; color: white; font-weight: 300; font-family: 'Raleway', 'Open Sans', sans-serif; font-weight: 300;">
     <h1>Découvrez les meilleurs coups de coeur des voyageurs.</h1>
@@ -10,7 +26,7 @@
     <%= image_tag "logo-white.png", width: "100%" %>
   </div>
 </div>
-<div style="height: 20vh; text-align: center; display: flex; flex-direction: column; justify-content: space-around; align-items: center; font-weight: 300; font-family: 'Raleway', 'Open Sans', sans-serif;">
+<div classe="block2">
   <h1>Faites partie de nos premiers utilisateurs</h1>
   <div style="width: 50%; height: 50%;">
     <form class="form-inline" method="post" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; font-size:25px;">
