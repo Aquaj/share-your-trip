@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   validates :first_name, presence: true
   validates :last_name, presence: true
   validates :avatar, presence: true
+  validates :accepted, acceptance: true
   after_create :send_welcome_email
 
   def self.find_for_facebook_oauth(auth)

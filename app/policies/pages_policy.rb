@@ -10,4 +10,8 @@ class PagesPolicy < ApplicationPolicy
   def contact_mail?
     true
   end
+
+  def cgu?
+    true
+  end
 end

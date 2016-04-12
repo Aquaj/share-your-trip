@@ -1,3 +1,7 @@
+<%= content_for(:cgu_links) do %>
+  Je certifie avoir lu et accepter les <%= link_to "Conditions Générales d'Utilisation", cgu_path %>.
+<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
@@ -13,6 +17,8 @@
         <%= f.input :email, required: true, label: "Adresse mail" %>
         <%= f.input :password, required: true, hint: ("#{@minimum_password_length} caractères minimum." if @minimum_password_length), label: "Mot de passe" %>
         <%= f.input :password_confirmation, required: true, label: "Confirmez le mot de passe" %>
+        <%= f.check_box :accepted %>
+        <%= f.label :accepted, content_for(:cgu_links) %>
       </div>
 
       <div class="form-actions">

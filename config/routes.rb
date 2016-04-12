@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "contact" => "pages#contact"
   post "contact" => "pages#contact_mail"
 
+  get "cgu" => "pages#cgu"
+
   mount Attachinary::Engine => "/attachinary"
   resources :experiences do
     resources :ratings, only: [:create]

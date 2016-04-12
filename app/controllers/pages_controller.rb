@@ -24,4 +24,8 @@ class PagesController < ApplicationController
       redirect_to contact_path
     end
   end
+
+  def cgu
+    authorize :pages, :cgu?
+  end
 end
