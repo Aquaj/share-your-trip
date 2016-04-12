@@ -15,6 +15,7 @@ class Experience < ActiveRecord::Base
   validates :description, presence: true
   validates :address, presence: true
   validates :photos, presence: true
+  validates :price, numericality: { min: 0 }
   validate :valid_url
 
   has_attachments :photos, maximum: 3

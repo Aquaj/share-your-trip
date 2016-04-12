@@ -4,11 +4,12 @@
 
 <%= simple_form_for experience do |f| %>
   <%= f.error_notification %>
-  <%= f.input :title, label: "Titre" %>
+  <%= f.input :title, label: "Titre", placeholder: "Donnez envie de découvrir votre moment" %>
   <%= f.input :category,
               as: :select,
               label: "Catégories",
               collection: Category.as_tree,
+              include_blank: "Choisissez une catégorie",
               label_method: ->(c) do
                 if c.parent_category.nil?
                   c.title
@@ -16,9 +17,20 @@
                   "| -- #{c.title}"
                 end
               end %>
-  <%= f.input :description, label: "Description" %>
-  <%= f.input :url, label: "Lien" %>
-  <%= f.input :photos, as: :attachinary, input_html: {id: "#{id}_attachinary_input"} %>
+  <%= f.input :description, label: "Description", placeholder: "Décrivez votre coup de coeur, pourquoi est-ce un coup de coeur ?" %>
+  <%= f.input :url, label: "Site web", placeholder: "Rentrez un lien internet" %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-8">
+        <%= f.input :photos, as: :attachinary, input_html: {id: "#{id}_attachinary_input"} %>
+      </div>
+      <div class="col-sm-4">
+        <%= f.input :price, label: "Prix", placeholder: "Prix par pers.", input_html: {min: 0}%>
+      </div>
+    </div>
+  </div>
+
   <%= f.input :address, label: "Adresse", input_html: {id: "#{id}_autocomplete"}, placeholder: "Entrez un endroit" %>
   <hr>
   <%= f.button :submit, "Partage !", class:'btn btn-success btn-block' %>
