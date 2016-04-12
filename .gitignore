@@ -6,7 +6,6 @@ tmp/*
 *.swp
 .DS_Store
 public/assets
-config/g_drive_config.json
 
 # Ignore application configuration
 /config/application.yml
