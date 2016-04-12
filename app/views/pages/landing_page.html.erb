@@ -15,11 +15,16 @@
   }
   @media (max-width: 600px) {
     .block2 {
-     margin-bottom: 150px;
+      margin-top: 50px;
+      margin-bottom: 150px;
     }
 
     .bottom-form{
       flex-direction: column;
+
+      .input{
+        width:100px;
+      }
     }
   }
 
@@ -81,7 +86,7 @@
 <div style="height: 50vh; background-image: url('<%= image_path("landing_page.jpg") %>'); background-fit: cover; background-position: left center; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
   <div style="width: 50%;">
     <form class="form-inline bottom-form" method="post" style="width: 100%; display: flex; justify-content: center; font-size:25px;">
-      <input type="text" class="input" name="email" style="width:50%; height:70px; margin-right: 10px; text-align: center;" placeholder="Email">
+      <input type="text" class="input" name="email" style="height:70px; margin-right: 10px; text-align: center;" placeholder="Email">
       <button type="submit" class="btn button btn-primary" style="padding: 15px 25px; font-size:25px;">S'enregistrer</button>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     </form>
