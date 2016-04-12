@@ -5,7 +5,7 @@
 <%= simple_form_for experience do |f| %>
   <%= f.error_notification %>
   <%= f.input :title, label: "Titre", placeholder: "Donnez envie de découvrir votre moment" %>
-  <%= f.input :category,
+  <%= f.input :category_id,
               as: :select,
               label: "Catégories",
               collection: Category.as_tree,
