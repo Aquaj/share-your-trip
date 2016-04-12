@@ -12,6 +12,7 @@ gem 'redis'
 gem "geocoder"
 gem "coffee-rails"
 gem "gmaps4rails"
+gem "google_drive"
 
 source 'https://rails-assets.org' do
   gem "rails-assets-underscore"

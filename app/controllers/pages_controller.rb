@@ -10,10 +10,7 @@ class PagesController < ApplicationController
     authorize :pages, :save_email?
     # TODO: stock mail
     # TODO: open to specific emails
-    allowed = []
-    allowed << "aquajvalin@gmail.com"
-    allowed << "jupierrat@gmail.com"
-    allowed << "maurin.benoit@gmail.com"
+    allowed = GoogleDriveService.new.read_mails
     redirect_to new_user_session_path if allowed.include? params[:email]
   end
 

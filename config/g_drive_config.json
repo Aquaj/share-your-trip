@@ -1,0 +1,4 @@
+{
+  "client_id": <%= ENV['GOOGLE_OAUTH_KEY'] %>,
+  "client_secret": <%= ENV['GOOGLE_OAUTH_SECRET'] %>
+}

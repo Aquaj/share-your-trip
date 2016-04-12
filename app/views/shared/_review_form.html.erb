@@ -5,7 +5,7 @@
     <span class="username"><%= current_user.first_name.capitalize %></span>
   </div>
   <div class="review-content">
-    <%= f.input :review, type: "textarea", input_html: { class: "input-content", rows: 2 }, label: false, placeholder: "Laisse un commentaire !" %>
+    <%= f.input :review, type: "textarea", input_html: { class: "input-content", rows: 2 }, label: false, placeholder: "Laisser un commentaire !" %>
   </div>
   <div class="input-rating">
   <%= f.input :rating,  as: :radio_buttons, label: false, error: false do%>
@@ -16,7 +16,7 @@
   <% end %>
   </div>
   <%= f.button :button, class: "input-validate btn btn-primary ladda-button", "data-style": "contract" do %>
-    <span class="ladda-label">Commente</span>
+    <span class="ladda-label">Commenter</span>
   <% end %>
 <% end %>
 </div>
