@@ -70,7 +70,7 @@ class ExperiencesController < ApplicationController
     @experience = Experience.find(params[:experience_id])
     authorize @experience
     UserMailer.experience(params[:send_experience][:recipient], experience_url(@experience)).deliver_now
-    flash[:notice] = "Coup de coeur partagé à #{params[:send_experience][:recipient]}."
+    flash[:mail] = "Coup de coeur partagé à #{params[:send_experience][:recipient]}."
     redirect_to @experience
   end
 

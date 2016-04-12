@@ -29,7 +29,7 @@ class PagesController < ApplicationController
     authorize :pages, :contact_mail?
     params.require(:contact).permit(:contact_address, :subject, :body)
     if UserMailer.contact(params[:contact][:contact_address], params[:contact][:subject], params[:contact][:body]).deliver_now
-      flash[:notice] = "Votre message a bien été envoyé."
+      flash[:mail] = "Votre message a bien été envoyé."
       redirect_to contact_path
     else
       flash[:alert] = "Une erreur s'est produite."

@@ -61,7 +61,7 @@ class RoadmapsController < ApplicationController
     @roadmap = Roadmap.find(params[:roadmap_id])
     authorize @roadmap
     UserMailer.itinerary(current_user, @roadmap).deliver_now
-    flash[:notice] = "Votre itinéraire vous a été envoyé par email"
+    flash[:mail] = "Votre itinéraire vous a été envoyé par email"
     redirect_to @roadmap
   end
 
