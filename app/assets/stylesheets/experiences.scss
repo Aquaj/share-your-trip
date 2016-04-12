@@ -24,6 +24,17 @@ body {
     border-radius: 5px;
     padding: 10px 0;
   }
+
+  .filter-link{
+
+    &:hover, &:active, &:focus{
+      text-decoration: none;
+    }
+
+    img:hover{
+      opacity: 0.9;
+    }
+  }
 }
 
 .block-left{

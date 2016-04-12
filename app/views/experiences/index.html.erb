@@ -1,10 +1,16 @@
 <div class="container search-form">
-  <div class="search-center">
-    <%= render 'shared/search_input'%>
+  <div class="search-center" style="flex-direction: column;">
+    <div class="search-center" style="background: none;">
+      <%= render 'shared/search_input'%>
+    </div>
+    <div>
+      <% Category.roots.each_with_index do |cat, index| %>
+        <%= link_to params.merge(search: params[:search].merge({category: cat.id})), class: "filter-link" do %>
+          <%= image_tag "cat-#{index}.png", height: 30, width: 30 %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <% Category.roots.each do |cat| %>
-    <%= link_to cat.title, params.merge(search: params[:search].merge({category: cat.id}))%>
-  <% end %>
 </div>
 
 
