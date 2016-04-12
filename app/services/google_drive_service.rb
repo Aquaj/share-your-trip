@@ -3,7 +3,7 @@ require 'google_drive'
 
 class GoogleDriveService
   def initialize
-    @session = GoogleDrive.saved_session("config.json")
+    @session = GoogleDrive.saved_session("config/g_drive_config.json")
   end
 
   def read_mails
