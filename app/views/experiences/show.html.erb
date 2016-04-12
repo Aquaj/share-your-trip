@@ -44,7 +44,30 @@
                 <% if user_signed_in? %>
                   <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
                 <% end %>
+                <a class="icon-controlled-access" style="margin-left: 5px;" data-toggle="modal" data-target="#sendExperience">
+                  <%= icon('envelope-o') %>
+                </a>
                 <%= render "shared/facebook_share", url: experience_url(@experience), title: @experience.title, description: @experience.description, photo: cl_image_path(@experience.photos[0].path) %>
+
+                <div class="modal fade" id="sendExperience" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">À qui voulez-vous partager ce coup de coeur?</h4>
+                      </div>
+                      <div class="modal-body input">
+                        <%= simple_form_for :send_experience, url: experience_send_path(@experience) do |f| %>
+                          <%= f.input :recipient, label: "Adresse e-mail", placeholder: "jean.martin@gmail.com" %>
+                          <hr>
+                          <%= f.submit "Partager", class: "btn btn-succes btn-block" %>
+                        <% end %>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
             </div>
           </div>

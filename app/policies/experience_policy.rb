@@ -36,4 +36,8 @@ class ExperiencePolicy < ApplicationPolicy
   def my_experiences?
     true
   end
+
+  def send_experience?
+    true
+  end
 end

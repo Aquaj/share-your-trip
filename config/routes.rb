@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get "cgu" => "pages#cgu"
 
   mount Attachinary::Engine => "/attachinary"
+
   resources :experiences do
+    post "send_experience" => "experiences#send_experience", as: 'send'
     resources :ratings, only: [:create]
     resources :wishlists, only: [:create]
   end
