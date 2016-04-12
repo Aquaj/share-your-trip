@@ -13,7 +13,7 @@ class GoogleDriveService
 
   def stock_mail(mail)
     ws = @session.spreadsheet_by_key(ENV["DRIVE_MAILS"]).worksheets[0]
-    ws[0][ws.num_cols] = mail
+    ws[ws.num_rows+1, 1] = mail
     ws.save
   end
 end

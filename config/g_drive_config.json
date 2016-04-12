@@ -1,4 +1,9 @@
 {
-  "client_id": <%= ENV['GOOGLE_OAUTH_KEY'] %>,
-  "client_secret": <%= ENV['GOOGLE_OAUTH_SECRET'] %>
+  "client_id": "8986243764-s4d1851kit5627msgcts13a0k45t91cg.apps.googleusercontent.com",
+  "client_secret": "u7Y5KhhmOBI_ose3RVFe8rxA",
+  "scope": [
+    "https://www.googleapis.com/auth/drive",
+    "https://spreadsheets.google.com/feeds/"
+  ],
+  "refresh_token": "1/I3Tm56p__Dz7cxj9rakHVyHlxQ3-kX8eAeXW86GRTws"
 }
