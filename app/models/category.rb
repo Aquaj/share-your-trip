@@ -4,10 +4,18 @@ class Category < ActiveRecord::Base
 
   validates :title, presence: true
 
-  def self.as_tree
+  def with_children
+    [self, self.sub_categories].flatten
+  end
+
+  def self.roots
     all
       .select { |c| c.parent_category.nil? }
-      .map    { |c| [c, c.sub_categories.flatten ]}
+  end
+
+  def self.as_tree
+    roots
+      .map    { |c| c.with_children }
       .flatten
     # Should ensure we always have them in the right order.
   end

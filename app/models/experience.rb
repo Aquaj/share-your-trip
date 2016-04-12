@@ -25,17 +25,23 @@ class Experience < ActiveRecord::Base
 
   def self.search(search, experiences) # Second parameter needed to account for Pundit scope
     locate = LocationService.new
-    if search && !search[:address].blank?
-      city = locate.city(search[:address]) # if it's not city it's a country
-      if city.present? # city
-        experiences.near(search[:address], 20)
-      else # country
-        country = locate.country(search[:address])
-        experiences.select{ |e| e.country == country}
+    results = experiences
+    if search
+      if !search[:address].blank?
+        city = locate.city(search[:address]) # if it's not city it's a country
+        if city.present? # city
+          results = results.near(search[:address], 20)
+        else # country
+          country = locate.country(search[:address])
+          results = results.select{ |e| e.country == country}
+        end
       end
-    else
-      experiences
+      if !search[:category].blank?
+        filter_category = Category.find(search[:category])
+        results = results.select { |e| filter_category.with_children.include? e.category }
+      end
     end
+    results
   end
 
   def is_occupation?

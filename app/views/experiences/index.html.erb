@@ -2,7 +2,11 @@
   <div class="search-center">
     <%= render 'shared/search_input'%>
   </div>
+  <% Category.roots.each do |cat| %>
+    <%= link_to cat.title, params.merge(search: params[:search].merge({category: cat.id}))%>
+  <% end %>
 </div>
+
 
 <div class="block-contain">
   <div class="container-fluid">
