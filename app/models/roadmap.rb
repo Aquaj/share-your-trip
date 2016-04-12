@@ -13,6 +13,8 @@ class Roadmap < ActiveRecord::Base
   after_save :cache_start_components, if: :start_destination_changed?
   after_save :cache_end_components, if: :end_destination_changed?
 
+  default_scope { order(created_at: :desc) }
+
   def planning
     case self.details[:kind]
     when :city
