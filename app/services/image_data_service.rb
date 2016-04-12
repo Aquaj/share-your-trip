@@ -1,9 +1,11 @@
 class ImageDataService
   def get_gps_from_id(public_id)
     exif = Cloudinary::Api.resource(public_id, exif: true)["exif"]
-    lat = sexagesimal_to_decimal(exif["GPSLatitude"], exif["GPSLatitudeRef"])
-    long = sexagesimal_to_decimal(exif["GPSLongitude"], exif["GPSLongitudeRef"])
-    return lat, long
+    if !exif.nil?
+      lat = sexagesimal_to_decimal(exif["GPSLatitude"], exif["GPSLatitudeRef"])
+      long = sexagesimal_to_decimal(exif["GPSLongitude"], exif["GPSLongitudeRef"])
+      return lat, long
+    end
   end
 
 private
