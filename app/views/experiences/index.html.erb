@@ -19,10 +19,10 @@
 <div class="block-contain">
   <div class="container-fluid">
     <div class="row card-container">
-      <% if @experience.blank? %>
+      <% if @experiences.blank? %>
         <div style="display: flex; align-items: center; flex-direction: column;">
           <h2>Oups! Pas encore de coups de coeur partagés pour cette destination!</h2>
-          <h3>Vous connaissez es grands voyageurs? Invitez-les à partager leurs coups de coeur avec nous!</h3>
+          <h3>Vous connaissez des grands voyageurs? Invitez-les à partager leurs coups de coeur avec nous!</h3>
         </div>
       <% else %>
         <% @experiences.each do |experience| %>
