@@ -28,9 +28,13 @@
       <%= yield %>
     </div>
 
-    <footer>
-      <%= render 'shared/footer' %>
-    </footer>
+    <% if content_for? :footer %>
+      <%= content_for :footer %>
+    <% else %>
+      <footer>
+        <%= render 'shared/footer' %>
+      </footer>
+    <% end %>
 
     <script type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyBCoDjqf-9l5d0f0LoOhPQuHSOMaKKP7-0">

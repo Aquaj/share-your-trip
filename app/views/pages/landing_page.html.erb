@@ -1,0 +1,58 @@
+<% content_for :navbar do %>
+    <div></div>
+<% end %>
+
+<div class="banner" style="background-image: url('<%= image_path("background.jpg") %>'); height: 70vh;">
+  <div class="banner-content" style="height:15%; color: #00A3E7; font-family: 'Raleway', sans-serif; font-weight: 300;">
+    <h1>Des milliers de coups de coeur pour préparer votre voyage.</h1>
+  </div>
+  <div style="height: 30%; position: absolute; bottom: 0; left: 0; right: 0; display: flex; justify-content: center; align-items: center;">
+    <%= image_tag("logo-white.png", height: "75%") %>
+  </div>
+</div>
+<div style="height: 30vh; text-align: center; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+  <h1>Faites partie de nos premiers utilisateurs</h1>
+  <div style="width: 50%; height: 50%;">
+    <form class="form-inline" method="post" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; font-size:25px;">
+      <input type="text" name="email" style="flex:1; height:70px; margin-right: 10px; text-align: center;" placeholder="Email">
+      <button type="submit" class="btn btn-primary" style="padding: 15px 25px; font-size:25px;">S'enregistrer</button>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    </form>
+  </div>
+</div>
+<div style="height: 50vh; text-align: center; display: flex; flex-direction: column; justify-content: space-around; align-items: center;"%>
+  <h2>Comment ça marche</h2>
+  <div style="display: flex; justify-content: space-around;">
+    <div class="text-center" style="width: 30%">
+      <%= image_tag 'itineraire.png' %>
+      <p class="feature">Découvrez</p>
+      <p class="feature">Inspirez vous des coups de coeur de voyageurs.</p>
+    </div>
+    <div class="text-center" style="width: 30%">
+      <%= image_tag 'carnet.png' %>
+      <p class="feature">Préparez</p>
+      <p class="feature">Enregistrez vos coups de coeur favoris et générez des itinéraires.</p>
+    </div>
+    <div class="text-center" style="width: 30%">
+      <%= image_tag 'valise.png' %>
+      <p class="feature">Partagez</p>
+      <p class="feature">Publiez vos coups de coeur pour en faire profiter les autres et conservez une trace de vos meilleurs moments.</p>
+    </div>
+  </div>
+</div>
+<div style="height: 50vh; background-image: url('<%= image_path("landing_page.jpg") %>'); background-fit: cover; background-position: center center; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+  <div style="width: 50%;">
+    <form class="form-inline" method="post" style="width: 100%; display: flex; justify-content: center; font-size:25px;">
+      <input type="text" name="email" style="width:50%; height:70px; margin-right: 10px; text-align: center;" placeholder="Email">
+      <button type="submit" class="btn btn-primary" style="padding: 15px 25px; font-size:25px;">S'enregistrer</button>
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    </form>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <%= image_tag("logo-white.png") %>
+  </div>
+</div>
+
+<% content_for :footer do %>
+  <div></div>
+<% end %>

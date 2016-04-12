@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  before_action :authenticate_user!
+  before_action :authenticate_user_for_beta!, unless: :devise_controller?
 
   include Pundit
 
@@ -15,5 +15,11 @@ class ApplicationController < ActionController::Base
   def user_not_authorized
     flash[:alert] = "Vous n'avez pas les autorisations nécessaires pour effectuer cette action."
     redirect_to(root_path)
+  end
+
+  def authenticate_user_for_beta!
+    # To hide even the log screens from the public.
+    redirect_to root_path if !user_signed_in?
+    authenticate_user! # Shouldn't have to get there.
   end
 end

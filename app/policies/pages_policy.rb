@@ -1,4 +1,12 @@
 class PagesPolicy < ApplicationPolicy
+  def landing_page?
+    true
+  end
+
+  def save_email?
+    true
+  end
+
   def home?
     true
   end

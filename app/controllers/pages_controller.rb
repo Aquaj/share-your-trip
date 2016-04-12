@@ -1,5 +1,18 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user_for_beta!
+
+  def landing_page
+    authorize :pages, :landing_page?
+    redirect_to experiences_path if user_signed_in?
+  end
+
+  def save_email
+    authorize :pages, :save_email?
+    byebug
+    # TODO: stock mail
+    # TODO: open to specific emails
+    redirect_to new_user_session_path if params[:email] == "aquajvalin@gmail.com"
+  end
 
   def home
     authorize :pages, :home?
