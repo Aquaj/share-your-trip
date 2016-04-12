@@ -10,6 +10,8 @@ class Experience < ActiveRecord::Base
   has_many :activities, dependent: :destroy
   has_many :roadmaps, through: :activities
 
+  default_scope { order(created_at: :desc) }
+
   validates :title, presence: true
   validates :category, presence: true
   validates :description, presence: true
