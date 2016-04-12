@@ -1,5 +1,5 @@
 <% content_for :title do %>
-<%= @experience.title %>
+  <%= @experience.title %>
 <% end %>
 
 <div class="container-fluid">
@@ -42,9 +42,9 @@
               </div>
               <div class="interaction-buttons">
                 <% if user_signed_in? %>
-                <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
-                <%= render "shared/facebook_share", url: experience_path(@experience), title: @experience.title, description: @experience.description, photo: @experience.photos[0].path %>
+                  <%= render 'wishlists/heart', wished: @wished, wishlist: @wishlist, experience: @experience %>
                 <% end %>
+                <%= render "shared/facebook_share", url: experience_url(@experience), title: @experience.title, description: @experience.description, photo: @experience.photos[0].url %>
               </div>
             </div>
           </div>
