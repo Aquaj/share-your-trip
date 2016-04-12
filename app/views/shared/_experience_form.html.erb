@@ -10,6 +10,7 @@
               label: "Catégories",
               collection: Category.as_tree,
               include_blank: "Choisissez une catégorie",
+              value_method: &:id,
               label_method: ->(c) do
                 if c.parent_category.nil?
                   c.title
