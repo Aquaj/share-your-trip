@@ -10,8 +10,11 @@ class PagesController < ApplicationController
     authorize :pages, :save_email?
     gds = GoogleDriveService.new
     allowed = gds.read_mails
-    redirect_to new_user_session_path if allowed.include? params[:email]
-    gds.stock_mail(params[:email])
+    if allowed.include? params[:email]
+      redirect_to new_user_session_path
+    else
+      gds.stock_mail(params[:email])
+    end
   end
 
   def home
