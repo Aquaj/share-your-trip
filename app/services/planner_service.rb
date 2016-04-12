@@ -1,7 +1,8 @@
 class PlannerService
+# TODO : RETHINK THE SCHEDULE THING
 
   def plan_for(activities, start_=nil, start_date=nil, end_=nil, end_date=nil, scope=nil)
-    schedule = create_schedule(activities, start_date, end_date)
+    schedule = [] # create_schedule(activities, start_date, end_date)
     return {
       schedule: schedule,
       itinerary: itinerary(activities, start_, end_, scope)
@@ -13,7 +14,7 @@ private
   # Lists the cities the traveller is gonna go through in the order
   # they will cross them from a Schedule
   def itinerary(source, start_, end_, scope)
-    # source was a schedule, now just a list of activities
+    # source was a schedule, now just a list of (ordered) activities
     case scope
     when :city
       function = :address
@@ -26,8 +27,6 @@ private
     itinerary_stops = []
 
     itinerary_stops << start_ unless start_.nil?
-
-
 
 =begin
   # Not used for now. We'll see
@@ -44,6 +43,7 @@ private
     end
 
 =end
+
     itinerary_stops += source.map(&function)
 
     itinerary_stops << end_ unless end_.nil?
@@ -87,7 +87,6 @@ private
         .with_children
         .include? poi.category
       end
-      restaurants.shuffle!
 
       #     -- Bars
       bars = day[:unscheduled].select do |poi|
@@ -96,7 +95,6 @@ private
           .reject { |c| c.title == "De nuit" }
           .include? poi.category
       end
-      bars.shuffle!
 
       #     -- Hotels
       hotels = day[:unscheduled].select do |poi|
@@ -104,7 +102,6 @@ private
           .with_children
           .include? poi.category
         end
-        hotels.shuffle!
 
       #     -- Nightlife
       nightlife = day[:unscheduled].select do |poi|
@@ -112,7 +109,6 @@ private
         .with_children
         .include? poi.category
       end
-      nightlife.shuffle!
 
       # Initializing the Hash that'll keep track of what couldn't fit.
       unscheduled = {occupations: [], bars: [], restaurants: [], hotels: [], nightlife: []}

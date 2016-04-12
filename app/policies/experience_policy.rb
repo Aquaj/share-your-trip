@@ -1,7 +1,7 @@
 class ExperiencePolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.includes(:photo_files, :category).all
     end
   end
 

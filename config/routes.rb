@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", omniauth_callbacks: 'users/omniauth_callbacks' }
-  root to: 'pages#landing_page'
+  root to: 'pages#home'
 
   post "/" => 'pages#save_email'
 

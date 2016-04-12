@@ -4,16 +4,16 @@
     <p><%= activity.experience.title %></p>
   </div>
   <div class="right">
-    <div class="date-pick">
+    <div class="date-pick" <%= "style='display: none;'".html_safe if !display_date %>>
       <% if activity.planned_on.present? %>
         <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" value="<%= activity.planned_on.day %>/<%= activity.planned_on.month %>/<%= activity.planned_on.year %>">
       <% else %>
         <input class="bootstrap-datepicker activity-date" id="activity-<%= activity.id %>-date" placeholder="Quand ?">
       <% end %>
     </div>
-    <div class="positioner" style="display: flex; flex-direction: column; justify-content: center;">
-      <%= link_to icon("chevron-up"), activity_up_path(activity), method: :post, remote: true %>
-      <%= link_to icon("chevron-down"), activity_down_path(activity), method: :post, remote: true %>
+    <div class="positioner" style="margin-left:10px; display: flex; flex-direction: column; justify-content: center;">
+      <%= link_to icon("chevron-up"), activity_up_path(activity), style:"margin-bottom:-5px;", method: :post, remote: true %>
+      <%= link_to icon("chevron-down"), activity_down_path(activity), style:"margin-top:-5px;", method: :post, remote: true %>
     </div>
   </div>
 </div>

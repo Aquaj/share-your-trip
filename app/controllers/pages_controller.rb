@@ -8,7 +8,6 @@ class PagesController < ApplicationController
 
   def save_email
     authorize :pages, :save_email?
-    byebug
     # TODO: stock mail
     # TODO: open to specific emails
     redirect_to new_user_session_path if params[:email] == "aquajvalin@gmail.com"

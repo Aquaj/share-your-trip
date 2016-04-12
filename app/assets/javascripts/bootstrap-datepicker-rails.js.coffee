@@ -13,19 +13,19 @@ $ ->
     });
   $(document).on 'changeDate', '#roadmap_start_date.bootstrap-datepicker', (evt) ->
     if $('#roadmap_start_date.bootstrap-datepicker').val() == $('#roadmap_end_date.bootstrap-datepicker').val() and $('#roadmap_end_date.bootstrap-datepicker').val() != ""
-      $(".roadmap-activity .right").hide();
+      $(".roadmap-activity .right .date-pick").hide();
       $(".add-experience").each () ->
         this.href = this.href + "?single_day=true"
     else
-      $(".roadmap-activity .right").show();
+      $(".roadmap-activity .right .date-pick").show();
       $(".add-experience").each () ->
         this.href = this.href.split("?")[0]
   $(document).on 'changeDate', '#roadmap_end_date.bootstrap-datepicker', (evt) ->
     if $('#roadmap_start_date.bootstrap-datepicker').val() == $('#roadmap_end_date.bootstrap-datepicker').val() and $('#roadmap_end_date.bootstrap-datepicker').val() != ""
-      $(".roadmap-activity .right").hide();
+      $(".roadmap-activity .right .date-pick").hide();
       $(".add-experience").each () ->
         this.href = this.href + "?single_day=true"
     else
-      $(".roadmap-activity .right").show();
+      $(".roadmap-activity .right .date-pick").show();
       $(".add-experience").each () ->
         this.href = this.href.split("?")[0]
