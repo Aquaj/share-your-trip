@@ -10,7 +10,11 @@ class PagesController < ApplicationController
     authorize :pages, :save_email?
     # TODO: stock mail
     # TODO: open to specific emails
-    redirect_to new_user_session_path if params[:email] == "aquajvalin@gmail.com"
+    allowed = []
+    allowed << "aquajvalin@gmail.com"
+    allowed << "jupierrat@gmail.com"
+    allowed << "maurin.benoit@gmail.com"
+    redirect_to new_user_session_path if allowed.include? params[:email]
   end
 
   def home
