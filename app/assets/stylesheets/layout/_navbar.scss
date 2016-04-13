@@ -50,14 +50,12 @@
 
 /* Navbar logo */
 .navbar-wagon-brand img {
-  width: 150px;
-  margin-top: -3px;
-  object-fit: cover;
+  height: 100%;
 }
 
 .navbar-wagon-brand {
   overflow: hidden;
-  height: calc(100% + 10px);
+  height: 100%;
 }
 
 /* Navbar right section (with form, links, button) */

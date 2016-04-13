@@ -12,19 +12,35 @@
     align-items: center;
     font-weight: 300;
     font-family: 'Raleway', 'Open Sans', sans-serif;
+    margin-top:-5px;
+  }
+  .block4{
+    height: 50vh;
+    background-image: url('<%= image_path("landing_page.jpg") %>');
+    background-size: cover;
+    background-position: left center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
   }
   @media (max-width: 600px) {
     .block2 {
       margin-top: 50px;
-      margin-bottom: 150px;
+      margin-bottom: 300px;
     }
 
     .bottom-form{
       flex-direction: column;
+      margin-bottom: 75px;
+      margin-top: 50px;
 
       .input{
         width:100px;
       }
+    }
+    .block4{
+      height:unset;
     }
   }
 
@@ -83,7 +99,7 @@
     </div>
   </div>
 </div>
-<div style="height: 50vh; background-image: url('<%= image_path("landing_page.jpg") %>'); background-fit: cover; background-position: left center; display: flex; flex-direction: column; justify-content: space-around; align-items: center;">
+<div class="block4">
   <div style="width: 50%;">
     <form class="form-inline bottom-form" method="post" style="width: 100%; display: flex; justify-content: center; font-size:25px;">
       <input type="text" class="input" name="email" style="height:70px; margin-right: 10px; text-align: center;" placeholder="Email">
