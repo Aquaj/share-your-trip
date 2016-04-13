@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :authenticate_user_for_beta, unless: :devise_controller?
+  before_action :authenticate_user!
 
   include Pundit
 

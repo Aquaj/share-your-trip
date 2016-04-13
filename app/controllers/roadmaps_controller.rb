@@ -1,6 +1,6 @@
 class RoadmapsController < ApplicationController
   before_action :find_roadmap, only: [:edit, :update, :destroy, :show]
-  skip_before_action :authenticate_user_for_beta!, only: [:show]
+  skip_before_action :authenticate_user!, only: [:show]
 
   def index
     @roadmaps = policy_scope(Roadmap).where("user_id = ?", current_user.id)
