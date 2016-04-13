@@ -101,7 +101,12 @@ Feuille de route :
     <%= "Adresses à consulter :" unless unplanned.empty? %>
     <%= flexible_content_tag :ul do %>
       <% unplanned.each do |activity| %>
-        <%= flexible_content_tag :li, "#{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
+        <% date = (activity.planned_on.day.to_s) if activity.planned_on %>
+        <% date += "/" if activity.planned_on %>
+        <% date += (activity.planned_on.month.to_s) if activity.planned_on %>
+        <% date += "/" if activity.planned_on %>
+        <% date += (activity.planned_on.year.to_s)[-2..-1] if activity.planned_on %>
+        <%= flexible_content_tag :li, "[#{date}] #{activity.title} <br>#{icon "map-marker"} [ #{activity.address} ]".html_safe %>
       <% end %>
     <% end %>
   <% end %>
