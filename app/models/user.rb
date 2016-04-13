@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
+  attr_accessor :current_password
+
   has_many :experiences, dependent: :destroy
   has_many :wishlists, dependent: :destroy
   has_many :ratings, dependent: :destroy
@@ -29,7 +31,6 @@ class User < ActiveRecord::Base
       user.token_expiry = Time.at(auth.credentials.expires_at)
     end
   end
-
 
  private
 
