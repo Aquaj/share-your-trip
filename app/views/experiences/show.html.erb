@@ -27,12 +27,12 @@
             <div class="experience-description">
               <%= @experience.description %>
             </div>
-            <% unless @experience.url.nil? %>
-              <div style="display: flex; justify-content: flex-end;">
-                <%= link_to "Visiter", @experience.url, class: "btn btn-primary" %>
-              </div>
-            <% end %>
-            <div class="author-details" style="position: relative;">
+            <div class="author-details" style="position: relative; margin-top: 60px;">
+              <% unless @experience.url.nil? %>
+                <div style="position: absolute; top: -45px; right: 0;">
+                  <%= link_to "Visiter", @experience.url, class: "btn btn-primary" %>
+                </div>
+              <% end %>
               <div style="position: absolute; top: -45px; max-width: 75%;">
                 <%= @experience.address %>
               </div>
