@@ -17,9 +17,14 @@
                 <% end %>
                 </h3>
               </div>
-              <div class="rating">
+              <div class="rating" style="position: relative;">
                 <span class="average-rating">
                   <%= render "shared/rating", rating: @experience.average_rating %>
+                </span>
+                <span style="position: absolute; right: 10px; font-weight: bold;">
+                  <% if @experience.price %>
+                    <%= @experience.price %>€/pers.
+                  <% end %>
                 </span>
               </div>
             </div>
