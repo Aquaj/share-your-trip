@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user_for_beta!
+  skip_before_action :authenticate_user_for_beta
 
   def landing_page
     authorize :pages, :landing_page?

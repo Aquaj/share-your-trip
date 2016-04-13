@@ -10,7 +10,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
     flash.delete(:notice)
   end
 
-
   private
 
   def sign_up_params
