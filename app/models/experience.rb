@@ -113,7 +113,7 @@ private
   end
 
   def valid_url
-  return if self.url == nil
+  return if self.url == nil or self.url == ""
   uri = URI.parse(self.url)
   errors.add(:url, "n'est pas une URL valide.") unless uri.kind_of?(URI::HTTP)
   rescue URI::InvalidURIError
