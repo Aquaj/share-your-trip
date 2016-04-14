@@ -12,7 +12,10 @@
     align-items: center;
     font-weight: 300;
     font-family: 'Raleway', 'Open Sans', sans-serif;
-    margin-top:-5px;
+    margin-top:-15px;
+    h1{
+      font-size: 14pt;
+    }
   }
   .block4{
     height: 50vh;
@@ -28,6 +31,11 @@
     .block2 {
       margin-top: 50px;
       margin-bottom: 300px;
+
+      form{
+        margin-bottom: 75px;
+        margin-top: 50px
+      }
     }
 
     .bottom-form{
@@ -55,7 +63,7 @@
 
 <div class="banner" style="background-image: linear-gradient(-180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.2) 100%), url('<%= image_path("background.jpg") %>'); height: 80vh;">
   <div class="banner-content" style="height:80%; color: white; font-weight: 300; font-family: 'Raleway', 'Open Sans', sans-serif; font-weight: 300;">
-    <h1>Découvrez les meilleurs coups de coeur des voyageurs.</h1>
+    <h1>Découvrez les meilleurs coups de coeur des voyageurs</h1>
   </div>
   <div style="width: 150px; position: absolute; top: 0; left: 15px; display: flex; justify-content: center; align-items: center;">
     <%= image_tag "logo-white.png", width: "100%" %>
@@ -65,8 +73,8 @@
   <h1>Faites partie de nos premiers utilisateurs</h1>
   <div style="width: 50%; height: 50%;">
     <form class="form-inline" method="post" style="width: 100%; display: flex; flex-wrap: wrap; justify-content: center; font-size:25px; text-align: center;">
-      <input type="text" name="email" class="input" style="flex:1; height:70px; margin-right: 10px; text-align: center;" placeholder="Email">
-      <button type="submit" class="button btn btn-primary" style="padding: 15px 25px; font-size:25px;">S'enregistrer</button>
+      <input type="text" name="email" class="input" style="flex:1; height:50px; margin-right: 10px; text-align: center;" placeholder="Email">
+      <button type="submit" class="button btn btn-primary" style="padding: 5px 15px; font-size:25px;">S'enregistrer</button>
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
     </form>
   </div>
@@ -108,10 +116,6 @@
     </form>
   </div>
   <div style="display: flex; justify-content: center; align-items: center;">
-    <%= image_tag("logo-white.png", width: 350) %>
+    <%= image_tag("logo-white.png", width: 200) %>
   </div>
 </div>
-
-<% content_for :footer do %>
-  <div></div>
-<% end %>
