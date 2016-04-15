@@ -17,15 +17,21 @@
                 <% end %>
                 </h3>
               </div>
-              <div class="rating" style="position: relative;">
+              <div class="rating" style="position: relative; display: flex; flex-direction: column;">
                 <span class="average-rating">
                   <%= render "shared/rating", rating: @experience.average_rating %>
                 </span>
-                <span style="position: absolute; right: 10px; font-weight: bold;">
+                <div>
+                <span style="position: absolute; left: 0; right: 0; text-align: center; font-weight: bold;">
                   <% if @experience.price %>
                     <%= @experience.price %>€/pers.
                   <% end %>
                 </span>
+                <span style="position: absolute; text-align: right; width: 150px; bottom: 0; right: 0;">
+                  Publié le <% date = @experience.created_at %>
+                  <%= date.strftime("#{date.day}/#{date.month}/#{date.year.to_s[-2..-1]}") %>
+                </span>
+                </div>
               </div>
             </div>
 
@@ -33,7 +39,7 @@
               <%= @experience.description %>
             </div>
             <div class="author-details" style="position: relative; margin-top: 60px;">
-              <% unless @experience.url.nil? %>
+              <% unless @experience.url.blank? %>
                 <div style="position: absolute; top: -45px; right: 0;">
                   <%= link_to "Visiter", @experience.url, target:"_blank", class: "btn btn-primary" %>
                 </div>
