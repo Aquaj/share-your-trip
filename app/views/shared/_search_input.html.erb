@@ -15,6 +15,19 @@
         collection: [:date, :note],
         label_method: ->(i){ {date: "Date", note: "Note moyenne"}[i] },
         class: "select form-control" %>
+      <%= f.input :category_id,
+        as: :select,
+        label: false,
+        collection: Category.as_tree,
+        include_blank: "Choisissez une catégorie",
+        value_method: :id,
+        label_method: ->(c) do
+          if c.parent_category.nil?
+            c.title
+          else
+            "| -- #{c.title}"
+          end
+        end %>
     <% end %>
   <% end %>
 

@@ -9,7 +9,7 @@
         <%= render "shared/rating", rating: experience.average_rating %>
       </span>
       <p class="card-category">
-        <%= experience.category.title %>
+        <%= title_category(experience.category) %>
       </p>
       <div class="card-description">
         <h3>
@@ -20,8 +20,8 @@
           <% end %>
         </h3>
         <p>
-          <% if experience.description.length > 300 %>
-            <%= "#{experience.description[0...297]}..." %>
+          <% if experience.description.length > 100 %>
+            <%= "#{experience.description[0...97]}..." %>
           <% else %>
             <%= experience.description %>
           <% end %>

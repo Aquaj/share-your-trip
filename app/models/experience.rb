@@ -43,8 +43,8 @@ class Experience < ActiveRecord::Base
       end
 
       # Category
-      if !search[:category].blank?
-        filter_category = Category.find(search[:category])
+      if !search[:category_id].blank?
+        filter_category = Category.find(search[:category_id])
         results = results.select { |e| filter_category.with_children.include? e.category }
       end
 

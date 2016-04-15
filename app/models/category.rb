@@ -8,6 +8,10 @@ class Category < ActiveRecord::Base
     [self, self.sub_categories].flatten
   end
 
+  def is_root?
+    parent_category.nil?
+  end
+
   def self.roots
     all
       .select { |c| c.parent_category.nil? }
