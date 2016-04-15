@@ -45,7 +45,7 @@
         <div class="parameters" style="padding: 0; height: 40px; margin-top: 5px;">
           <div class="row">
             <div class="formulaire col-lg-12">
-             <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+             <%= f.submit "Lancer mon itinéraire", class: "btn btn-primary" %>
             </div>
           </div>
         </div>
@@ -53,28 +53,32 @@
       <% end %>
       <div class="col-lg-8">
         <div class="experiences-roadmap">
-          <div class="container-fluid">
-            <% @groups.sort_by { |_, c| -c.reduce(0){ |a, e| a + e.length } }.each do |country, content| %>
-              <div class="row">
-                <h3><%= country %></h3>
-                <div class="container_fluid" style="padding-left:30px;">
-                  <% content.sort_by { |_,e| -e.length }.each do |city, experience| %>
-                    <div class="row">
-                      <h3><%= city %></h3>
-                      <% experience.each do |experience| %>
-                        <div class="col-xs-12 col-sm-4">
-                          <%= render "shared/card", experience: experience %>
-                          <% path_to_create_activity = roadmap_experience_activities_path(@roadmap, experience) %>
-                          <% path_to_create_activity += "?single_day=true" if @roadmap.single_day? %>
-                          <%= link_to icon('plus'), path_to_create_activity, class: "add-experience", id: "add-experience-#{experience.id}", remote: true, method: :post %>
-                        </div>
-                      <% end %>
-                    </div>
-                  <% end %>
+          <% if @groups.length == 0 %>
+            <h3 style="text-align:center; color: grey;">Ajouter des coups de coeur à vos favoris pour pouvoir créer un itinéraire</p>
+          <% else %>
+            <div class="container-fluid">
+              <% @groups.sort_by { |_, c| -c.reduce(0){ |a, e| a + e.length } }.each do |country, content| %>
+                <div class="row">
+                  <h3><%= country %></h3>
+                  <div class="container_fluid" style="padding-left:30px;">
+                    <% content.sort_by { |_,e| -e.length }.each do |city, experience| %>
+                      <div class="row">
+                        <h3><%= city %></h3>
+                        <% experience.each do |experience| %>
+                          <div class="col-xs-12 col-sm-4">
+                            <%= render "shared/card", experience: experience %>
+                            <% path_to_create_activity = roadmap_experience_activities_path(@roadmap, experience) %>
+                            <% path_to_create_activity += "?single_day=true" if @roadmap.single_day? %>
+                            <%= link_to icon('plus'), path_to_create_activity, class: "add-experience", id: "add-experience-#{experience.id}", remote: true, method: :post %>
+                          </div>
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
-            <% end %>
-          </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
       </div>
     </div>
