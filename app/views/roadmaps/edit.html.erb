@@ -54,7 +54,7 @@
       <div class="col-lg-8">
         <div class="experiences-roadmap">
           <% if @groups.length == 0 %>
-            <h3 style="text-align:center; color: grey;">Ajouter des coups de coeur à vos favoris pour pouvoir créer un itinéraire</p>
+            <h3 style="text-align:center; color: grey;">Ajoutez des coups de coeur à vos favoris pour pouvoir créer un itinéraire</p>
           <% else %>
             <div class="container-fluid">
               <% @groups.sort_by { |_, c| -c.reduce(0){ |a, e| a + e.length } }.each do |country, content| %>
