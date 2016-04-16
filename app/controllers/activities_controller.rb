@@ -7,7 +7,7 @@ class ActivitiesController < ApplicationController
     def create
       planned = nil
       planned = @roadmap.start_date if params[:single_day] == 'true'
-      @activity = Activity.new(experience: @experience, roadmap: @roadmap, planned_on: planned)
+      @activity = @roadmap.activities.new(experience: @experience, planned_on: planned)
       authorize @activity
       if @activity.save
         @details = @roadmap.details
