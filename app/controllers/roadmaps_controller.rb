@@ -8,14 +8,6 @@ class RoadmapsController < ApplicationController
 
   def show
     authorize(@roadmap)
-    # Ensuring basic completion before display.
-    if @roadmap.start_destination.nil? ||
-       @roadmap.end_destination.nil? ||
-       @roadmap.start_destination.empty? ||
-       @roadmap.end_destination.empty?
-
-      redirect_to edit_roadmap_path(@roadmap)
-    end
   end
 
   # New doesn't exist. You want a new one => Create > Edit
@@ -43,9 +35,6 @@ class RoadmapsController < ApplicationController
 
   def edit
     authorize @roadmap
-    if @roadmap.start_destination.present?
-      around = @roadmap.start_city
-    end
     experiences = current_user.wishlisted_experiences
     experiences.uniq.sort! { |exp| -exp.average_rating }
     @groups = experiences.group_by { |e| e.country }

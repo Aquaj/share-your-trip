@@ -46,13 +46,13 @@ class Roadmap < ActiveRecord::Base
     countries = []
     continents = []
 
-    unless self.start_destination.nil?
+    unless (self.start_destination.nil? || self.start_destination.empty?)
       cities << self.start_city
       countries << self.start_country
       continents << self.start_continent
     end
 
-    unless self.end_destination.nil?
+    unless (self.end_destination.nil? || self.end_destination.empty?)
       cities << self.end_city
       countries << self.end_country
       continents << self.end_continent

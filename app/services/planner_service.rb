@@ -26,7 +26,7 @@ private
 
     itinerary_stops = []
 
-    itinerary_stops << start_ unless start_.nil?
+    itinerary_stops << start_ unless (start_.nil? || start_.empty?)
 
 =begin
   # Not used for now. We'll see
@@ -46,7 +46,7 @@ private
 
     itinerary_stops += source.map(&function)
 
-    itinerary_stops << end_ unless end_.nil?
+    itinerary_stops << end_ unless (end_.nil? || end_.empty?)
 
     itinerary_stops.chunk{|x| x}.map(&:first)
     # Removes consecutive duplicates
