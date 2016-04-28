@@ -3,6 +3,14 @@
 <% end %>
 
 <style>
+  .input{
+    border-radius: 10px;
+  }
+
+  .button{
+    border-radius: 10px;
+  }
+
   .block2{
     height: 20vh;
     text-align: center;
@@ -13,8 +21,9 @@
     font-weight: 300;
     font-family: 'Raleway', 'Open Sans', sans-serif;
     margin-top:-15px;
+  }
 
-    form {
+  .block2 form {
       width: 100%;
       display: flex;
       flex-wrap: wrap;
@@ -23,17 +32,19 @@
       text-align: center;
     }
 
-    .input{
+    .block2 .input{
       flex:1;
       padding: 5px 15px;
-      font-size:25px;
+      font-size: 25px;
+      vertical-align: middle;
       margin-right: 10px;
       text-align: center;
     }
-    h1{
-      font-size: 14pt;
+
+    .block2 h1{
+      font-size: 26pt;
     }
-  }
+
   .block4{
     height: 50vh;
     background-image: url('<%= image_path("landing_page.jpg") %>');
@@ -49,37 +60,28 @@
       margin-top: 50px;
       margin-bottom: 300px;
       justify-content:unset;
-
-      form{
-        margin-bottom: 75px;
-        margin-top: 50px
-      }
-      .input{
-
-      }
+    }
+    .block2 form{
+      margin-bottom: 75px;
+      margin-top: 50px;
     }
 
     .bottom-form{
       flex-direction: column;
       margin-bottom: 75px;
       margin-top: 50px;
-
-      .input{
-        width:100px;
-      }
     }
+
+    .bottom-form .input{
+      width:100%;
+      margin-bottom: 10px;
+    }
+
     .block4{
       height:unset;
     }
   }
 
-  .input{
-    border-radius: 10px;
-  }
-
-  .button{
-    border-radius: 10px;
-  }
 </style>
 
 <div class="banner" style="background-image: linear-gradient(-180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.5) 75%, rgba(0,0,0,0.2) 100%), url('<%= image_path("background.jpg") %>'); height: 80vh;">
